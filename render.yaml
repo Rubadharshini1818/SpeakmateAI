@@ -4,5 +4,4 @@ services:
     env: docker
     plan: free
     branch: main
-    root: .
-    dockerfilePath: backend/Dockerfile
+    dockerfilePath: Dockerfile
