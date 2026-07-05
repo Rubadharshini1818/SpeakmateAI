@@ -10,9 +10,9 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // Map everything to the workspace root directory (where HTML files are located)
+        // Map everything to the Docker image Frontend directory (where HTML files are located)
         registry.addResourceHandler("/**")
-                .addResourceLocations("file:D:/SpeakmateAI/")
+                .addResourceLocations("file:/app/Frontend/")
                 .setCachePeriod(0); // Set caching to 0 for instant feedback on HTML/JS changes
     }
 
