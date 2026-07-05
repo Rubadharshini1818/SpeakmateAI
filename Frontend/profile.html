@@ -1,0 +1,553 @@
+﻿<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Profile | SpeakMate AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "inverse-surface": "#353026",
+            "surface-container-high": "#f0e7d7",
+            "on-secondary-fixed-variant": "#5f4100",
+            "secondary-fixed-dim": "#fabc4a",
+            "primary-fixed": "#ffdf93",
+            "on-secondary": "#ffffff",
+            "on-surface": "#1f1b12",
+            "background": "#fff8f1",
+            "tertiary-fixed": "#e9e2d0",
+            "secondary-fixed": "#ffdeab",
+            "on-secondary-fixed": "#271900",
+            "on-secondary-container": "#714e00",
+            "tertiary-fixed-dim": "#ccc6b4",
+            "primary": "#765b00",
+            "surface-bright": "#fff8f1",
+            "on-primary": "#ffffff",
+            "on-surface-variant": "#4e4635",
+            "surface-tint": "#765b00",
+            "primary-fixed-dim": "#edc146",
+            "outline": "#7f7663",
+            "on-background": "#1f1b12",
+            "surface-variant": "#ebe1d2",
+            "surface-dim": "#e2d9ca",
+            "on-tertiary-fixed": "#1e1c10",
+            "on-tertiary-fixed-variant": "#4a4739",
+            "inverse-on-surface": "#f9f0e0",
+            "surface-container-highest": "#ebe1d2",
+            "on-error": "#ffffff",
+            "on-primary-fixed": "#241a00",
+            "on-error-container": "#93000a",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#fcf2e3",
+            "error-container": "#ffdad6",
+            "surface-container": "#f6eddd",
+            "tertiary": "#625e50",
+            "on-primary-fixed-variant": "#594400",
+            "surface": "#fff8f1",
+            "primary-container": "#f5c84c",
+            "on-tertiary": "#ffffff",
+            "tertiary-container": "#d3cdbb",
+            "secondary-container": "#fdbf4d",
+            "secondary": "#7e5700",
+            "on-tertiary-container": "#5b5749",
+            "error": "#ba1a1a",
+            "on-primary-container": "#6d5400",
+            "inverse-primary": "#edc146",
+            "outline-variant": "#d1c5af"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "stack-lg": "48px",
+            "gutter": "24px",
+            "margin-mobile": "20px",
+            "stack-sm": "12px",
+            "margin-desktop": "40px",
+            "container-max": "1200px",
+            "unit": "8px",
+            "stack-md": "24px"
+          },
+          "fontFamily": {
+            "display-lg": ["Quicksand", "sans-serif"],
+            "body-md": ["Poppins", "sans-serif"],
+            "body-lg": ["Poppins", "sans-serif"],
+            "label-sm": ["Quicksand", "sans-serif"],
+            "headline-md": ["Quicksand", "sans-serif"]
+          },
+          "fontSize": {
+            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+            "label-sm": ["13px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "700"}],
+            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #FDF6E3;
+      font-family: 'Poppins', sans-serif;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+    }
+    .custom-shadow {
+      box-shadow: 0 12px 32px rgba(67, 62, 51, 0.05);
+    }
+    .custom-shadow-hover:hover {
+      box-shadow: 0 20px 40px rgba(67, 62, 51, 0.08);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
+  </style>
+</head>
+<body class="text-on-surface">
+<!-- Top Navigation Shell -->
+<header class="bg-surface sticky top-0 z-50 shadow-[0_12px_32px_rgba(67,62,51,0.05)]">
+<div class="flex justify-between items-center px-margin-desktop w-full max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-4">
+<span class="text-headline-md font-headline-md text-primary">SpeakMate AI</span>
+</div>
+<nav class="hidden md:flex gap-8 items-center h-full">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="dashboard.html">Dashboard</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="classroom.html">Courses</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="interview.html">Practice</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container" id="header-avatar-wrap">
+<img class="w-full h-full object-cover" id="header-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPG7RdmGOcepHyOupwCoJqgCYb1O1ST9eBUnW1tkBDi4q8RoQVUnIBpPNjg2ZAzo21RNCIGE2hQwtrEUXPYwzB84nbJjHZGU6VLG2hT-HjSQwT9JPrDinFLV6Wgu6x80_XgI4pQTQTeAQS9ZayYu5mZWelyFGJ4xRRXmF74KqEvYBRjmkR4Ksk_y04Og6EdlZczIfZC0WGk3H0jHEaTMhw3f1o3kTv8qpDuhqIpWzhNrlfnX5NTVwv"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1000px] mx-auto px-margin-mobile md:px-margin-desktop py-stack-md animate-fade-in">
+<!-- Header Section -->
+<div class="flex flex-col gap-2 mb-stack-md">
+<div class="flex items-center gap-4">
+<button class="bg-white p-2 rounded-full custom-shadow hover:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="text-[22px] font-headline-md text-on-surface">👤 My Profile</h1>
+</div>
+<nav class="flex items-center gap-2 text-label-sm text-on-surface-variant px-12">
+<a class="hover:text-primary" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">My Profile</span>
+</nav>
+</div>
+<div class="flex flex-col gap-gutter">
+<!-- Profile Hero Card -->
+<section class="bg-white rounded-lg overflow-hidden custom-shadow animate-fade-in stagger-1">
+<div class="h-[120px] bg-gradient-to-r from-primary-container to-secondary-container relative"></div>
+<div class="px-gutter pb-gutter relative">
+<div class="flex flex-col md:flex-row md:items-end justify-between -mt-12 gap-4">
+<div class="relative w-32 h-32 md:w-[100px] md:h-[100px]">
+<div class="w-full h-full rounded-full border-4 border-white overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" id="profile-avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPzDOfXhKhWSs4TNgEEO9VMqK8xZf9NRQEcapJPW-JHdVpQOPKWXTuaJZnfdWHi3lUHPpVP42RfMFG3vgwLY_6wtxIxZ0QzoGvUeUYP3rZgBwJ1ZUaW1KVTqUFDpWTlIP3OuSUnC7xSyufuPvQi47zThLDU59itBjkpxFJmybdPvRyqlxhIemFtjBGgzDnKUPiCYAPj_Qgdfluoy2PoB-8rVupcQFsuk9lpA9aBxPLI87C99YhDOg5"/>
+</div>
+<input type="file" id="avatar-file-input" accept="image/*" class="hidden" onchange="handleAvatarChange(this)"/>
+<button onclick="document.getElementById('avatar-file-input').click()" class="absolute bottom-0 right-0 bg-primary text-white p-1.5 rounded-full border-2 border-white custom-shadow hover:scale-110 transition-transform" title="Change profile picture">
+<span class="material-symbols-outlined text-[18px]">photo_camera</span>
+</button>
+</div>
+<div class="flex-1 md:pb-2">
+<h2 class="font-headline-md text-headline-md" id="profile-display-name">Ruba D.</h2>
+<p class="text-body-md text-on-surface-variant" id="profile-username">@ruba_speaks</p>
+</div>
+<div class="md:pb-2">
+<button class="px-6 py-2 border-2 border-primary-container text-primary font-bold rounded-full hover:bg-primary-container/10 transition-colors" onclick="openEditProfile()">Edit Profile</button>
+</div>
+</div>
+<div class="mt-4 flex flex-col gap-4">
+<div class="flex flex-wrap items-center gap-4">
+<div class="flex items-center gap-1.5 text-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+<span id="profile-joined">Joined March 2024</span>
+</div>
+<div class="bg-secondary-container/20 text-on-secondary-container px-4 py-1 rounded-full font-bold text-label-sm flex items-center gap-1.5" id="profile-level-badge">
+<span class="material-symbols-outlined text-[18px]">military_tech</span>
+<span id="profile-level">Level 8 — Advanced Learner</span>
+</div>
+</div>
+<!-- Quick Stats -->
+<div class="flex flex-wrap gap-stack-sm pt-2">
+<div class="bg-surface-container-low px-4 py-2 rounded-full custom-shadow flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-bold" id="profile-streak">12 Day Streak</span>
+</div>
+<div class="bg-surface-container-low px-4 py-2 rounded-full custom-shadow flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">bolt</span>
+<span class="font-bold" id="profile-xp">2,450 XP</span>
+</div>
+<div class="bg-surface-container-low px-4 py-2 rounded-full custom-shadow flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">leaderboard</span>
+<span class="font-bold" id="profile-rank">#42 Global Rank</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Personal Info Card -->
+<section class="bg-white rounded-lg p-gutter custom-shadow animate-fade-in stagger-2">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">person</span>
+<h3 class="font-headline-md text-headline-md">Personal Information</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="space-y-1">
+<p class="text-label-sm text-on-surface-variant">Full Name</p>
+<p class="font-body-md" id="info-fullname">Ruba Daniela</p>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm text-on-surface-variant">Email</p>
+<p class="font-body-md" id="info-email">ruba@example.com</p>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm text-on-surface-variant">Phone</p>
+<p class="font-body-md" id="info-phone">+1 (555) 012-3456</p>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm text-on-surface-variant">Date of Birth</p>
+<p class="font-body-md" id="info-dob">Oct 12, 1995</p>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm text-on-surface-variant">Gender</p>
+<p class="font-body-md" id="info-gender">Female</p>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm text-on-surface-variant">Location</p>
+<p class="font-body-md" id="info-location">Valencia, Spain</p>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm text-on-surface-variant">Native Language</p>
+<p class="font-body-md" id="info-native">Spanish</p>
+</div>
+<div class="space-y-1">
+<p class="text-label-sm text-on-surface-variant">English Level</p>
+<span class="inline-block bg-secondary-container px-3 py-1 rounded-full text-label-sm font-bold text-on-secondary-container" id="info-english-level">Advanced</span>
+</div>
+</div>
+</section>
+<!-- Learning Preferences Card -->
+<section class="bg-white rounded-lg p-gutter custom-shadow animate-fade-in stagger-2">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">psychology</span>
+<h3 class="font-headline-md text-headline-md">Learning Preferences</h3>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<p class="text-label-sm text-on-surface-variant uppercase">Focus Areas</p>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container px-3 py-1 rounded-full text-label-sm">Business English</span>
+<span class="bg-surface-container px-3 py-1 rounded-full text-label-sm">Pronunciation</span>
+<span class="bg-surface-container px-3 py-1 rounded-full text-label-sm">Vocabulary</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4" 
+    $m = $args[0]
+    $m.Value -replace '<span class="text-display-lg text-primary text-\[32px\] leading-tight">142</span>', '<span class="text-display-lg text-primary text-[32px] leading-tight stat-value" id="stat-streak">0</span>'
+</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg flex flex-col gap-1">
+<span class="text-display-lg text-primary text-[32px] leading-tight">86.5</span>
+<span class="text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">Study Hours</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg flex flex-col gap-1">
+<span class="text-display-lg text-primary text-[32px] leading-tight">12.4k</span>
+<span class="text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">Words Learned</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg flex flex-col gap-1">
+<span class="text-display-lg text-primary text-[32px] leading-tight">32</span>
+<span class="text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">Courses Taken</span>
+</div>
+</div>
+</section>
+</div>
+<!-- Account & Security -->
+<section class="bg-white rounded-lg p-gutter custom-shadow animate-fade-in stagger-4">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">security</span>
+<h3 class="font-headline-md text-headline-md">Account &amp; Security</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+<a class="flex items-center justify-between py-2 border-b border-surface-variant group" href="#">
+<div class="flex flex-col">
+<span class="font-bold group-hover:text-primary transition-colors">Change Password</span>
+<span class="text-label-sm text-on-surface-variant">Update your account password</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary">chevron_right</span>
+</a>
+<div class="flex items-center justify-between py-2 border-b border-surface-variant">
+<div class="flex flex-col">
+<span class="font-bold">Two-Factor Authentication</span>
+<span class="text-label-sm text-on-surface-variant">Add an extra layer of security</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-surface-variant">
+<div class="flex flex-col">
+<span class="font-bold">Connected Google account</span>
+<span class="text-label-sm text-on-surface-variant">ruba.daniel@gmail.com</span>
+</div>
+<span class="text-label-sm font-bold text-primary">Connected</span>
+</div>
+<div class="flex items-center justify-between py-2 border-b border-surface-variant">
+<div class="flex flex-col">
+<span class="font-bold">Linked Phone</span>
+<span class="text-label-sm text-on-surface-variant">+1 (555) ***-3456</span>
+</div>
+<button class="text-label-sm font-bold text-primary">Verify</button>
+</div>
+</div>
+<div class="mt-8">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">download</span>
+<span class="font-bold text-label-sm">Download My Data</span>
+</button>
+</div>
+</section>
+<!-- Subscription Card -->
+<section class="bg-gradient-to-br from-primary to-secondary text-white rounded-lg p-gutter shadow-lg animate-fade-in stagger-4">
+<div class="flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md">Premium Plan</h3>
+<p class="text-white/80">Active until Dec 31, 2024</p>
+</div>
+</div>
+<button class="px-8 py-3 bg-white text-primary font-bold rounded-full hover:bg-surface-container transition-colors shadow-md">
+            Manage Subscription
+          </button>
+</div>
+</section>
+<!-- Danger Zone -->
+<section class="bg-red-50 rounded-lg p-gutter border border-red-100 animate-fade-in stagger-4">
+<h3 class="font-headline-md text-headline-md text-red-700 mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined">dangerous</span>
+          Danger Zone
+        </h3>
+<div class="flex flex-col md:flex-row gap-6">
+<a class="flex-1 p-4 rounded-lg bg-white border border-red-100 hover:border-red-300 transition-all group" href="#">
+<p class="font-bold text-red-600 group-hover:underline">Log Out</p>
+<p class="text-label-sm text-on-surface-variant">Sign out from this session</p>
+</a>
+<a class="flex-1 p-4 rounded-lg bg-white border border-red-100 hover:border-red-300 transition-all group" href="#">
+<p class="font-bold text-red-600 group-hover:underline">Deactivate Account</p>
+<p class="text-label-sm text-on-surface-variant">Temporarily disable your profile</p>
+</a>
+<a class="flex-1 p-4 rounded-lg bg-white border border-red-100 hover:border-red-300 transition-all group" href="#">
+<p class="font-bold text-red-700 group-hover:underline">Delete Account</p>
+<p class="text-label-sm text-on-surface-variant">Permanently remove all your data</p>
+</a>
+</div>
+</section>
+</div>
+</main>
+<footer class="mt-stack-lg py-stack-md border-t border-surface-variant">
+<div class="max-w-container-max mx-auto px-margin-desktop text-center text-on-surface-variant">
+<p class="text-label-sm">© 2024 SpeakMate AI — Enlightenment through conversation.</p>
+</div>
+</footer>
+<script>
+    const token = localStorage.getItem('speakmate_token');
+    if (!token) window.location.href = 'login.html';
+
+    async function loadProfile() {
+        try {
+            const res = await fetch('/api/profile', { headers: { 'Authorization': 'Bearer ' + token } });
+            if (res.status === 401 || res.status === 403) { localStorage.removeItem('speakmate_token'); window.location.href = 'login.html'; return; }
+            const data = await res.json();
+            window._profileData = data;
+
+            // Hero card
+            document.getElementById('profile-display-name').textContent = data.fullName || data.username || '';
+            document.getElementById('profile-username').textContent = '@' + (data.username || '').toLowerCase();
+            document.getElementById('profile-joined').textContent = 'Member since ' + (data.memberSince || '2024');
+            document.getElementById('profile-level').textContent = (data.learningLevel || '') + ' Learner';
+            document.getElementById('profile-streak').textContent = (data.currentStreak || 0) + ' Day Streak';
+            document.getElementById('profile-xp').textContent = (data.xp || 0) + ' XP';
+
+            // Profile picture
+            if (data.profilePictureUrl) {
+                document.getElementById('profile-avatar').src = data.profilePictureUrl;
+                const hdr = document.getElementById('header-avatar');
+                if (hdr) hdr.src = data.profilePictureUrl;
+            }
+
+            // Personal info
+            document.getElementById('info-fullname').textContent = data.fullName || 'â€”';
+            document.getElementById('info-email').textContent = data.email || 'â€”';
+            document.getElementById('info-phone').textContent = data.phone || 'â€”';
+            document.getElementById('info-dob').textContent = 'â€”';
+            document.getElementById('info-gender').textContent = 'â€”';
+            document.getElementById('info-location').textContent = data.address || 'â€”';
+            document.getElementById('info-native').textContent = 'â€”';
+            document.getElementById('info-english-level').textContent = data.learningLevel || 'â€”';
+
+            // Account Activity stats
+            const s = document.querySelectorAll('#account-activity-grid .stat-value');
+            if (s[0]) s[0].textContent = data.currentStreak || 0;
+            if (s[1]) s[1].textContent = Math.round((data.studyMinutes || 0) / 60 * 10) / 10;
+            if (s[2]) s[2].textContent = data.completedLessons || 0;
+            if (s[3]) s[3].textContent = data.completedInterviews || 0;
+
+        } catch (e) { console.error('Profile load error:', e); }
+    }
+
+    // Avatar upload
+    function handleAvatarChange(input) {
+        if (!input.files || !input.files[0]) return;
+        const file = input.files[0];
+        if (file.size > 5 * 1024 * 1024) { alert('Image must be under 5 MB.'); return; }
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+            const dataUrl = e.target.result;
+            document.getElementById('profile-avatar').src = dataUrl;
+            const hdr = document.getElementById('header-avatar');
+            if (hdr) hdr.src = dataUrl;
+            try {
+                await fetch('/api/profile', {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+                    body: JSON.stringify({ profilePictureUrl: dataUrl })
+                });
+            } catch(err) { console.error(err); }
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // Edit modal
+    function openEditProfile() {
+        const d = window._profileData || {};
+        document.getElementById('edit-fullname').value  = d.fullName  || '';
+        document.getElementById('edit-username').value  = d.username  || '';
+        document.getElementById('edit-phone').value     = d.phone     || '';
+        document.getElementById('edit-address').value   = d.address   || '';
+        document.getElementById('edit-level').value     = d.learningLevel || 'B1';
+        document.getElementById('edit-error').classList.add('hidden');
+        document.getElementById('edit-modal').classList.remove('hidden');
+    }
+
+    function closeEditModal() { document.getElementById('edit-modal').classList.add('hidden'); }
+
+    async function saveProfile() {
+        const btn = document.getElementById('save-btn');
+        const errEl = document.getElementById('edit-error');
+        errEl.classList.add('hidden');
+        btn.textContent = 'Saving...';
+        btn.disabled = true;
+        const payload = {
+            fullName:      document.getElementById('edit-fullname').value.trim(),
+            username:      document.getElementById('edit-username').value.trim(),
+            phone:         document.getElementById('edit-phone').value.trim(),
+            address:       document.getElementById('edit-address').value.trim(),
+            learningLevel: document.getElementById('edit-level').value
+        };
+        try {
+            const res = await fetch('/api/profile', {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+                body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+            if (!res.ok) { errEl.textContent = data.message || 'Update failed.'; errEl.classList.remove('hidden'); }
+            else { closeEditModal(); await loadProfile(); }
+        } catch(e) { errEl.textContent = 'Network error.'; errEl.classList.remove('hidden'); }
+        finally { btn.textContent = 'Save Changes'; btn.disabled = false; }
+    }
+
+    document.getElementById('edit-modal').addEventListener('click', function(e) { if (e.target === this) closeEditModal(); });
+
+    // Logout
+    document.querySelectorAll('section.bg-red-50 a').forEach((a, i) => {
+        if (i === 0) a.onclick = (e) => { e.preventDefault(); localStorage.removeItem('speakmate_token'); window.location.href = 'login.html'; };
+    });
+
+    // Back button
+    const backBtn = document.querySelector('main button');
+    if (backBtn) backBtn.onclick = () => window.location.href = 'dashboard.html';
+
+    document.addEventListener('DOMContentLoaded', loadProfile);
+</script>
+
+<!-- Edit Profile Modal -->
+<div id="edit-modal" class="hidden fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-[520px] max-h-[90vh] overflow-y-auto">
+    <div class="flex items-center justify-between p-6 border-b border-surface-variant">
+      <h2 class="font-headline-md text-headline-md text-primary">Edit Profile</h2>
+      <button onclick="closeEditModal()" class="w-9 h-9 rounded-full hover:bg-surface-container flex items-center justify-center transition-colors">
+        <span class="material-symbols-outlined text-on-surface-variant">close</span>
+      </button>
+    </div>
+    <div class="p-6 space-y-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="space-y-1">
+          <label class="text-label-sm text-on-surface-variant font-bold">Full Name</label>
+          <input id="edit-fullname" type="text" class="w-full border border-outline-variant rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Your full name"/>
+        </div>
+        <div class="space-y-1">
+          <label class="text-label-sm text-on-surface-variant font-bold">Username</label>
+          <input id="edit-username" type="text" class="w-full border border-outline-variant rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none" placeholder="username"/>
+        </div>
+        <div class="space-y-1">
+          <label class="text-label-sm text-on-surface-variant font-bold">Phone</label>
+          <input id="edit-phone" type="tel" class="w-full border border-outline-variant rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none" placeholder="+91 98765 43210"/>
+        </div>
+        <div class="space-y-1">
+          <label class="text-label-sm text-on-surface-variant font-bold">English Level</label>
+          <select id="edit-level" class="w-full border border-outline-variant rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none bg-white">
+            <option value="A1">A1 â€” Beginner</option>
+            <option value="A2">A2 â€” Elementary</option>
+            <option value="B1">B1 â€” Intermediate</option>
+            <option value="B2">B2 â€” Upper Intermediate</option>
+            <option value="C1">C1 â€” Advanced</option>
+            <option value="C2">C2 â€” Proficient</option>
+          </select>
+        </div>
+        <div class="space-y-1 sm:col-span-2">
+          <label class="text-label-sm text-on-surface-variant font-bold">Address / Location</label>
+          <input id="edit-address" type="text" class="w-full border border-outline-variant rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:outline-none" placeholder="City, Country"/>
+        </div>
+      </div>
+      <p id="edit-error" class="text-error text-sm hidden"></p>
+    </div>
+    <div class="flex gap-3 p-6 border-t border-surface-variant">
+      <button onclick="closeEditModal()" class="flex-1 py-2.5 rounded-full border border-outline-variant font-bold text-on-surface-variant hover:bg-surface-container transition-colors text-sm">Cancel</button>
+      <button onclick="saveProfile()" id="save-btn" class="flex-1 py-2.5 rounded-full font-bold text-sm transition-all active:scale-95" style="background:linear-gradient(135deg,#F5C84C,#F2B544);color:#241a00;">Save Changes</button>
+    </div>
+  </div>
+</div>
+</body></html>

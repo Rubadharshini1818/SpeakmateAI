@@ -1,0 +1,584 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>SpeakMate AI | Student Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#765b00",
+                        "primary-container": "#f5c84c",
+                        "on-primary-container": "#6d5400",
+                        "secondary": "#7e5700",
+                        "background": "#fff8f1",
+                        "surface": "#fff8f1",
+                        "surface-container": "#f6eddd",
+                        "surface-container-low": "#fcf2e3",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface": "#1f1b12",
+                        "on-surface-variant": "#4e4635",
+                        "outline": "#7f7663",
+                        "outline-variant": "#d1c5af",
+                        "brand-gold": "#F5C84C",
+                        "brand-amber": "#E8A020",
+                        "brand-dark": "#2D2A26",
+                        "brand-muted": "#8A8580",
+                        "brand-border": "#E8E0D0",
+                        "brand-cream": "#FDF6E3"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "20px",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "stack-md": "24px",
+                        "stack-lg": "48px",
+                        "container-max": "1200px",
+                        "margin-mobile": "20px",
+                        "margin-desktop": "40px"
+                    },
+                    fontFamily: {
+                        "display": ["Quicksand", "sans-serif"],
+                        "body": ["Poppins", "sans-serif"],
+                        "body-md": ["Quicksand"],
+                        "display-lg-mobile": ["Quicksand"],
+                        "label-sm": ["Quicksand"]
+                    },
+                    fontSize: {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "label-sm": ["13px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "700"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    },
+                    animation: {
+                        'breathing': 'breathing 3s ease-in-out infinite',
+                        'flicker': 'flicker 2s infinite alternate',
+                        'pulse-gold': 'pulse-gold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-in-up': 'fade-in-up 0.6s ease-out forwards'
+                    },
+                    keyframes: {
+                        breathing: {
+                            '0%, 100%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.07)' },
+                        },
+                        flicker: {
+                            '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+                            '50%': { opacity: '0.7', transform: 'scale(0.95)' },
+                        },
+                        'pulse-gold': {
+                            '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+                            '50%': { opacity: '0.4', transform: 'scale(1.2)' },
+                        },
+                        'fade-in-up': {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #FDF6E3;
+            font-family: 'Poppins', sans-serif;
+            color: #2D2A26;
+        }
+        .quicksand { font-family: 'Quicksand', sans-serif; }
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(245, 200, 76, 0.2);
+            border: 1px solid #F5C84C;
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-brand-cream text-brand-dark">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md shadow-[0_4px_20px_rgba(67,62,51,0.03)] transition-all duration-300">
+<div class="max-w-container-max mx-auto flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4">
+<!-- Logo Section -->
+<div class="flex items-center gap-3">
+<div class="flex items-center">
+<div class="w-8 h-8 rounded-sm flex items-center justify-center relative bg-brand-amber">
+<div class="flex gap-[2px] items-end pb-1">
+<div class="w-1 h-3 bg-brand-gold rounded-full"></div>
+<div class="w-1 h-5 bg-brand-gold rounded-full"></div>
+<div class="w-1 h-2 bg-brand-gold rounded-full"></div>
+</div>
+</div>
+<span class="quicksand ml-2 text-xl font-bold tracking-tight">SpeakMate AI</span>
+</div>
+<div class="relative flex items-center">
+<div class="w-3 h-3 bg-brand-gold rounded-full animate-pulse-gold"></div>
+</div>
+</div>
+<!-- Search Pill (Center) -->
+<div class="hidden md:flex items-center bg-surface-container-low px-4 py-2 rounded-full w-full max-w-md mx-8 group border border-transparent focus-within:border-brand-gold transition-all">
+<span class="material-symbols-outlined text-brand-muted mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full font-body placeholder:text-brand-muted" placeholder="Search lessons, friends, or tasks..." type="text">
+</div>
+<!-- Profile & Actions (Right) -->
+<div class="flex items-center gap-4">
+<div class="relative p-2 text-brand-dark cursor-pointer hover:bg-brand-cream rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-brand-amber rounded-full"></span>
+</div>
+<div class="hidden sm:flex items-center gap-2 bg-brand-cream border border-brand-border px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-brand-amber text-lg">local_fire_department</span>
+<span class="font-bold text-sm quicksand" id="nav-streak-days">12 Days</span>
+</div>
+<div class="flex items-center gap-2 cursor-pointer group" onclick="window.location.href='profile.html'">
+<div class="w-9 h-9 rounded-full border-2 border-brand-gold p-0.5 overflow-hidden">
+<img class="w-full h-full object-cover rounded-full" data-alt="A professional headshot of a young woman with a friendly smile, warm lighting, soft cream background, minimalist digital photography style, high quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEjKKJLdt1ZAGPt3_8_SgcibiKZDp93WaPJbgqQPNkEyqzpfCMLYZjgAU_FMln9dil3wfvHcpctbbuarNjABxw4x6q2rrmBQunxyvrJmDM4xaZqB1BpzSOIfC6i-U4sg6mpb_ZA248leTq56PcBaaJVOItHSwbWxPwdZu3v2PsRJuNNDLk6oaV6tDqGxxsKpzC5Xco3zJOlA7c3fGpZQvj8R_4FE35Fku6zS4nikYoV88d87_TRU2TRQ4jN6fWemAZvQeg1w-Drj4">
+</div>
+<span class="material-symbols-outlined text-brand-muted group-hover:text-brand-dark transition-colors">expand_more</span>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-md pb-32">
+<!-- Welcome Hero Section -->
+<section class="mb-stack-md opacity-0 animate-fade-in-up">
+<div class="relative overflow-hidden rounded-lg p-8 md:p-10 flex flex-col md:flex-row justify-between items-center bg-gradient-to-br from-[#FFF8E7] to-brand-cream border border-brand-border shadow-sm">
+<!-- Decorative Elements -->
+<div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-brand-gold/10 rounded-full blur-3xl"></div>
+<div class="relative z-10 flex flex-col items-start text-left gap-4">
+<div class="bg-white/60 backdrop-blur-sm border border-brand-gold/30 px-4 py-1.5 rounded-full inline-flex items-center gap-2 mb-2 shadow-sm">
+<span class="text-xs quicksand font-bold text-on-primary-container tracking-wide uppercase">Insight</span>
+<p class="text-sm font-medium text-brand-dark">Every conversation makes you a better communicator</p>
+</div>
+<h1 class="quicksand text-3xl md:text-4xl font-bold">Good Morning, <span class="text-brand-amber" id="welcome-username">Rubadharshini</span></h1>
+<p class="text-brand-muted max-w-md font-body">Your learning streak is going strong! You've improved your fluency by 12% this week. Let's keep the momentum going.</p>
+</div>
+<div class="relative z-10 mt-8 md:mt-0 flex flex-col items-center">
+<div class="relative animate-breathing">
+<div class="w-20 h-20 bg-brand-gold rounded-full flex items-center justify-center shadow-[0_8px_20px_rgba(245,200,76,0.4)]">
+<div class="flex flex-col items-center gap-1">
+<div class="flex gap-4">
+<div class="w-1.5 h-1.5 bg-brand-dark rounded-full"></div>
+<div class="w-1.5 h-1.5 bg-brand-dark rounded-full"></div>
+</div>
+<div class="w-4 h-2 border-b-2 border-brand-dark rounded-full"></div>
+</div>
+</div>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 bg-white rounded-full flex items-center justify-center text-xs shadow-sm">😊</div>
+</div>
+<p class="mt-4 quicksand font-bold text-sm bg-white/80 px-4 py-1 rounded-full border border-brand-border shadow-sm">Hi friend, let's talk! 😊</p>
+</div>
+</div>
+</section>
+<!-- Today's Goal Row -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-stack-md">
+<!-- Goal 1: Practice SVG Ring -->
+<div class="bg-white p-6 rounded-lg shadow-[0_12px_32px_rgba(67,62,51,0.05)] card-hover transition-all opacity-0 animate-fade-in-up stagger-1 border border-transparent">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-brand-gold bg-brand-gold/10 p-2 rounded-full">timer</span>
+<span class="text-xs quicksand font-bold text-brand-muted">DAILY GOAL</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative w-14 h-14">
+<svg class="w-full h-full -rotate-90" viewBox="0 0 36 36">
+<path class="text-brand-cream" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="4"></path>
+<path class="text-brand-gold" id="goal-circle-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="75, 100" stroke-linecap="round" stroke-width="4"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center text-xs font-bold" id="goal-circle-pct">75%</div>
+</div>
+<div>
+<h4 class="font-bold quicksand" id="goal-minutes-text">45 / 60</h4>
+<p class="text-xs text-brand-muted">Minutes Practice</p>
+</div>
+</div>
+</div>
+<!-- Goal 2: Streak flicker flame -->
+<div class="bg-white p-6 rounded-lg shadow-[0_12px_32px_rgba(67,62,51,0.05)] card-hover transition-all opacity-0 animate-fade-in-up stagger-2 border border-transparent">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-brand-amber bg-brand-amber/10 p-2 rounded-full animate-flicker">local_fire_department</span>
+<span class="text-xs quicksand font-bold text-brand-muted">STREAK</span>
+</div>
+<div>
+<h4 class="font-bold quicksand text-2xl" id="card-streak-days">12 Days</h4>
+<p class="text-xs text-brand-muted" id="card-streak-pb">Personal Best: 24 Days</p>
+</div>
+</div>
+<!-- Goal 3: Grammar Sparkline -->
+<div class="bg-white p-6 rounded-lg shadow-[0_12px_32px_rgba(67,62,51,0.05)] card-hover transition-all opacity-0 animate-fade-in-up stagger-3 border border-transparent">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary bg-secondary/10 p-2 rounded-full">spellcheck</span>
+<span class="text-xs quicksand font-bold text-brand-muted">GRAMMAR</span>
+</div>
+<div>
+<h4 class="font-bold quicksand" id="card-grammar-level">Level B2+</h4>
+<div class="h-8 mt-2 flex items-end gap-1">
+<div class="bg-brand-gold/20 w-full h-[40%] rounded-t-sm"></div>
+<div class="bg-brand-gold/40 w-full h-[60%] rounded-t-sm"></div>
+<div class="bg-brand-gold/60 w-full h-[50%] rounded-t-sm"></div>
+<div class="bg-brand-gold/80 w-full h-[80%] rounded-t-sm"></div>
+<div class="bg-brand-gold w-full h-[100%] rounded-t-sm"></div>
+</div>
+</div>
+</div>
+<!-- Goal 4: Confidence Progress -->
+<div class="bg-white p-6 rounded-lg shadow-[0_12px_32px_rgba(67,62,51,0.05)] card-hover transition-all opacity-0 animate-fade-in-up stagger-4 border border-transparent">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full">psychology</span>
+<span class="text-xs quicksand font-bold text-brand-muted">CONFIDENCE</span>
+</div>
+<div class="mt-2">
+<div class="flex justify-between text-xs mb-1 font-bold">
+<span class="" id="card-confidence-score">Score: 84</span>
+<span class="" id="card-confidence-change">+4.2</span>
+</div>
+<div class="w-full bg-brand-cream h-3 rounded-full overflow-hidden">
+<div class="bg-brand-amber h-full rounded-full" id="card-confidence-bar" style="width: 84%"></div>
+</div>
+<p class="text-[10px] text-brand-muted mt-2">Updating after every conversation...</p>
+</div>
+</div>
+</section>
+<!-- Main Modules: 3x2 Grid -->
+<section class="mb-stack-md">
+<h2 class="quicksand text-2xl font-bold mb-6 flex items-center gap-2">
+                Learning Modules <span class="w-2 h-2 bg-brand-gold rounded-full"></span>
+</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- AI Friend -->
+<div class="bg-brand-gold/10 p-6 rounded-lg border-2 border-brand-gold/20 flex flex-col justify-between card-hover transition-all opacity-0 animate-fade-in-up stagger-1">
+<div class="w-12 h-12 bg-brand-gold rounded-full flex items-center justify-center mb-4">
+<div class="flex flex-col items-center gap-0.5">
+<div class="flex gap-2">
+<div class="w-1 h-1 bg-brand-dark rounded-full"></div>
+<div class="w-1 h-1 bg-brand-dark rounded-full"></div>
+</div>
+<div class="w-3 h-1 border-b border-brand-dark rounded-full"></div>
+</div>
+</div>
+<div>
+<h3 class="quicksand font-bold text-xl mb-1">AI Friend</h3>
+<p class="text-brand-muted text-sm mb-4">Hi friend, let's talk! 😊</p>
+<button class="bg-gradient-to-r from-[#F2B544] to-brand-gold text-brand-dark rounded-full font-bold text-[13px] py-[9px] px-[18px] border-none hover:shadow-[0_4px_12px_rgba(242,181,68,0.35)] active:scale-[0.97] transition-all w-full flex items-center justify-center gap-2"><span class="material-symbols-outlined text-[18px]">mic</span> Start Chat</button>
+</div>
+</div>
+<!-- AI Classroom -->
+<div class="bg-white p-6 rounded-lg shadow-[0_12px_32px_rgba(67,62,51,0.05)] border border-transparent flex flex-col justify-between card-hover transition-all opacity-0 animate-fade-in-up stagger-2">
+<div class="w-12 h-12 bg-surface-container rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-brand-dark">school</span>
+</div>
+<div>
+<h3 class="quicksand font-bold text-xl mb-1">AI Classroom</h3>
+<p class="text-brand-muted text-sm mb-4">Interactive lessons with voice guidance.</p>
+<button class="bg-gradient-to-r from-[#F2B544] to-brand-gold text-brand-dark rounded-full font-bold text-[13px] py-[9px] px-[18px] border-none hover:shadow-[0_4px_12px_rgba(242,181,68,0.35)] active:scale-[0.97] transition-all w-full">Enter Class</button>
+</div>
+</div>
+<!-- Interview -->
+<div class="bg-white p-6 rounded-lg shadow-[0_12px_32px_rgba(67,62,51,0.05)] border border-transparent flex flex-col justify-between card-hover transition-all opacity-0 animate-fade-in-up stagger-3">
+<div class="w-12 h-12 bg-surface-container rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-brand-dark">work</span>
+</div>
+<div>
+<h3 class="quicksand font-bold text-xl mb-1">Interview Prep</h3>
+<p class="text-brand-muted text-sm mb-4">Mock interviews with real-time feedback.</p>
+<button class="bg-gradient-to-r from-[#F2B544] to-brand-gold text-brand-dark rounded-full font-bold text-[13px] py-[9px] px-[18px] border-none hover:shadow-[0_4px_12px_rgba(242,181,68,0.35)] active:scale-[0.97] transition-all w-full">Practice Now</button>
+</div>
+</div>
+<!-- Group Discussion -->
+<div class="bg-white p-6 rounded-lg shadow-[0_12px_32px_rgba(67,62,51,0.05)] border border-transparent flex flex-col justify-between card-hover transition-all opacity-0 animate-fade-in-up stagger-4">
+<div class="w-12 h-12 bg-surface-container rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-brand-dark">groups</span>
+</div>
+<div>
+<h3 class="quicksand font-bold text-xl mb-1">GD Sessions</h3>
+<p class="text-brand-muted text-sm mb-4">Join group discussions with other peers.</p>
+<button class="bg-gradient-to-r from-[#F2B544] to-brand-gold text-brand-dark rounded-full font-bold text-[13px] py-[9px] px-[18px] border-none hover:shadow-[0_4px_12px_rgba(242,181,68,0.35)] active:scale-[0.97] transition-all w-full">Join Room</button>
+</div>
+</div>
+<!-- Assessment -->
+<div class="bg-white p-6 rounded-lg shadow-[0_12px_32px_rgba(67,62,51,0.05)] border border-transparent flex flex-col justify-between card-hover transition-all opacity-0 animate-fade-in-up stagger-5">
+<div class="w-12 h-12 bg-surface-container rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-brand-dark">assignment</span>
+</div>
+<div>
+<h3 class="quicksand font-bold text-xl mb-1">Daily MCQ</h3>
+<p class="text-brand-muted text-sm mb-4">Quick tests to evaluate daily progress.</p>
+<button class="bg-gradient-to-r from-[#F2B544] to-brand-gold text-brand-dark rounded-full font-bold text-[13px] py-[9px] px-[18px] border-none hover:shadow-[0_4px_12px_rgba(242,181,68,0.35)] active:scale-[0.97] transition-all w-full">Take Test</button>
+</div>
+</div>
+<!-- Progress Tracker -->
+<div class="bg-white p-6 rounded-lg shadow-[0_12px_32px_rgba(67,62,51,0.05)] border border-transparent flex flex-col justify-between card-hover transition-all opacity-0 animate-fade-in-up stagger-1">
+<div class="w-12 h-12 bg-surface-container rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-brand-dark">monitoring</span>
+</div>
+<div>
+<h3 class="quicksand font-bold text-xl mb-1">Progress</h3>
+<p class="text-brand-muted text-sm mb-4">Detailed analytics of your learning journey.</p>
+<button class="bg-gradient-to-r from-[#F2B544] to-brand-gold text-brand-dark rounded-full font-bold text-[13px] py-[9px] px-[18px] border-none hover:shadow-[0_4px_12px_rgba(242,181,68,0.35)] active:scale-[0.97] transition-all w-full">View Chart</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Weekly AI Assessment Challenge: Full-width Card -->
+<section class="mb-stack-md opacity-0 animate-fade-in-up stagger-2">
+<div class="bg-white border-[1.5px] border-brand-gold rounded-lg p-8 overflow-hidden relative"><div class="absolute bottom-0 right-0 w-64 h-64 bg-brand-gold/10 rounded-full blur-3xl"></div><div class="absolute top-0 left-0 w-32 h-32 bg-brand-amber/5 rounded-full blur-2xl"></div><div class="relative z-10 flex flex-col items-center text-center bg-[#FDFAF4] p-8 rounded-lg shadow-sm"><span class="bg-brand-gold text-brand-dark rounded-full text-xs font-bold px-3.5 py-1.5">🏆 Weekly AI Assessment</span><h2 class="text-xl font-bold text-brand-dark mt-3">Are you ready for this week's challenge?</h2><p class="text-[13px] text-brand-muted leading-relaxed mt-2 max-w-md">Test your Grammar, Vocabulary, Listening, Reading, Speaking, Communication, Interview skills and more — all in one complete weekly assessment.</p><button class="w-full bg-gradient-to-r from-[#F2B544] to-brand-gold rounded-full font-bold text-brand-dark text-[13px] py-[9px] px-[18px] mt-5 hover:shadow-[0_4px_12px_rgba(242,181,68,0.35)] active:scale-[0.97] transition-all">🏆 Start Weekly Assessment</button><span class="text-[12px] text-brand-muted text-center mt-2 block">⏱ Estimated time: 45–60 minutes</span></div></div>
+</section>
+<!-- Secondary Row: Recommendation and Activity -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-stack-md">
+<!-- AI Recommendation -->
+<div class="lg:col-span-1 flex flex-col gap-6">
+<div class="bg-white p-6 rounded-lg shadow-[0_12px_32px_rgba(67,62,51,0.05)] border border-transparent opacity-0 animate-fade-in-up stagger-3">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 bg-brand-gold rounded-full flex items-center justify-center">
+<div class="flex flex-col items-center gap-0.5">
+<div class="flex gap-1.5">
+<div class="w-0.5 h-0.5 bg-brand-dark rounded-full"></div>
+<div class="w-0.5 h-0.5 bg-brand-dark rounded-full"></div>
+</div>
+<div class="w-2 h-0.5 border-b border-brand-dark rounded-full"></div>
+</div>
+</div>
+<h3 class="quicksand font-bold">AI Suggestion</h3>
+</div>
+<p class="text-sm text-brand-muted mb-4 font-body" id="card-ai-suggestion">"I noticed you're hesitating before using perfect tenses. Try the <strong>'Past Narrative'</strong> session to build muscle memory."</p>
+<a class="inline-flex items-center text-sm font-bold text-brand-amber hover:underline group" href="#">
+                        Jump to Lesson 
+                        <span class="material-symbols-outlined text-sm ml-1 transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="bg-white p-6 rounded-lg shadow-[0_12px_32px_rgba(67,62,51,0.05)] border border-transparent opacity-0 animate-fade-in-up stagger-4">
+<h3 class="quicksand font-bold mb-4">Continue Learning</h3>
+<div class="flex items-center gap-4 group cursor-pointer" onclick="window.location.href='weekly.html'">
+<div class="w-12 h-12 bg-brand-gold/10 text-brand-gold rounded-full flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<div class="flex-grow">
+<h4 class="text-sm font-bold truncate">Mastering Job Interviews</h4>
+<div class="flex items-center justify-between mt-1">
+<div class="w-full bg-brand-cream h-1.5 rounded-full overflow-hidden mr-2">
+<div class="bg-brand-gold h-full" style="width: 65%"></div>
+</div>
+<span class="text-[10px] text-brand-muted font-bold whitespace-nowrap">Step 4/6</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity & Achievements -->
+<div class="lg:col-span-2 bg-white p-8 rounded-lg shadow-[0_12px_32px_rgba(67,62,51,0.05)] border border-transparent opacity-0 animate-fade-in-up stagger-5">
+<div class="flex justify-between items-center mb-8">
+<h2 class="quicksand text-2xl font-bold">Activity &amp; Badges</h2>
+<button class="text-xs font-bold text-brand-muted hover:text-brand-dark transition-colors quicksand">VIEW ALL</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Timeline -->
+<div>
+<div id="timeline-container" class="space-y-6 relative before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-brand-cream">
+<div class="relative pl-8 flex flex-col items-start">
+<div class="absolute left-0 top-1 w-4 h-4 rounded-full bg-brand-gold border-4 border-white shadow-sm z-10"></div>
+<span class="text-[10px] font-bold text-brand-muted uppercase tracking-wider mb-1">Today, 09:45 AM</span>
+<p class="text-sm font-medium">Completed "Daily Vocabulary Quiz" with <span class="text-brand-amber font-bold">95% score</span>.</p>
+</div>
+<div class="relative pl-8 flex flex-col items-start">
+<div class="absolute left-0 top-1 w-4 h-4 rounded-full bg-brand-cream border-4 border-white shadow-sm z-10"></div>
+<span class="text-[10px] font-bold text-brand-muted uppercase tracking-wider mb-1">Yesterday, 06:12 PM</span>
+<p class="text-sm font-medium text-brand-muted italic">Practiced "Presentation Delivery" with AI Friend.</p>
+</div>
+<div class="relative pl-8 flex flex-col items-start">
+<div class="absolute left-0 top-1 w-4 h-4 rounded-full bg-brand-cream border-4 border-white shadow-sm z-10"></div>
+<span class="text-[10px] font-bold text-brand-muted uppercase tracking-wider mb-1">2 Days Ago</span>
+<p class="text-sm font-medium">Unlocked "Eloquent Speaker" badge.</p>
+</div>
+</div>
+</div>
+<!-- Badges -->
+<div>
+<h4 class="quicksand text-sm font-bold text-brand-muted uppercase tracking-widest mb-4">Latest Achievements</h4>
+<div id="badges-container" class="flex flex-wrap gap-4">
+<div class="group relative">
+<div class="w-16 h-16 rounded-full bg-brand-gold/10 border-2 border-brand-gold/30 flex items-center justify-center transform hover:rotate-12 transition-all cursor-help">
+<span class="material-symbols-outlined text-brand-gold text-3xl" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+<div class="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-brand-dark text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap quicksand z-20">Early Bird</div>
+</div>
+<div class="group relative">
+<div class="w-16 h-16 rounded-full bg-brand-amber/10 border-2 border-brand-amber/30 flex items-center justify-center transform hover:rotate-12 transition-all cursor-help">
+<span class="material-symbols-outlined text-brand-amber text-3xl" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+</div>
+<div class="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-brand-dark text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap quicksand z-20">Quiz Master</div>
+</div>
+<div class="group relative">
+<div class="w-16 h-16 rounded-full bg-surface-container border-2 border-brand-border flex items-center justify-center transform hover:rotate-12 transition-all cursor-help">
+<span class="material-symbols-outlined text-brand-muted text-3xl">psychology</span>
+</div>
+<div class="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-brand-dark text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap quicksand z-20">Grammar Pro</div>
+</div>
+<div class="group relative">
+<div class="w-16 h-16 rounded-full bg-brand-gold/10 border-2 border-brand-gold/30 flex items-center justify-center transform hover:rotate-12 transition-all cursor-help">
+<span class="material-symbols-outlined text-brand-gold text-3xl" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div class="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-brand-dark text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap quicksand z-20">Verified Learner</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Mobile only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-white/90 backdrop-blur-lg border-t border-brand-border px-4 py-3 pb-6 flex justify-around items-center">
+<a class="flex flex-col items-center justify-center bg-brand-gold/20 text-brand-dark rounded-full px-5 py-2" href="dashboard.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[10px] font-bold quicksand">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-brand-muted" href="friend.html">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="text-[10px] font-bold quicksand">AI Friend</span>
+</a>
+<a class="flex flex-col items-center justify-center text-brand-muted" href="interview.html">
+<span class="material-symbols-outlined">record_voice_over</span>
+<span class="text-[10px] font-bold quicksand">Interview</span>
+</a>
+<a class="flex flex-col items-center justify-center text-brand-muted" href="mcq.html">
+<span class="material-symbols-outlined">assignment</span>
+<span class="text-[10px] font-bold quicksand">Tests</span>
+</a>
+<a class="flex flex-col items-center justify-center text-brand-muted" href="profile.html">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold quicksand">Profile</span>
+</a>
+</nav>
+<!-- Floating Action Button (FAB) -->
+<div class="fixed bottom-24 right-8 md:bottom-12 md:right-12 group">
+<button class="bg-brand-gold text-brand-dark w-16 h-16 rounded-full shadow-[0_12px_40px_rgba(245,200,76,0.4)] flex items-center justify-center transform active:scale-95 transition-all group-hover:scale-110">
+<span class="material-symbols-outlined text-3xl">mic</span>
+</button>
+<div class="absolute right-20 top-1/2 -translate-y-1/2 bg-brand-dark text-white px-4 py-2 rounded-full text-xs quicksand font-bold whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Quick Practice</div>
+</div>
+<script>
+        // Authorization Check
+        const token = localStorage.getItem('speakmate_token');
+        if (!token) {
+            window.location.href = 'login.html';
+        }
+
+        // Navigation Sticky behavior
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('py-2', 'shadow-md');
+                header.classList.remove('py-4', 'shadow-sm');
+            } else {
+                header.classList.add('py-4', 'shadow-sm');
+                header.classList.remove('py-2', 'shadow-md');
+            }
+        });
+
+        // Dynamic Loading from Dashboard summary API
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('/api/dashboard/summary', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.status === 401 || response.status === 403) {
+                    localStorage.removeItem('speakmate_token');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                const data = await response.json();
+                
+                // 1. Welcome Greeting
+                document.getElementById('welcome-username').textContent = data.username;
+
+                // 2. Streak
+                document.getElementById('nav-streak-days').textContent = `${data.currentStreak} Days`;
+                document.getElementById('card-streak-days').textContent = `${data.currentStreak} Days`;
+                document.getElementById('card-streak-pb').textContent = `Personal Best: ${data.longestStreak} Days`;
+
+                // 3. Goal
+                const pct = Math.min(100, Math.round((data.studyTimeMinutes / data.dailyGoalMinutes) * 100));
+                document.getElementById('goal-circle-pct').textContent = `${pct}%`;
+                document.getElementById('goal-circle-path').setAttribute('stroke-dasharray', `${pct}, 100`);
+                document.getElementById('goal-minutes-text').textContent = `${data.studyTimeMinutes} / ${data.dailyGoalMinutes}`;
+
+                // 4. Grammar
+                document.getElementById('card-grammar-level').textContent = `Level ${data.learningLevel}`;
+
+                // 5. Confidence
+                document.getElementById('card-confidence-score').textContent = `Score: ${data.confidenceScore}`;
+                document.getElementById('card-confidence-bar').style.width = `${data.confidenceScore}%`;
+
+                // 6. AI Suggestion
+                document.getElementById('card-ai-suggestion').innerHTML = data.aiSuggestion || "Great job! Keep practicing daily.";
+
+                // 7. Recent Activity
+                const timeline = document.getElementById('timeline-container');
+                if (data.recentActivity && data.recentActivity.length > 0) {
+                    timeline.innerHTML = data.recentActivity.map(act => `
+                        <div class="relative pl-8 flex flex-col items-start">
+                            <div class="absolute left-0 top-1 w-4 h-4 rounded-full bg-brand-gold border-4 border-white shadow-sm z-10"></div>
+                            <span class="text-[10px] font-bold text-brand-muted uppercase tracking-wider mb-1">${act.time}</span>
+                            <p class="text-sm font-medium">${act.text}</p>
+                        </div>
+                    `).join('');
+                }
+
+                // 8. Badges
+                const badges = document.getElementById('badges-container');
+                if (data.latestBadges && data.latestBadges.length > 0) {
+                    badges.innerHTML = data.latestBadges.map(badge => `
+                        <div class="group relative">
+                            <div class="w-16 h-16 rounded-full bg-brand-gold/10 border-2 border-brand-gold/30 flex items-center justify-center transform hover:rotate-12 transition-all cursor-help">
+                                <span class="material-symbols-outlined text-brand-gold text-3xl" style="font-variation-settings: 'FILL' 1;">${badge.icon}</span>
+                            </div>
+                            <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-brand-dark text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap quicksand z-20">${badge.name}</div>
+                        </div>
+                    `).join('');
+                }
+
+            } catch (err) {
+                console.error("Failed to load dashboard statistics:", err);
+            }
+        });
+
+        // Setup Page Navigation clicks for the dashboard cards
+        document.querySelectorAll('button').forEach(btn => {
+            const txt = btn.textContent.toLowerCase();
+            if (txt.includes("start chat")) {
+                btn.onclick = () => window.location.href = 'friend.html';
+            } else if (txt.includes("enter class")) {
+                btn.onclick = () => window.location.href = 'classroom.html';
+            } else if (txt.includes("practice now")) {
+                btn.onclick = () => window.location.href = 'interview.html';
+            } else if (txt.includes("join room")) {
+                btn.onclick = () => window.location.href = 'gd.html';
+            } else if (txt.includes("take test")) {
+                btn.onclick = () => window.location.href = 'mcq.html';
+            } else if (txt.includes("view chart")) {
+                btn.onclick = () => window.location.href = 'progress.html';
+            } else if (txt.includes("weekly assessment")) {
+                btn.onclick = () => window.location.href = 'weekly.html';
+            }
+        });
+    </script>
+
+
+</body></html>

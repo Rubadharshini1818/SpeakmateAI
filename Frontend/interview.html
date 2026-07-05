@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SpeakMate AI - Interview Practice</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#765b00",
+                    "primary-fixed": "#ffdf93",
+                    "inverse-primary": "#edc146",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#1f1b12",
+                    "inverse-surface": "#353026",
+                    "secondary-fixed": "#ffdeab",
+                    "on-error-container": "#93000a",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#d3cdbb",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#714e00",
+                    "background": "#fff8f1",
+                    "on-tertiary-fixed": "#1e1c10",
+                    "error-container": "#ffdad6",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#e2d9ca",
+                    "on-surface": "#1f1b12",
+                    "on-primary-fixed-variant": "#594400",
+                    "primary-fixed-dim": "#edc146",
+                    "on-error": "#ffffff",
+                    "on-primary-container": "#6d5400",
+                    "outline": "#7f7663",
+                    "surface": "#fff8f1",
+                    "surface-container-highest": "#ebe1d2",
+                    "primary": "#765b00",
+                    "on-secondary-fixed": "#271900",
+                    "tertiary-fixed-dim": "#ccc6b4",
+                    "surface-variant": "#ebe1d2",
+                    "surface-container": "#f6eddd",
+                    "primary-container": "#f5c84c",
+                    "on-surface-variant": "#4e4635",
+                    "on-primary-fixed": "#241a00",
+                    "surface-container-high": "#f0e7d7",
+                    "tertiary": "#625e50",
+                    "secondary-fixed-dim": "#fabc4a",
+                    "on-tertiary-container": "#5b5749",
+                    "on-tertiary-fixed-variant": "#4a4739",
+                    "on-secondary-fixed-variant": "#5f4100",
+                    "outline-variant": "#d1c5af",
+                    "secondary-container": "#fdbf4d",
+                    "surface-bright": "#fff8f1",
+                    "tertiary-fixed": "#e9e2d0",
+                    "surface-container-low": "#fcf2e3",
+                    "inverse-on-surface": "#f9f0e0",
+                    "secondary": "#7e5700",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "12px",
+                    "stack-lg": "48px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "40px",
+                    "stack-md": "24px",
+                    "gutter": "24px",
+                    "unit": "8px",
+                    "container-max": "1200px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["Quicksand"],
+                    "body-md": ["Poppins"],
+                    "display-lg": ["Quicksand"],
+                    "label-sm": ["Quicksand"],
+                    "headline-md": ["Quicksand"],
+                    "body-lg": ["Poppins"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["13px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fff8f1;
+            font-family: 'Poppins', sans-serif;
+            color: #1f1b12;
+            -webkit-font-smoothing: antialiased;
+        }
+        .quicksand { font-family: 'Quicksand', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .pill-gradient {
+            background: linear-gradient(135deg, #F2B544 0%, #F5C84C 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 12px 32px rgba(67, 62, 51, 0.05);
+        }
+        .selection-check { display: none; }
+        .type-card.active .selection-check { display: flex; }
+        .type-card.active { background-color: #FFF3C4; border-color: #f5c84c; }
+        
+        /* Transition utility classes */
+        .step-transition { transition: opacity 0.3s ease-out, transform 0.3s ease-out; }
+        .hidden-step { display: none !important; opacity: 0; transform: translateY(10px); }
+        .active-step { display: block !important; opacity: 1; transform: translateY(0); }
+        
+        /* Audio visualizer simulation */
+        .bar {
+            width: 4px;
+            background-color: #765b00;
+            border-radius: 99px;
+            animation: bounce 1s infinite ease-in-out;
+        }
+        @keyframes bounce {
+            0%, 100% { height: 10px; }
+            50% { height: 30px; }
+        }
+
+        /* Analyzer pulse */
+        @keyframes pulse-ring {
+          0% { transform: scale(.33); opacity: 0; }
+          80%, 100% { opacity: 0; }
+        }
+        @keyframes pulse-dot {
+          0% { transform: scale(.8); }
+          50% { transform: scale(1); }
+          100% { transform: scale(.8); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center">
+<!-- Global Persistent Header -->
+<nav class="w-full max-w-[1200px] flex items-center justify-between py-6 px-margin-mobile md:px-margin-desktop" id="global-nav">
+<div class="flex items-center space-x-2">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined">forum</span>
+</div>
+<span class="quicksand font-bold text-xl tracking-tight text-on-surface">SpeakMate <span class="text-primary">AI</span></span>
+</div>
+<div class="flex items-center space-x-6">
+<button class="relative text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="flex items-center space-x-3 bg-white pl-1 pr-4 py-1 rounded-full border border-outline-variant/30 shadow-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-fixed flex items-center justify-center overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGjssHRZ4x0y3R_nJveiqE7_ThCt_wz3ucpjMupnIHCQtJuuqoKCAIxHkr7bj8jSdq3Hsdq9F4aCDfvTMIj3Jc0ziBzW6nAtfg8KYcSvVGdmupRV6he7ioQ-Q3nTKQ_e0Ib_vwD2H-_CMZNppLh1fRP90-89XE3JYxr8N04g33gD5TyZF6zwUzhyX55aZ14M1hc6HmMq8FVqUFc3Q9J1xTYev-SDcE7v7ok7E2JQbUPogbKYHoAlHG"/>
+</div>
+<span class="text-sm font-semibold hidden md:block">Alex Chen</span>
+</div>
+</div>
+</nav>
+<!-- Main Container -->
+<main class="w-full max-w-[680px] px-margin-mobile md:px-0 pb-stack-lg flex-1">
+<!-- STEP 1: SETUP -->
+<div class="active-step step-transition space-y-stack-md" id="step-1">
+<header class="flex items-center space-x-4 mb-2">
+<button class="w-10 h-10 flex items-center justify-center bg-white border border-outline-variant/30 rounded-full shadow-sm hover:scale-95 transition-transform duration-200 text-on-surface">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex-1">
+<h1 class="quicksand font-bold text-2xl text-primary flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">work</span>
+                        Interview Practice
+                    </h1>
+<p class="font-body-md text-on-surface-variant text-sm">Set your preferences for a tailored mock session</p>
+</div>
+</header>
+<div class="bg-white rounded-lg p-8 card-shadow space-y-8 border border-[#E8E0D0]">
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h2 class="quicksand font-bold text-lg text-on-surface">Interview Type</h2>
+<span class="text-[10px] font-bold uppercase tracking-widest text-outline">Choose One</span>
+</div>
+<div class="mt-1 mb-3">
+<span id="selected-mode-text" class="text-xs bg-primary-container text-on-primary-container font-bold px-3.5 py-1.5 rounded-full inline-block">Selected Mode: HR Interview</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="type-card group active flex flex-col items-center justify-center p-5 rounded-lg border border-[#E8E0D0] bg-[#FDFAF4] hover:bg-[#FFF3C4]/50 transition-all duration-300 relative overflow-hidden" onclick="toggleType(this, 'HR')">
+<span class="material-symbols-outlined text-primary mb-2">groups</span>
+<span class="font-bold quicksand text-sm">HR Interview</span>
+<div class="selection-check absolute top-2 right-2 text-primary"><span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span></div>
+</button>
+<button class="type-card group flex flex-col items-center justify-center p-5 rounded-lg border border-[#E8E0D0] bg-[#FDFAF4] hover:bg-[#FFF3C4]/50 transition-all duration-300 relative overflow-hidden" onclick="toggleType(this, 'TECHNICAL')">
+<span class="material-symbols-outlined text-primary mb-2">code</span>
+<span class="font-bold quicksand text-sm">Technical Interview</span>
+<div class="selection-check absolute top-2 right-2 text-primary"><span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span></div>
+</button>
+</div>
+</section>
+<section class="space-y-4" id="resume-section">
+<div class="flex items-center justify-between">
+<h2 class="quicksand font-bold text-lg text-on-surface">Upload Resume <span class="text-xs font-normal text-on-surface-variant">(optional)</span></h2>
+<span class="text-[10px] font-bold uppercase tracking-widest text-outline">PDF / DOC / TXT</span>
+</div>
+<p class="text-xs text-on-surface-variant -mt-2">Upload your resume so the AI can ask questions based on your actual skills and experience.</p>
+<div class="relative group border-2 border-dashed rounded-lg p-8 transition-all cursor-pointer flex flex-col items-center justify-center space-y-3" id="drop-zone" style="border-color: rgba(118,91,0,0.3);">
+<input class="absolute inset-0 opacity-0 cursor-pointer" id="resume-input" onchange="handleFile(this)" type="file" accept=".pdf,.doc,.docx,.txt"/>
+<!-- Upload idle state -->
+<div class="flex flex-col items-center transition-all duration-300" id="upload-state">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">cloud_upload</span>
+<p class="font-medium text-on-surface-variant">Drag your resume here or</p>
+<span class="mt-2 px-6 py-2 bg-primary-container text-on-primary-container font-bold rounded-full text-xs shadow-sm">Browse File</span>
+<p class="text-[10px] text-on-surface-variant mt-3 opacity-60">Supported: PDF, DOC, DOCX, TXT &nbsp;·&nbsp; Max 10 MB</p>
+</div>
+<!-- Upload success state — uses style not Tailwind hidden so flex works correctly -->
+<div style="display:none;" class="flex-col items-center transition-all duration-300" id="success-state">
+<div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-emerald-600">check_circle</span>
+</div>
+<p class="font-bold text-on-surface truncate max-w-[200px]" id="filename-text"></p>
+<p class="text-[10px] text-on-surface-variant mt-1" id="filesize-text"></p>
+<button class="text-xs text-error font-medium mt-2 hover:underline flex items-center gap-1" onclick="resetFile(event)">
+<span class="material-symbols-outlined text-[14px]">delete</span> Remove file
+</button>
+</div>
+</div>
+</section>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<section class="space-y-4">
+<h2 class="quicksand font-bold text-lg text-on-surface">Duration</h2>
+<div class="flex flex-wrap gap-2">
+<button class="duration-pill px-4 py-2 rounded-full border border-outline-variant/30 bg-[#F3EDE0]/50 text-xs font-bold text-on-surface-variant transition-all" onclick="setActive(this, 'duration')">5 min</button>
+<button class="duration-pill px-4 py-2 rounded-full border border-outline-variant/30 bg-[#F3EDE0]/50 text-xs font-bold text-on-surface-variant transition-all" onclick="setActive(this, 'duration')">15 min</button>
+<button class="duration-pill px-4 py-2 rounded-full pill-gradient text-on-primary text-xs font-bold shadow-md" onclick="setActive(this, 'duration')">20 min</button>
+</div>
+</section>
+<section class="space-y-4">
+<h2 class="quicksand font-bold text-lg text-on-surface">Difficulty</h2>
+<div class="flex flex-wrap gap-2">
+<button class="difficulty-pill px-4 py-2 rounded-full border border-outline-variant/30 bg-[#F3EDE0]/50 text-xs font-bold text-on-surface-variant transition-all" onclick="setActive(this, 'difficulty')">Easy</button>
+<button class="difficulty-pill px-4 py-2 rounded-full pill-gradient text-on-primary text-xs font-bold shadow-md" onclick="setActive(this, 'difficulty')">Medium</button>
+<button class="difficulty-pill px-4 py-2 rounded-full border border-outline-variant/30 bg-[#F3EDE0]/50 text-xs font-bold text-on-surface-variant transition-all" onclick="setActive(this, 'difficulty')">Hard</button>
+</div>
+</section>
+</div>
+<footer class="pt-6 border-t border-[#F3EDE0] flex flex-col items-center">
+<button class="w-full py-4 rounded-full pill-gradient text-on-primary text-base font-bold shadow-lg hover:shadow-xl active:scale-95 transition-all flex items-center justify-center space-x-3" onclick="goToStep(2)">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mic</span>
+<span>Start Interview Practice</span>
+</button>
+<p class="text-[10px] mt-4 text-center text-outline leading-relaxed max-w-[400px]">
+                        By starting, you agree to our terms. SpeakMate AI will analyze your voice to provide personalized feedback. No recordings are stored without consent.
+                    </p>
+</footer>
+</div>
+</div>
+<!-- STEP 2: LIVE SESSION -->
+<div class="hidden-step step-transition space-y-stack-md" id="step-2">
+<header class="flex items-center justify-between mb-8">
+<div class="flex items-center space-x-4">
+<div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">psychology</span>
+</div>
+<div>
+<h2 class="quicksand font-bold text-lg leading-tight">AI Interviewer</h2>
+<div class="flex items-center space-x-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-xs font-medium text-on-surface-variant">Listening...</span>
+</div>
+</div>
+</div>
+<div class="bg-white/50 backdrop-blur px-4 py-2 rounded-full border border-outline-variant/30 shadow-sm">
+<span class="quicksand font-bold text-primary">14:52</span>
+</div>
+</header>
+<div class="space-y-12 flex flex-col items-center">
+<div class="bg-white p-6 rounded-2xl rounded-tl-none card-shadow border border-[#E8E0D0] max-w-[90%] self-start">
+<p class="font-body-md text-on-surface leading-relaxed">
+                        "That's a great example of team collaboration. Can you describe a time when you had to manage a conflict within your team? How did you approach it and what was the outcome?"
+                    </p>
+</div>
+<div class="flex flex-col items-center space-y-6 w-full py-12">
+<div class="flex items-center justify-center space-x-1 h-12">
+<div class="bar" style="animation-delay: 0.1s; height: 15px"></div>
+<div class="bar" style="animation-delay: 0.2s; height: 25px"></div>
+<div class="bar" style="animation-delay: 0.3s; height: 40px"></div>
+<div class="bar" style="animation-delay: 0.4s; height: 20px"></div>
+<div class="bar" style="animation-delay: 0.5s; height: 45px"></div>
+<div class="bar" style="animation-delay: 0.2s; height: 30px"></div>
+<div class="bar" style="animation-delay: 0.4s; height: 35px"></div>
+<div class="bar" style="animation-delay: 0.1s; height: 18px"></div>
+<div class="bar" style="animation-delay: 0.3s; height: 42px"></div>
+<div class="bar" style="animation-delay: 0.5s; height: 22px"></div>
+<div class="bar" style="animation-delay: 0.6s; height: 12px"></div>
+</div>
+<p class="text-on-surface-variant text-sm font-medium animate-pulse">Speak now...</p>
+</div>
+<div class="w-full flex flex-col items-center space-y-4">
+<button class="w-20 h-20 rounded-full bg-error flex items-center justify-center text-white shadow-xl hover:scale-105 active:scale-95 transition-all" onclick="analyzeAndResults()">
+<span class="material-symbols-outlined text-4xl">call_end</span>
+</button>
+<button class="text-on-surface-variant text-sm font-bold hover:text-primary transition-colors" onclick="analyzeAndResults()">End Interview &amp; See Results</button>
+</div>
+</div>
+</div>
+<!-- LOADING STEP: ANALYSIS -->
+<div class="hidden-step step-transition flex flex-col items-center justify-center py-20 space-y-6" id="step-loading">
+<div class="relative">
+<div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-4xl animate-spin">query_stats</span>
+</div>
+</div>
+<div class="text-center">
+<h2 class="quicksand font-bold text-xl text-on-surface">Analyzing your performance...</h2>
+<p class="text-on-surface-variant text-sm mt-2">Evaluating communication markers and STAR responses</p>
+</div>
+</div>
+<!-- STEP 3: RESULTS -->
+<div class="hidden-step step-transition space-y-4" id="step-3">
+<header class="flex items-center justify-between mb-2">
+<h1 class="quicksand font-bold text-xl text-primary flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                    Performance Summary
+                </h1>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-full border border-primary text-primary font-bold text-xs hover:bg-primary/5 transition-all" onclick="goToStep(1)">Try Again</button>
+<button class="px-4 py-1.5 rounded-full bg-primary text-white font-bold text-xs shadow-sm hover:opacity-90 transition-all">Dashboard</button>
+</div>
+</header>
+<!-- Compact Bento Grid for Scores -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-2">
+<div class="bg-white p-3 rounded-lg border border-[#E8E0D0] card-shadow flex flex-col items-center">
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider mb-1">Overall</span>
+<div class="relative flex items-center justify-center">
+<svg class="w-12 h-12 transform -rotate-90">
+<circle cx="24" cy="24" fill="transparent" r="20" stroke="#F3EDE0" stroke-width="4"></circle>
+<circle cx="24" cy="24" fill="transparent" r="20" stroke="#F2B544" stroke-dasharray="125" stroke-dashoffset="25" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<span class="absolute quicksand font-bold text-sm text-primary">82%</span>
+</div>
+</div>
+<div class="bg-white p-3 rounded-lg border border-[#E8E0D0] card-shadow flex flex-col items-center">
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider mb-1">HR Score</span>
+<div class="relative flex items-center justify-center">
+<svg class="w-12 h-12 transform -rotate-90">
+<circle cx="24" cy="24" fill="transparent" r="20" stroke="#F3EDE0" stroke-width="4"></circle>
+<circle cx="24" cy="24" fill="transparent" r="20" stroke="#F2B544" stroke-dasharray="125" stroke-dashoffset="12" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<span class="absolute quicksand font-bold text-sm text-primary">91%</span>
+</div>
+</div>
+<div class="bg-white p-3 rounded-lg border border-[#E8E0D0] card-shadow flex flex-col items-center">
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider mb-1">Technical</span>
+<div class="relative flex items-center justify-center">
+<svg class="w-12 h-12 transform -rotate-90">
+<circle cx="24" cy="24" fill="transparent" r="20" stroke="#F3EDE0" stroke-width="4"></circle>
+<circle cx="24" cy="24" fill="transparent" r="20" stroke="#F2B544" stroke-dasharray="125" stroke-dashoffset="38" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<span class="absolute quicksand font-bold text-sm text-primary">70%</span>
+</div>
+</div>
+<div class="bg-white p-3 rounded-lg border border-[#E8E0D0] card-shadow flex flex-col items-center">
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider mb-1">Communication</span>
+<div class="relative flex items-center justify-center">
+<svg class="w-12 h-12 transform -rotate-90">
+<circle cx="24" cy="24" fill="transparent" r="20" stroke="#F3EDE0" stroke-width="4"></circle>
+<circle cx="24" cy="24" fill="transparent" r="20" stroke="#F2B544" stroke-dasharray="125" stroke-dashoffset="30" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<span class="absolute quicksand font-bold text-sm text-primary">76%</span>
+</div>
+</div>
+</div>
+<!-- Detailed Feedback -->
+<div class="bg-white rounded-lg p-5 border border-[#E8E0D0] card-shadow space-y-4">
+<section>
+<h3 class="quicksand font-bold text-base mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">auto_awesome</span>
+                        AI Feedback
+                    </h3>
+<p class="font-body-md text-on-surface-variant leading-snug text-xs">
+                        Your responses were highly structured with excellent domain knowledge. Confidence remained consistent, though we noticed frequent filler words like 'um' when discussing technical challenges.
+                    </p>
+</section>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<section class="bg-emerald-50/50 p-4 rounded-lg border border-emerald-100">
+<h4 class="quicksand font-bold text-emerald-800 text-xs mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span>
+                            Key Strengths
+                        </h4>
+<ul class="space-y-1 text-[11px] text-emerald-900/80 font-medium">
+<li>• STAR method application</li>
+<li>• Tone of voice &amp; engagement</li>
+</ul>
+</section>
+<section class="bg-amber-50/50 p-4 rounded-lg border border-amber-100">
+<h4 class="quicksand font-bold text-amber-800 text-xs mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-600 text-base">trending_up</span>
+                            Areas to Improve
+                        </h4>
+<ul class="space-y-1 text-[11px] text-amber-900/80 font-medium">
+<li>• Reduce filler words</li>
+<li>• Concise conclusions</li>
+</ul>
+</section>
+</div>
+<footer class="pt-2 flex gap-3">
+<button class="flex-1 py-2.5 rounded-full pill-gradient text-on-primary text-xs font-bold shadow-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-base">download</span>
+                        Download PDF
+                    </button>
+<button class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center text-on-surface hover:bg-white transition-all">
+<span class="material-symbols-outlined text-base">share</span>
+</button>
+</footer>
+</div>
+</div>
+</main>
+<!-- Ambient background elements -->
+<div class="fixed top-20 left-10 w-64 h-64 bg-primary-fixed/20 rounded-full blur-[100px] -z-10"></div>
+<div class="fixed bottom-20 right-10 w-96 h-96 bg-secondary-fixed/20 rounded-full blur-[120px] -z-10"></div>
+<script>
+  // ── Auth ──────────────────────────────────────────────────────────────────
+  const token = localStorage.getItem('speakmate_token');
+  if (!token) window.location.href = 'login.html';
+
+  // Show username
+  try {
+    const pl = JSON.parse(atob(token.split('.')[1]));
+    const name = pl.username || pl.sub || 'User';
+    document.querySelector('#global-nav .text-sm.font-semibold').textContent = name;
+  } catch(e) {}
+
+  // ── State ──────────────────────────────────────────────────────────────────
+  let sessionId = null;
+  let questionNumber = 0;
+  let isSending = false;
+  let timerInterval = null;
+  let elapsedSeconds = 0;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  let recognition = null;
+
+  // ── Step Navigation ────────────────────────────────────────────────────────
+  function goToStep(stepNumber) {
+    const current = document.querySelector('.active-step');
+    const target  = document.getElementById(stepNumber === 'loading' ? 'step-loading' : `step-${stepNumber}`);
+    if (current) {
+      current.classList.add('opacity-0'); current.style.transform = 'translateY(-10px)';
+      setTimeout(() => {
+        current.classList.remove('active-step'); current.classList.add('hidden-step');
+        target.classList.remove('hidden-step'); target.classList.add('active-step');
+        requestAnimationFrame(() => { target.classList.remove('opacity-0'); target.style.transform = 'translateY(0)'; window.scrollTo({top:0,behavior:'instant'}); });
+      }, 300);
+    } else {
+      target.classList.remove('hidden-step'); target.classList.add('active-step');
+      target.classList.remove('opacity-0'); target.style.transform = 'translateY(0)';
+      window.scrollTo({top:0,behavior:'instant'});
+    }
+  }
+
+  function toggleType(element, type) {
+    document.querySelectorAll('.type-card').forEach(c => c.classList.remove('active'));
+    element.classList.add('active');
+    // Resume section is always visible — both HR and Technical benefit from it
+    const badge = document.getElementById('selected-mode-text');
+    badge.textContent = type === 'TECHNICAL'
+      ? 'Selected Mode: Technical Interview'
+      : 'Selected Mode: HR Interview';
+  }
+
+  function setActive(element, group) {
+    const sel = group === 'duration' ? '.duration-pill' : '.difficulty-pill';
+    document.querySelectorAll(sel).forEach(p => {
+      p.classList.remove('pill-gradient','text-on-primary','border-transparent','shadow-md');
+      p.classList.add('border-outline-variant/30','bg-[#F3EDE0]/50','text-on-surface-variant');
+    });
+    element.classList.remove('border-outline-variant/30','bg-[#F3EDE0]/50','text-on-surface-variant');
+    element.classList.add('pill-gradient','text-on-primary','border-transparent','shadow-md');
+  }
+
+  function handleFile(input) {
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      // 10 MB size guard
+      if (file.size > 10 * 1024 * 1024) {
+        alert('File too large. Please upload a file under 10 MB.');
+        input.value = '';
+        return;
+      }
+      document.getElementById('upload-state').style.display  = 'none';
+      document.getElementById('success-state').style.display = 'flex';
+      document.getElementById('filename-text').textContent   = file.name;
+      const kb = file.size < 1024 * 1024
+        ? (file.size / 1024).toFixed(1) + ' KB'
+        : (file.size / 1024 / 1024).toFixed(1) + ' MB';
+      document.getElementById('filesize-text').textContent = kb;
+      const dz = document.getElementById('drop-zone');
+      dz.style.borderColor = '#765b00';
+      dz.style.backgroundColor = 'rgba(245,200,76,0.08)';
+    }
+  }
+
+  function resetFile(event) {
+    event.stopPropagation();
+    document.getElementById('resume-input').value = '';
+    document.getElementById('upload-state').style.display  = '';
+    document.getElementById('success-state').style.display = 'none';
+    document.getElementById('filename-text').textContent   = '';
+    document.getElementById('filesize-text').textContent   = '';
+    const dz = document.getElementById('drop-zone');
+    dz.style.borderColor = 'rgba(118,91,0,0.3)';
+    dz.style.backgroundColor = 'transparent';
+  }
+
+  // Drop zone
+  const dropZone = document.getElementById('drop-zone');
+  if (dropZone) {
+    ['dragenter','dragover','dragleave','drop'].forEach(ev => dropZone.addEventListener(ev, e => { e.preventDefault(); e.stopPropagation(); }));
+    ['dragenter','dragover'].forEach(ev => dropZone.addEventListener(ev, () => {
+      dropZone.style.borderColor = '#765b00';
+      dropZone.style.backgroundColor = 'rgba(255, 223, 147, 0.2)';
+    }));
+    ['dragleave','drop'].forEach(ev => dropZone.addEventListener(ev, () => {
+      dropZone.style.borderColor = 'rgba(118, 91, 0, 0.3)';
+      dropZone.style.backgroundColor = 'transparent';
+    }));
+    dropZone.addEventListener('drop', e => {
+      const input = document.getElementById('resume-input');
+      input.files = e.dataTransfer.files;
+      handleFile(input);
+    });
+  }
+
+  // ── Start Interview ────────────────────────────────────────────────────────
+  // Override the "Start Interview Practice" button
+  document.querySelector('#step-1 footer button').onclick = startInterview;
+
+  async function startInterview() {
+    const typeEl = document.querySelector('.type-card.active');
+    const rawText = typeEl ? typeEl.querySelector('span.font-bold').textContent.trim().toUpperCase() : 'HR';
+    const type = rawText.includes('TECHNICAL') ? 'TECHNICAL' : 'HR';
+    const diffEl = document.querySelector('.difficulty-pill.pill-gradient');
+    const difficulty = diffEl ? diffEl.textContent.trim().toUpperCase() : 'MEDIUM';
+    const resumeInput = document.getElementById('resume-input');
+
+    goToStep('loading');
+
+    try {
+      const formData = new FormData();
+      formData.append('type', type);
+      formData.append('difficulty', difficulty);
+      if (resumeInput.files && resumeInput.files[0]) {
+        formData.append('resume', resumeInput.files[0]);
+      }
+
+      const res = await fetch('/api/interview/start', {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + token },
+        body: formData
+      });
+
+      if (!res.ok) { alert('Failed to start interview. Please try again.'); goToStep(1); return; }
+
+      const data = await res.json();
+      sessionId = data.sessionId;
+      questionNumber = data.questionNumber;
+
+      // Show first question in step-2
+      showQuestion(data.question, questionNumber);
+      startTimer();
+      setupMicButton();
+      goToStep(2);
+
+    } catch(err) {
+      console.error(err);
+      alert('Network error. Please try again.');
+      goToStep(1);
+    }
+  }
+
+  function showQuestion(questionText, qNum) {
+    const bubble = document.querySelector('#step-2 .bg-white.p-6');
+    bubble.querySelector('p').textContent = '"' + questionText + '"';
+    const statusEl = document.querySelector('#step-2 .text-xs.font-medium');
+    if (statusEl) statusEl.textContent = 'Question ' + qNum + ' of 6';
+  }
+
+  // ── Timer ──────────────────────────────────────────────────────────────────
+  function startTimer() {
+    elapsedSeconds = 0;
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      elapsedSeconds++;
+      const m = String(Math.floor(elapsedSeconds / 60)).padStart(2,'0');
+      const s = String(elapsedSeconds % 60).padStart(2,'0');
+      const timerEl = document.querySelector('#step-2 .quicksand.font-bold.text-primary');
+      if (timerEl) timerEl.textContent = m + ':' + s;
+    }, 1000);
+  }
+
+  // ── Mic / Voice Answer ─────────────────────────────────────────────────────
+  function setupMicButton() {
+    const endBtn = document.querySelector('#step-2 button[onclick="analyzeAndResults()"]');
+    if (endBtn) endBtn.onclick = endInterview;
+
+    const endTextBtn = document.querySelectorAll('#step-2 button[onclick="analyzeAndResults()"]')[1];
+    if (endTextBtn) endTextBtn.onclick = endInterview;
+
+    // Add a text answer input below the mic area
+    const micArea = document.querySelector('#step-2 .flex.flex-col.items-center.space-y-6');
+    if (micArea && !document.getElementById('answer-area')) {
+      const answerArea = document.createElement('div');
+      answerArea.id = 'answer-area';
+      answerArea.className = 'w-full max-w-[90%] space-y-3';
+      answerArea.innerHTML = `
+        <textarea id="answer-input" rows="3" placeholder="Type or speak your answer here..." class="w-full p-4 rounded-2xl border border-outline-variant bg-white text-on-surface text-sm resize-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+        <div class="flex gap-3 justify-center">
+          <button id="mic-answer-btn" onclick="toggleMicAnswer()" class="flex items-center gap-2 px-5 py-2.5 bg-surface-container border border-outline-variant rounded-full font-bold text-sm hover:bg-primary-container transition-all">
+            <span class="material-symbols-outlined text-primary">mic</span> Speak Answer
+          </button>
+          <button onclick="submitAnswer()" class="flex items-center gap-2 px-6 py-2.5 pill-gradient text-on-primary-fixed font-bold text-sm rounded-full shadow-md hover:shadow-lg active:scale-95 transition-all">
+            <span class="material-symbols-outlined">send</span> Submit Answer
+          </button>
+        </div>
+        <p id="answer-status" class="text-center text-xs text-on-surface-variant"></p>
+      `;
+      micArea.parentNode.insertBefore(answerArea, micArea);
+    }
+  }
+
+  let isMicActive = false;
+  function toggleMicAnswer() {
+    if (!SpeechRecognition) { alert('Voice recognition not supported. Please type your answer.'); return; }
+    if (isMicActive) { recognition && recognition.stop(); return; }
+
+    recognition = new SpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    recognition.onstart = () => {
+      isMicActive = true;
+      document.getElementById('mic-answer-btn').innerHTML = '<span class="material-symbols-outlined text-error">stop</span> Listening...';
+      document.getElementById('answer-status').textContent = 'Speak now...';
+    };
+    recognition.onresult = (e) => {
+      document.getElementById('answer-input').value = e.results[0][0].transcript;
+    };
+    recognition.onerror = () => { isMicActive = false; resetMicAnswerBtn(); };
+    recognition.onend   = () => { isMicActive = false; resetMicAnswerBtn(); };
+    recognition.start();
+  }
+
+  function resetMicAnswerBtn() {
+    const btn = document.getElementById('mic-answer-btn');
+    if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-primary">mic</span> Speak Answer';
+    const status = document.getElementById('answer-status');
+    if (status) status.textContent = '';
+  }
+
+  // ── Submit Answer ──────────────────────────────────────────────────────────
+  async function submitAnswer() {
+    const answerInput = document.getElementById('answer-input');
+    const answer = answerInput ? answerInput.value.trim() : '';
+    if (!answer) { alert('Please type or speak your answer first.'); return; }
+    if (isSending) return;
+    isSending = true;
+
+    document.getElementById('answer-status').textContent = 'Submitting...';
+
+    try {
+      const res = await fetch('/api/interview/answer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+        body: JSON.stringify({ sessionId: String(sessionId), answer })
+      });
+      const data = await res.json();
+      answerInput.value = '';
+      document.getElementById('answer-status').textContent = '';
+
+      if (data.done) {
+        // All questions done — end interview
+        endInterview();
+      } else {
+        questionNumber = data.questionNumber;
+        showQuestion(data.question, questionNumber);
+        speakQuestion(data.question);
+      }
+    } catch(err) {
+      console.error(err);
+      document.getElementById('answer-status').textContent = 'Error. Try again.';
+    } finally {
+      isSending = false;
+    }
+  }
+
+  function speakQuestion(text) {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = 'en-US'; utt.rate = 0.9;
+    window.speechSynthesis.speak(utt);
+  }
+
+  // ── End Interview → Generate Report ───────────────────────────────────────
+  async function endInterview() {
+    if (!sessionId) { goToStep(1); return; }
+    clearInterval(timerInterval);
+    goToStep('loading');
+
+    try {
+      const res = await fetch('/api/interview/end', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+        body: JSON.stringify({ sessionId: String(sessionId) })
+      });
+      const report = await res.json();
+      renderReport(report);
+      goToStep(3);
+    } catch(err) {
+      console.error(err);
+      goToStep(3); // show results step even on error
+    }
+  }
+
+  // Keep the original analyzeAndResults in case something triggers it
+  function analyzeAndResults() { endInterview(); }
+
+  // ── Render Results ─────────────────────────────────────────────────────────
+  function renderReport(r) {
+    // Score circles — strokeDasharray=125, full circle offset=0, empty=125
+    function offset(score) { return Math.round(125 - (125 * (score || 0)) / 100); }
+
+    const scoreCards = document.querySelectorAll('#step-3 .grid.grid-cols-2 > div');
+    const scores = [r.overallScore, r.communicationScore, r.technicalScore, r.grammarScore];
+    const labels = ['Overall','Communication','Technical','Grammar'];
+
+    scoreCards.forEach((card, i) => {
+      const circle = card.querySelector('circle:last-of-type');
+      const label  = card.querySelector('.absolute');
+      if (circle) circle.setAttribute('stroke-dashoffset', offset(scores[i]));
+      if (label)  label.textContent = (scores[i] || 0) + '%';
+      const heading = card.querySelector('span.text-\\[10px\\]');
+      if (heading) heading.textContent = labels[i];
+    });
+
+    // AI Feedback
+    const feedbackEl = document.querySelector('#step-3 section p.font-body-md');
+    if (feedbackEl && r.aiSuggestions) {
+      feedbackEl.textContent = r.aiSuggestions.split('|').join(' • ');
+    }
+
+    // Strengths
+    const strengthsUl = document.querySelector('#step-3 .bg-emerald-50 ul');
+    if (strengthsUl && r.strengths) {
+      strengthsUl.innerHTML = r.strengths.split('|').map(s => `<li>• ${s.trim()}</li>`).join('');
+    }
+
+    // Weaknesses
+    const weaknessUl = document.querySelector('#step-3 .bg-amber-50 ul');
+    if (weaknessUl && r.weaknesses) {
+      weaknessUl.innerHTML = r.weaknesses.split('|').map(s => `<li>• ${s.trim()}</li>`).join('');
+    }
+
+    // Dashboard button
+    const dashBtn = document.querySelector('#step-3 header .bg-primary');
+    if (dashBtn) dashBtn.onclick = () => window.location.href = 'dashboard.html';
+  }
+
+  // ── Back button ────────────────────────────────────────────────────────────
+  document.querySelector('#step-1 header button').onclick = () => window.location.href = 'dashboard.html';
+
+  // ── Query Param Check ──────────────────────────────────────────────────────
+  const urlParams = new URLSearchParams(window.location.search);
+  const reportId = urlParams.get('report');
+  if (reportId) {
+    goToStep('loading');
+    fetch(`/api/interview/report/${reportId}`, {
+      headers: { 'Authorization': 'Bearer ' + token }
+    })
+    .then(res => {
+      if (!res.ok) throw new Error("Failed to load report");
+      return res.json();
+    })
+    .then(report => {
+      renderReport(report);
+      goToStep(3);
+    })
+    .catch(err => {
+      console.error(err);
+      goToStep(1);
+    });
+  }
+</script>
+</body></html>

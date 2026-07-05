@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SpeakMate AI | Grammar Mastery</title>
+<!-- Google Fonts: Quicksand for headings/brand, Poppins for UI/body as requested -->
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;family=Poppins:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed": "#271900",
+              "on-secondary-container": "#714e00",
+              "outline": "#7f7663",
+              "on-primary-fixed-variant": "#594400",
+              "on-tertiary-container": "#5b5749",
+              "surface-variant": "#ebe1d2",
+              "on-primary-fixed": "#241a00",
+              "inverse-on-surface": "#f9f0e0",
+              "secondary-container": "#fdbf4d",
+              "outline-variant": "#d1c5af",
+              "on-error": "#ffffff",
+              "on-secondary-fixed-variant": "#5f4100",
+              "inverse-primary": "#edc146",
+              "on-primary-container": "#6d5400",
+              "on-background": "#1f1b12",
+              "on-tertiary": "#ffffff",
+              "background": "#FDF6E3", /* Specific Brand Anchor: Cream Background */
+              "inverse-surface": "#353026",
+              "error-container": "#ffdad6",
+              "on-error-container": "#93000a",
+              "on-secondary": "#ffffff",
+              "tertiary-container": "#d3cdbb",
+              "primary": "#765b00",
+              "surface-bright": "#fff8f1",
+              "primary-fixed": "#ffdf93",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "surface-dim": "#e2d9ca",
+              "surface-container-high": "#f0e7d7",
+              "on-tertiary-fixed-variant": "#4a4739",
+              "secondary-fixed-dim": "#fabc4a",
+              "tertiary-fixed-dim": "#ccc6b4",
+              "secondary-fixed": "#ffdeab",
+              "secondary": "#7e5700",
+              "surface-container-highest": "#ebe1d2",
+              "on-surface": "#1f1b12",
+              "tertiary": "#625e50",
+              "primary-container": "#f5c84c",
+              "tertiary-fixed": "#e9e2d0",
+              "primary-fixed-dim": "#edc146",
+              "surface-container-low": "#fcf2e3",
+              "on-tertiary-fixed": "#1e1c10",
+              "surface": "#ffffff",
+              "surface-tint": "#765b00",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#f6eddd",
+              "on-surface-variant": "#4e4635"
+            },
+            borderRadius: {
+              "DEFAULT": "1rem",
+              "lg": "24px",
+              "xl": "3rem",
+              "full": "9999px"
+            },
+            spacing: {
+              "stack-md": "24px",
+              "container-max": "1200px",
+              "unit": "8px",
+              "margin-desktop": "40px",
+              "stack-lg": "48px",
+              "stack-sm": "12px",
+              "margin-mobile": "20px",
+              "gutter": "24px"
+            },
+            fontFamily: {
+              "display": ["Quicksand", "sans-serif"],
+              "headline": ["Quicksand", "sans-serif"],
+              "body": ["Poppins", "sans-serif"],
+              "label-sm": ["Quicksand", "sans-serif"]
+            },
+            fontSize: {
+              "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+              "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "label-sm": ["13px", { lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "700" }]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+      html { scroll-behavior: smooth; }
+      body { background-color: #FDF6E3; color: #1f1b12; font-family: 'Poppins', sans-serif; }
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+      .quicksand { font-family: 'Quicksand', sans-serif; }
+      .lesson-card { border: 1px solid #E8E0D0; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+      .lesson-card:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(67, 62, 51, 0.05); }
+      .gold-pill { background: linear-gradient(135deg, #f5c84c 0%, #edc146 100%); color: #241a00; }
+      .nav-active { border-right: 4px solid #765b00; background-color: #f6eddd; font-weight: 700; color: #765b00; }
+      .scrollbar-hide::-webkit-scrollbar { display: none; }
+      .audio-bar { height: 16px; width: 3px; background: #765b00; border-radius: 2px; animation: bounce 1.2s infinite ease-in-out; }
+      @keyframes bounce { 0%, 100% { height: 4px; } 50% { height: 20px; } }
+      .status-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+      /* Reading Progress Bar */
+      #reading-progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #765b00, #edc146); z-index: 9999; transition: width 0.1s linear; }
+
+      /* Sticky right TOC panel */
+      #toc-panel { position: fixed; top: 80px; right: 0; width: 220px; max-height: calc(100vh - 100px); overflow-y: auto; padding: 16px 14px; background: rgba(253, 246, 227, 0.95); border-left: 1px solid #d1c5af; backdrop-filter: blur(8px); z-index: 30; transition: opacity 0.3s; }
+      #toc-panel::-webkit-scrollbar { width: 3px; }
+      #toc-panel::-webkit-scrollbar-thumb { background: #d1c5af; border-radius: 4px; }
+      .toc-link { display: block; padding: 4px 8px; font-size: 12px; color: #4e4635; border-left: 2px solid transparent; margin-bottom: 2px; transition: all 0.2s; text-decoration: none; border-radius: 0 4px 4px 0; line-height: 1.4; }
+      .toc-link:hover { color: #765b00; border-left-color: #edc146; background: rgba(245, 200, 76, 0.1); }
+      .toc-link.active { color: #765b00; border-left-color: #765b00; background: rgba(245, 200, 76, 0.15); font-weight: 700; }
+
+      /* Markdown rendered intro content */
+      .md-content h1, .md-content h2, .md-content h3 { font-family: 'Quicksand', sans-serif; font-weight: 700; color: #765b00; margin-top: 1.4em; margin-bottom: 0.5em; }
+      .md-content h1 { font-size: 1.6rem; }
+      .md-content h2 { font-size: 1.3rem; }
+      .md-content h3 { font-size: 1.1rem; }
+      .md-content p { margin-bottom: 0.9em; line-height: 1.75; color: #4e4635; }
+      .md-content ul, .md-content ol { margin-left: 1.5em; margin-bottom: 0.9em; }
+      .md-content li { margin-bottom: 0.35em; line-height: 1.6; color: #4e4635; }
+      .md-content strong { color: #1f1b12; font-weight: 700; }
+      .md-content em { font-style: italic; color: #765b00; }
+      .md-content code { background: #f0e7d7; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.9em; color: #765b00; }
+      .md-content blockquote { border-left: 4px solid #edc146; padding: 8px 16px; margin: 1em 0; background: rgba(245, 200, 76, 0.08); border-radius: 0 8px 8px 0; color: #4e4635; font-style: italic; }
+
+      /* Section divider */
+      .section-divider { border: none; border-top: 2px dashed #d1c5af; margin: 2rem 0; opacity: 0.5; }
+
+      /* Highlight info box */
+      .info-box { background: linear-gradient(135deg, rgba(245,200,76,0.12) 0%, rgba(237,193,70,0.06) 100%); border: 1px solid rgba(245,200,76,0.4); border-left: 4px solid #edc146; border-radius: 0 12px 12px 0; padding: 16px 20px; margin: 1rem 0; }
+
+      /* Main layout adjustment for right TOC */
+      @media (min-width: 1280px) {
+        #lesson-content { margin-right: 230px; }
+      }
+      @media (max-width: 1279px) {
+        #toc-panel { display: none; }
+      }
+    </style>
+</head>
+<div id="reading-progress" style="width:0%"></div>
+<body class="antialiased">
+<!-- Sidebar Layout -->
+<aside class="fixed left-0 top-0 h-full w-[260px] bg-surface-container-low border-r border-outline-variant flex flex-col z-50 overflow-hidden">
+<!-- Logo & Profile -->
+<div class="p-stack-md flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg gold-pill flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-on-primary-container">school</span>
+</div>
+<h1 class="font-headline text-headline-md font-bold text-primary tracking-tight">SpeakMate</h1>
+</div>
+<div class="bg-surface p-3 rounded-lg border border-outline-variant flex items-center gap-3">
+<img class="w-10 h-10 rounded-full border-2 border-primary-fixed" data-alt="A portrait of a smiling young adult student, high-end photography, warm sun-drenched lighting, bright and optimistic mood, light-mode design system colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo6MLTTtbKYptiThiCuG3V35vhBnwz3AcHBJAARxBERBCFWQRMbfthGYfcZtiFFM3y6qmkqMFB-Odfoy-GyhQR3EJcrZ9ld9NN3ACrjIMaNM1f6LaQrkO-v_8DqaOvJwpcAYlVBFJBX4cS_TdRdBYCLm5bQDZKqv6Nxv3sAtscZ4V-pdeFqF1Aum7kyWd1SuSxiUUUgSfYlSH5rRct43dz1nlsAc3DENS3HJhgfkDnHsFiSqk0ezsS"/>
+<div class="overflow-hidden">
+<p class="font-headline text-label-sm truncate">Alex Johnson</p>
+<div class="w-full bg-surface-container-highest h-1.5 rounded-full mt-1">
+<div class="bg-primary h-full rounded-full w-[65%]"></div>
+</div>
+</div>
+</div>
+<!-- Search -->
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-highest border-none rounded-full text-body-md focus:ring-2 focus:ring-primary transition-all" placeholder="Search lessons..." type="text"/>
+</div>
+</div>
+<!-- Lessons Index -->
+<nav id="lesson-nav" class="flex-1 overflow-y-auto scrollbar-hide px-2 pb-24">
+<div class="space-y-1">
+<!-- Dynamic lessons will be injected here -->
+</div>
+</nav>
+<!-- Footer Nav -->
+<div class="p-4 border-t border-outline-variant bg-surface-container flex flex-col gap-2">
+<a class="flex items-center justify-center gap-1 text-on-surface-variant hover:text-primary transition-colors text-label-sm font-bold py-2" href="classroom.html">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                    Back to Classroom
+</a>
+</div>
+</aside>
+<!-- Sticky Right TOC Panel (desktop) -->
+<nav id="toc-panel" class="hidden">
+  <div class="text-[11px] font-bold uppercase tracking-widest text-outline mb-3 flex items-center gap-1.5">
+    <span class="material-symbols-outlined text-[14px]">format_list_bulleted</span> On This Page
+  </div>
+  <div id="toc-panel-links"></div>
+</nav>
+
+<!-- Main Content Area -->
+<main class="ml-[260px] min-h-screen pb-32">
+<!-- Content Header -->
+<header id="lesson-header" class="sticky top-0 bg-background/80 backdrop-blur-md px-margin-desktop h-16 flex items-center justify-between z-40 border-b border-outline-variant/20">
+<div class="flex items-center gap-2 text-on-surface-variant text-label-sm">
+<span>Grammar</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span>Tenses</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-bold">Simple Present Tense</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 bg-primary-container/20 px-3 py-1 rounded-full border border-primary-container">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="text-label-sm text-on-primary-container font-bold">+50 XP Reward</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant hover:bg-white transition-all">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</header>
+<!-- Article Content Container -->
+<div id="lesson-content" class="max-w-[800px] mx-auto px-6 py-stack-lg">
+</div>
+</main>
+<!-- AI Teacher Modal / Floating Button -->
+<div class="fixed bottom-10 right-10 z-50">
+  <button id="ai-teacher-btn" class="w-16 h-16 rounded-full gold-pill shadow-2xl flex items-center justify-center text-on-primary-fixed hover:scale-110 active:scale-95 transition-all">
+    <span class="material-symbols-outlined text-3xl">smart_toy</span>
+  </button>
+</div>
+
+<div id="ai-modal" class="fixed inset-0 bg-black/50 hidden z-[60] flex items-center justify-center">
+  <div class="bg-surface w-[400px] rounded-xl shadow-2xl flex flex-col overflow-hidden">
+    <div class="bg-primary p-4 text-on-primary flex justify-between items-center">
+      <h3 class="font-bold">Ask AI Teacher</h3>
+      <button id="close-ai-modal"><span class="material-symbols-outlined">close</span></button>
+    </div>
+    <div id="ai-chat-history" class="p-4 h-64 overflow-y-auto flex flex-col gap-3 bg-surface-container-lowest">
+       <div class="text-sm text-on-surface-variant italic">Hi! I am your AI Teacher. Ask me any grammar doubts!</div>
+    </div>
+    <div class="p-3 border-t border-outline-variant bg-surface-container flex gap-2">
+      <input type="text" id="ai-question" class="flex-1 rounded-full border border-outline-variant px-4" placeholder="Ask a question..."/>
+      <button id="ai-send-btn" class="bg-primary text-on-primary rounded-full w-10 h-10 flex items-center justify-center"><span class="material-symbols-outlined">send</span></button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ─── Reading Progress Bar ───────────────────────────────────────────────────
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    document.getElementById('reading-progress').style.width = progress + '%';
+
+    // Active TOC link highlighting
+    const anchors = document.querySelectorAll('#lesson-content [id]');
+    let current = '';
+    anchors.forEach(el => {
+      if (el.getBoundingClientRect().top <= 120) current = el.id;
+    });
+    document.querySelectorAll('.toc-link').forEach(link => {
+      link.classList.toggle('active', link.dataset.anchor === current);
+    });
+  });
+
+  // ─── Lightweight Markdown → HTML renderer ───────────────────────────────────
+  function renderMarkdown(text) {
+    if (!text) return '';
+    const lines = text.split('\n');
+    let html = '';
+    let inUl = false;
+    for (let i = 0; i < lines.length; i++) {
+      let line = lines[i];
+      // Headings
+      if (line.startsWith('### ')) { if (inUl) { html += '</ul>'; inUl = false; } html += `<h3>${line.slice(4)}</h3>`; continue; }
+      if (line.startsWith('## '))  { if (inUl) { html += '</ul>'; inUl = false; } html += `<h2>${line.slice(3)}</h2>`; continue; }
+      if (line.startsWith('# '))   { if (inUl) { html += '</ul>'; inUl = false; } html += `<h1>${line.slice(2)}</h1>`; continue; }
+      // Unordered list
+      if (line.startsWith('- ') || line.startsWith('* ')) {
+        if (!inUl) { html += '<ul>'; inUl = true; }
+        html += `<li>${inlineMarkdown(line.slice(2))}</li>`;
+        continue;
+      }
+      if (inUl) { html += '</ul>'; inUl = false; }
+      // Blockquote
+      if (line.startsWith('> ')) { html += `<blockquote>${inlineMarkdown(line.slice(2))}</blockquote>`; continue; }
+      // Empty line = paragraph break
+      if (line.trim() === '') { html += ''; continue; }
+      // Regular paragraph
+      html += `<p>${inlineMarkdown(line)}</p>`;
+    }
+    if (inUl) html += '</ul>';
+    return html;
+  }
+
+  function inlineMarkdown(text) {
+    return text
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>');
+  }
+
+  let currentLesson = null;
+  let allSections = [];
+  const token = localStorage.getItem('speakmate_token');
+  if(!token) window.location.href='/login.html';
+
+  async function fetchLessons(preserveLesson) {
+    try {
+      const res = await fetch('/api/classroom/lessons?module=GRAMMAR', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      if (res.status === 401 || res.status === 403) {
+        localStorage.removeItem('speakmate_token');
+        window.location.href = '/login.html';
+        return;
+      }
+      if (!res.ok) {
+        throw new Error('HTTP error ' + res.status);
+      }
+      const data = await res.json();
+      allSections = data;
+      renderSidebar(data);
+      // Auto-load first lesson on initial load
+      if (!preserveLesson && !currentLesson && data.length > 0 && data[0].lessons.length > 0) {
+        loadLesson(data[0].lessons[0]);
+      }
+      // If preserving current lesson, re-load it to refresh UI
+      if (preserveLesson && currentLesson) {
+        const flat = data.flatMap(s => s.lessons);
+        const updated = flat.find(l => l.id === currentLesson.id);
+        if (updated) loadLesson(updated);
+      }
+    } catch(e) {
+      console.error('fetchLessons error:', e);
+    }
+  }
+
+  function renderSidebar(sections) {
+    const nav = document.querySelector('#lesson-nav .space-y-1');
+    if (!nav) return;
+    nav.innerHTML = '';
+    let totalLessons = 0, completedCount = 0;
+    sections.forEach(sec => {
+      const header = document.createElement('div');
+      header.className = 'px-3 py-2 text-label-sm text-outline uppercase tracking-widest font-bold mt-4';
+      header.textContent = sec.section;
+      nav.appendChild(header);
+      
+      sec.lessons.forEach(lesson => {
+        totalLessons++;
+        if (lesson.status === 'COMPLETED') completedCount++;
+        let dotColor = lesson.status === 'COMPLETED' ? 'bg-green-500' : (lesson.status === 'IN_PROGRESS' ? 'bg-primary animate-pulse' : 'bg-on-surface-variant/40');
+        let icon = lesson.status === 'COMPLETED' ? 'check_circle' : (lesson.status === 'IN_PROGRESS' ? 'play_circle' : 'radio_button_unchecked');
+        let isActive = currentLesson && currentLesson.id === lesson.id;
+        let activeClass = isActive ? 'nav-active' : 'hover:bg-surface-container-high';
+        
+        const link = document.createElement('a');
+        link.href = '#';
+        link.className = `flex items-center justify-between px-3 py-2.5 rounded-lg transition-colors group ${activeClass}`;
+        link.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="status-dot ${dotColor}"></span>
+            <span class="text-body-md text-on-surface">${lesson.title}</span>
+          </div>
+          <span class="material-symbols-outlined text-[18px] text-outline">${icon}</span>
+        `;
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          loadLesson(lesson);
+        });
+        nav.appendChild(link);
+      });
+    });
+    // Update progress counter (if element exists)
+    const progressEl = document.getElementById('grammar-progress-count');
+    if (progressEl) progressEl.textContent = `${completedCount} / ${totalLessons} Lessons`;
+  }
+
+  let currentLessonContent = null;
+  const quizAnswers = {};
+
+  function loadLesson(lesson) {
+    currentLesson = lesson;
+    
+    // Update Header Breadcrumb
+    document.getElementById('lesson-header').innerHTML = `
+      <div class="flex items-center gap-2 text-on-surface-variant text-label-sm">
+          <span>Grammar</span>
+          <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+          <span class="text-primary font-bold">${lesson.title}</span>
+      </div>
+      <div class="flex items-center gap-4">
+          <button onclick="markComplete('${lesson.id}')" class="px-4 py-2 bg-primary text-on-primary rounded-full font-bold shadow-sm hover:bg-primary/90">Mark Complete</button>
+      </div>
+    `;
+
+    const contentDiv = document.getElementById('lesson-content');
+    if(!lesson.content || lesson.content === '{}') {
+       contentDiv.innerHTML = `<p class="text-center text-on-surface-variant py-20">Content coming soon!</p>`;
+       return;
+    }
+    
+    let contentObj;
+    try {
+      contentObj = JSON.parse(lesson.content);
+    } catch(e) {
+      contentDiv.innerHTML = `<p class="text-red-500">Error parsing lesson data.</p>`;
+      return;
+    }
+    currentLessonContent = contentObj;
+
+    // Build Table of Contents dynamically
+    let tocItems = [];
+    tocItems.push({ name: 'Introduction', link: '#lesson-intro', anchor: 'lesson-intro' });
+    if (contentObj.when_to_use) tocItems.push({ name: 'When to Use', link: '#when-to-use', anchor: 'when-to-use' });
+    if (contentObj.formula) tocItems.push({ name: 'Grammar Formula', link: '#grammar-formula', anchor: 'grammar-formula' });
+    if (contentObj.exceptions && contentObj.exceptions.length > 0) tocItems.push({ name: 'Exceptions to Rule', link: '#grammar-exceptions', anchor: 'grammar-exceptions' });
+    if (contentObj.tables && contentObj.tables.length > 0) tocItems.push({ name: 'Solved Examples', link: '#solved-examples', anchor: 'solved-examples' });
+    if (contentObj.real_world_scenarios && contentObj.real_world_scenarios.length > 0) tocItems.push({ name: 'Real-World Scenarios', link: '#real-world', anchor: 'real-world' });
+    if (contentObj.time_expressions) tocItems.push({ name: 'Key Time Expressions', link: '#time-expressions', anchor: 'time-expressions' });
+    if (contentObj.tense_comparison) tocItems.push({ name: 'Tense Comparison', link: '#tense-comparison', anchor: 'tense-comparison' });
+    if (contentObj.mistakes && contentObj.mistakes.length > 0) tocItems.push({ name: 'Common Mistakes', link: '#common-mistakes', anchor: 'common-mistakes' });
+    if (contentObj.faqs && contentObj.faqs.length > 0) tocItems.push({ name: 'FAQs', link: '#faqs', anchor: 'faqs' });
+    if (contentObj.exercises && contentObj.exercises.length > 0) tocItems.push({ name: 'Practice Exercises', link: '#practice-exercises', anchor: 'practice-exercises' });
+    if (contentObj.quiz && contentObj.quiz.length > 0) tocItems.push({ name: 'Mini Quiz', link: '#mini-quiz', anchor: 'mini-quiz' });
+    if (contentObj.related_topics && contentObj.related_topics.length > 0) tocItems.push({ name: 'Related Topics', link: '#related-topics', anchor: 'related-topics' });
+
+    // Populate the sticky right-panel TOC
+    const tocPanel = document.getElementById('toc-panel');
+    const tocPanelLinks = document.getElementById('toc-panel-links');
+    if (tocItems.length > 1) {
+      tocPanel.classList.remove('hidden');
+      tocPanelLinks.innerHTML = tocItems.map(item =>
+        `<a href="${item.link}" data-anchor="${item.anchor}" class="toc-link">${item.name}</a>`
+      ).join('');
+    } else {
+      tocPanel.classList.add('hidden');
+    }
+
+    // Difficulty badge color
+    const diffColor = { 'Beginner': 'bg-green-100 text-green-800', 'Intermediate': 'bg-blue-100 text-blue-800', 'Advanced': 'bg-orange-100 text-orange-800' };
+    const diff = contentObj.difficulty || 'Intermediate';
+    const diffClass = diffColor[diff] || 'bg-primary-container text-primary';
+
+    let html = `
+    <section id="lesson-intro" class="mb-stack-lg">
+      <div class="flex items-center gap-3 mb-3 flex-wrap">
+          <span class="px-3 py-1 text-[11px] font-bold rounded-full ${diffClass} uppercase tracking-wider border border-current/20">${diff}</span>
+          <span class="text-on-surface-variant text-body-sm flex items-center gap-1 font-medium bg-surface-container/50 px-2.5 py-0.5 rounded-full border border-outline-variant/20">
+              <span class="material-symbols-outlined text-[15px] text-primary">schedule</span>
+              ${contentObj.read_time || '10 min read'}
+          </span>
+          <span class="text-on-surface-variant text-body-sm flex items-center gap-1 font-medium bg-surface-container/50 px-2.5 py-0.5 rounded-full border border-outline-variant/20">
+              <span class="material-symbols-outlined text-[15px] text-primary">auto_stories</span>
+              ${tocItems.length} sections
+          </span>
+      </div>
+      <h2 class="font-headline font-bold text-[2.4rem] leading-tight text-primary mb-5">${lesson.title}</h2>
+      <div class="info-box mb-4">
+        <p class="text-sm text-on-surface-variant"><strong>In this lesson:</strong> ${tocItems.map(t=>t.name).join(' · ')}</p>
+      </div>
+      <div class="md-content text-on-surface-variant">${renderMarkdown(contentObj.introduction || '')}</div>
+    </section>`;
+
+    // Add inline TOC (always shown, complements the sticky right panel)
+    if (tocItems.length > 1) {
+       html += `
+       <div class="bg-gradient-to-br from-primary-container/20 to-surface-container-low border border-primary-container/30 rounded-xl p-5 mb-stack-lg shadow-sm">
+           <div class="font-bold text-headline-sm text-primary mb-4 flex items-center gap-2">
+               <span class="material-symbols-outlined text-[22px] text-primary">list_alt</span> Table of Contents
+           </div>
+           <ol class="list-none space-y-1">
+             ${tocItems.map((item, i) => `
+               <li><a href="${item.link}" class="flex items-center gap-2.5 py-1.5 px-2 rounded-lg hover:bg-primary/8 hover:text-primary transition-all text-body-md text-on-surface-variant group">
+                 <span class="w-6 h-6 rounded-full bg-primary-container/50 text-primary text-xs font-bold flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-on-primary transition-all">${i+1}</span>
+                 ${item.name}
+               </a></li>`).join('')}
+           </ol>
+       </div>`;
+    }
+
+    if(contentObj.when_to_use) {
+       html += `
+       <div id="when-to-use" class="bg-white rounded-xl p-6 mb-stack-lg shadow-sm border border-outline-variant/30">
+          <h3 class="font-bold text-primary mb-4 text-headline-md flex items-center gap-2">
+            <span class="material-symbols-outlined text-[22px]">help_center</span> When to Use
+          </h3>
+          <ul class="space-y-3">
+             ${contentObj.when_to_use.map(w => `<li class="flex items-start gap-2.5 text-on-surface-variant text-body-md leading-relaxed">
+               <span class="material-symbols-outlined text-primary text-[18px] mt-0.5 flex-shrink-0" style="font-variation-settings:'FILL' 1">check_circle</span>
+               <span>${w}</span></li>`).join('')}
+          </ul>
+       </div>`;
+    }
+
+    if(contentObj.formula) {
+       html += `
+       <div id="grammar-formula" class="lesson-card bg-white p-8 rounded-lg mb-stack-lg relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-2 h-full bg-primary"></div>
+          <h3 class="font-headline text-headline-md mb-6">The Magic Formula</h3>
+          <div class="flex flex-wrap items-center gap-4 text-display-lg-mobile md:text-[32px] quicksand font-bold">`;
+          
+       contentObj.formula.parts.forEach(part => {
+          if(part.type === 'primary') html += `<div class="px-6 py-4 rounded-xl bg-primary-container/10 border-2 border-dashed border-primary-container text-primary">${part.label}</div><span class="text-outline">+</span>`;
+          else if(part.type === 'secondary') html += `<div class="px-6 py-4 rounded-xl bg-secondary-container/10 border-2 border-dashed border-secondary-container text-secondary">${part.label}</div><span class="text-outline">+</span>`;
+          else html += `<div class="px-6 py-4 rounded-xl bg-tertiary-container/20 border-2 border-dashed border-outline-variant text-tertiary">${part.label}</div>`;
+       });
+       html = html.replace(/<span class="text-outline">\+<\/span>$/, ''); // remove trailing +
+       
+       html += `</div>
+          <p class="mt-6 text-label-sm italic text-on-surface-variant flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-primary">info</span>
+              ${contentObj.formula.note || ''}
+          </p>
+       </div>`;
+    }
+
+    html += `<hr class="section-divider">`;
+    if(contentObj.exceptions && contentObj.exceptions.length > 0) {
+       html += `
+       <div id="grammar-exceptions" class="bg-white rounded-xl p-6 mb-stack-lg shadow-sm border border-amber-200">
+          <h3 class="font-bold text-amber-700 mb-5 flex items-center gap-2 text-headline-md">
+             <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">gavel</span> Exceptions to the Rule
+          </h3>
+          <div class="space-y-4">
+             ${contentObj.exceptions.map((ex, i) => `
+                <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-body-md">
+                   <div class="flex items-start gap-2 mb-2">
+                     <span class="text-amber-600 font-bold text-sm mt-0.5">RULE ${i+1}</span>
+                     <p class="font-bold text-on-surface">${ex.rule}</p>
+                   </div>
+                   <p class="text-amber-800 mb-2 pl-14"><strong>Exception:</strong> ${ex.exception}</p>
+                   <p class="text-on-surface-variant italic pl-14">📝 <em>"${ex.example}"</em></p>
+                </div>
+             `).join('')}
+          </div>
+       </div>`;
+    }
+
+    if(contentObj.tables && contentObj.tables.length > 0) {
+       html += `<div id="solved-examples" class="space-y-6 mb-stack-lg">`;
+       contentObj.tables.forEach(table => {
+          html += `<div class="bg-white rounded-lg p-6 shadow-sm border border-outline-variant/30">
+             <h3 class="font-bold mb-4 text-headline-sm text-primary">${table.title}</h3>
+             <div class="overflow-x-auto">
+               <table class="w-full text-left">
+                 <tr class="bg-surface-container text-label-sm border-b border-outline-variant">
+                   ${table.headers.map(h => `<th class="p-3">${h}</th>`).join('')}
+                 </tr>`;
+             table.rows.forEach(row => {
+                html += `<tr class="border-b border-outline-variant/30">
+                  ${row.map((cell, i) => `<td class="p-3 ${i===1?'italic font-bold text-primary':''}">${cell}</td>`).join('')}
+                </tr>`;
+             });
+             html += `</table></div></div>`;
+       });
+       html += `</div>`;
+    }
+
+    if(contentObj.real_world_scenarios && contentObj.real_world_scenarios.length > 0) {
+       const scenarioIcons = { 'Email': 'mail', 'Interview': 'work', 'Conversation': 'forum', 'Formal': 'business_center', 'default': 'campaign' };
+       html += `
+       <div id="real-world" class="bg-white rounded-xl p-6 mb-stack-lg shadow-sm border border-outline-variant/30">
+          <h3 class="font-bold text-primary mb-5 flex items-center gap-2 text-headline-md">
+             <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">work</span> Real-World Usage Scenarios
+          </h3>
+          <div class="space-y-4">
+             ${contentObj.real_world_scenarios.map(sc => {
+               const iconKey = Object.keys(scenarioIcons).find(k => sc.context.toLowerCase().includes(k.toLowerCase())) || 'default';
+               const icon = scenarioIcons[iconKey];
+               return `
+                <div class="p-5 rounded-xl bg-gradient-to-br from-surface-container to-surface-container-low border border-outline-variant/20 text-body-md">
+                   <h4 class="font-bold text-primary mb-3 flex items-center gap-2">
+                      <span class="material-symbols-outlined text-[18px]" style="font-variation-settings:'FILL' 1">${icon}</span>
+                      <span class="px-2 py-0.5 bg-primary/10 rounded text-sm">${sc.context}</span>
+                   </h4>
+                   <p class="text-on-surface-variant leading-relaxed whitespace-pre-line italic border-l-2 border-primary-container pl-4">${sc.content}</p>
+                </div>`;
+             }).join('')}
+          </div>
+       </div>`;
+    }
+
+    if(contentObj.time_expressions) {
+       html += `
+       <div id="time-expressions" class="bg-white rounded-lg p-6 mb-stack-lg shadow-sm border border-outline-variant/30">
+          <h3 class="font-bold text-primary mb-4 text-headline-md">Key Time Expressions</h3>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+             ${contentObj.time_expressions.map(te => `
+                <div class="p-3 rounded-lg bg-surface-container-low text-center font-semibold text-body-md text-primary border border-outline-variant/20 shadow-sm">${te}</div>
+             `).join('')}
+          </div>
+       </div>`;
+    }
+
+    if(contentObj.tense_comparison) {
+       html += `
+       <div id="tense-comparison" class="bg-white rounded-lg p-6 mb-stack-lg shadow-sm border border-primary-container/30">
+          <h3 class="font-bold text-primary mb-4 text-headline-md">${contentObj.tense_comparison.title}</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+               <tr class="bg-surface-container text-label-sm border-b border-outline-variant">
+                  ${contentObj.tense_comparison.headers.map(h => `<th class="p-3">${h}</th>`).join('')}
+               </tr>
+               ${contentObj.tense_comparison.rows.map(row => `
+                  <tr class="border-b border-outline-variant/30 text-body-md text-on-surface-variant">
+                     ${row.map(cell => `<td class="p-3">${cell}</td>`).join('')}
+                  </tr>
+               `).join('')}
+            </table>
+          </div>
+       </div>`;
+    }
+
+    if(contentObj.mistakes && contentObj.mistakes.length > 0) {
+       html += `
+       <div id="common-mistakes" class="bg-white rounded-lg p-6 mb-stack-lg shadow-sm border-l-4 border-error">
+          <h3 class="font-bold text-error mb-4 flex items-center gap-2 text-headline-md">
+             <span class="material-symbols-outlined">warning</span> Common Mistakes to Avoid
+          </h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+               <tr class="bg-surface-container text-label-sm border-b border-outline-variant">
+                  <th class="p-3 text-error">Incorrect</th>
+                  <th class="p-3 text-green-600">Correct</th>
+                  <th class="p-3">Explanation</th>
+               </tr>
+               ${contentObj.mistakes.map(m => `
+                  <tr class="border-b border-outline-variant/30 text-body-md">
+                     <td class="p-3 text-error line-through">${m.incorrect}</td>
+                     <td class="p-3 text-green-600 font-bold">${m.correct}</td>
+                     <td class="p-3 text-on-surface-variant leading-relaxed">${m.why}</td>
+                  </tr>
+               `).join('')}
+            </table>
+          </div>
+       </div>`;
+    }
+
+    if(contentObj.faqs && contentObj.faqs.length > 0) {
+       html += `
+       <hr class="section-divider">
+       <div id="faqs" class="bg-white rounded-xl p-6 mb-stack-lg shadow-sm border border-outline-variant/30">
+          <h3 class="font-bold text-primary mb-6 flex items-center gap-2 text-headline-md">
+             <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">help</span> Frequently Asked Questions
+          </h3>
+          <div class="space-y-2">
+             ${contentObj.faqs.map((faq, idx) => `
+                <details class="group border border-outline-variant/30 rounded-xl overflow-hidden">
+                   <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-surface-container-low transition-colors list-none">
+                     <div class="flex items-start gap-3">
+                       <span class="w-6 h-6 rounded-full bg-primary text-on-primary text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">${idx+1}</span>
+                       <span class="font-semibold text-on-surface text-body-md">${faq.question}</span>
+                     </div>
+                     <span class="material-symbols-outlined text-primary transition-transform group-open:rotate-180 flex-shrink-0 ml-2">expand_more</span>
+                   </summary>
+                   <div class="px-4 pb-4 pt-2 text-on-surface-variant text-body-md leading-relaxed border-t border-outline-variant/20 bg-surface-container-lowest/50 pl-[3.25rem]">
+                      ${faq.answer}
+                   </div>
+                </details>
+             `).join('')}
+          </div>
+       </div>`;
+    }
+
+    if(contentObj.exercises && contentObj.exercises.length > 0) {
+       html += `
+       <div id="practice-exercises" class="bg-secondary-container/20 rounded-lg p-6 mb-stack-lg border border-secondary-container/50">
+          <h3 class="font-bold text-secondary mb-6 flex items-center gap-2 text-headline-md">
+             <span class="material-symbols-outlined">edit_note</span> Practice Exercises
+          </h3>`;
+          
+       contentObj.exercises.forEach((ex, idx) => {
+          html += `
+          <div class="mb-6 p-5 bg-white rounded-xl shadow-sm border border-outline-variant/30">
+             <p class="mb-3 font-semibold text-body-lg text-on-surface">${idx + 1}. ${ex.question}</p>`;
+             
+          if(ex.type === 'fill-in-blank') {
+             html += `
+             <div class="flex flex-wrap items-center gap-2 font-bold text-body-lg text-on-surface">
+                <span>${ex.prefix}</span>
+                <input type="text" id="ex-input-${idx}" oninput="checkFillBlank(${idx}, '${ex.answer}')" class="border-b-2 border-secondary bg-transparent outline-none text-center text-primary px-2 w-36" placeholder="....."/>
+                <span>${ex.suffix}</span>
+             </div>
+             <p id="ex-feedback-${idx}" class="mt-3 text-label-sm font-bold"></p>`;
+          } else if(ex.type === 'mcq') {
+             html += `
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+                ${ex.options.map(opt => `
+                   <button onclick="checkMcqExercise(${idx}, '${opt.replace(/'/g, "\\'")}', '${ex.answer.replace(/'/g, "\\'")}')" class="px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl text-left hover:bg-secondary-container/10 transition-colors text-body-md">${opt}</button>
+                `).join('')}
+             </div>
+             <p id="ex-feedback-${idx}" class="mt-3 text-label-sm font-bold"></p>`;
+          } else if(ex.type === 'error-spotting') {
+             html += `
+             <div class="p-3 bg-error-container/10 border border-error/20 rounded-lg italic mb-3 text-body-md text-error">
+                "${ex.sentence}"
+             </div>
+             <input type="text" id="ex-input-${idx}" oninput="checkFillBlank(${idx}, '${ex.answer.replace(/'/g, "\\'")}')" class="w-full border-b-2 border-secondary bg-transparent outline-none text-primary" placeholder="Type the corrected sentence here..."/>
+             <p id="ex-feedback-${idx}" class="mt-3 text-label-sm font-bold"></p>`;
+          }
+          
+          html += `</div>`;
+       });
+       
+       html += `</div>`;
+    }
+
+    if(contentObj.quiz && contentObj.quiz.length > 0) {
+       html += `
+       <div id="mini-quiz" class="bg-primary-container/15 rounded-lg p-6 mb-stack-lg border border-primary-container/40">
+          <h3 class="font-bold text-primary mb-6 flex items-center gap-2 text-headline-md">
+             <span class="material-symbols-outlined">quiz</span> Interactive Mini Quiz
+          </h3>
+          <div id="quiz-container">`;
+          
+       contentObj.quiz.forEach((q, idx) => {
+          html += `
+          <div class="mb-6 p-4 bg-white rounded-xl shadow-sm border border-outline-variant/30">
+             <p class="mb-3 font-semibold text-body-lg text-on-surface">${idx + 1}. ${q.question}</p>
+             <div class="grid grid-cols-1 gap-2">
+                ${q.options.map(opt => {
+                   let optClean = opt.replace(/'/g, "").replace(/"/g, "");
+                   return `<button onclick="selectQuizAnswer(${idx}, '${opt.replace(/'/g, "\\'")}', '${q.answer.replace(/'/g, "\\'")}')" id="quiz-btn-${idx}-${optClean}" class="quiz-opt-btn-${idx} px-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl text-left hover:bg-primary-container/10 transition-colors text-body-md">${opt}</button>`;
+                }).join('')}
+             </div>
+          </div>`;
+       });
+       
+       html += `
+          <button onclick="submitQuiz()" class="px-6 py-3 bg-primary text-on-primary rounded-full font-bold hover:bg-primary/95 transition-colors shadow-md">Submit Answers</button>
+          <p id="quiz-result" class="mt-4 font-bold text-body-lg"></p>
+          </div>
+       </div>`;
+    }
+
+    if(contentObj.related_topics && contentObj.related_topics.length > 0) {
+       html += `
+       <hr class="section-divider">
+       <div id="related-topics" class="bg-gradient-to-br from-primary-container/15 to-surface-container-low rounded-xl p-6 mb-stack-lg shadow-sm border border-primary-container/20">
+          <h3 class="font-bold text-primary mb-5 flex items-center gap-2 text-headline-md">
+             <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">hub</span> Related Topics
+          </h3>
+          <div class="flex flex-wrap gap-3">
+             ${contentObj.related_topics.map(t => `
+                <a href="#" onclick="window.navigateToRelatedTopic('${t.title.replace(/'/g, "\\'")}')"
+                   class="group px-4 py-2.5 rounded-xl bg-white hover:bg-primary text-primary hover:text-on-primary font-bold text-body-md transition-all shadow-sm border border-outline-variant/30 hover:border-primary flex items-center gap-2">
+                   <span class="material-symbols-outlined text-[16px] group-hover:text-on-primary transition-colors">menu_book</span> ${t.title}
+                   <span class="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+                </a>
+             `).join('')}
+          </div>
+       </div>`;
+    }
+
+    // Feedback section at end of every lesson
+    html += `
+    <div class="mt-8 p-5 bg-surface-container-low rounded-xl border border-outline-variant/20 text-center">
+      <p class="text-on-surface-variant text-sm mb-3">Was this lesson helpful?</p>
+      <div class="flex justify-center gap-3">
+        <button onclick="this.parentElement.innerHTML='<span class=\'text-green-600 font-bold\'>Thanks for your feedback! 🎉</span>'" class="px-5 py-2 bg-green-50 hover:bg-green-100 text-green-700 border border-green-200 rounded-full font-semibold text-sm transition-colors flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[16px]">thumb_up</span> Yes, helpful!
+        </button>
+        <button onclick="document.getElementById('ai-modal').classList.remove('hidden')" class="px-5 py-2 bg-surface hover:bg-primary-container/10 text-on-surface-variant border border-outline-variant rounded-full font-semibold text-sm transition-colors flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[16px]">smart_toy</span> I have a doubt
+        </button>
+      </div>
+    </div>`;
+
+    contentDiv.innerHTML = html;
+  }
+
+  window.navigateToRelatedTopic = function(title) {
+     if (!allSections || allSections.length === 0) { console.warn('allSections not loaded yet'); return; }
+     for (let sec of allSections) {
+        let match = sec.lessons.find(l => l.title.toLowerCase() === title.toLowerCase());
+        if (match) {
+           loadLesson(match);
+           window.scrollTo({ top: 0, behavior: 'smooth' });
+           return;
+        }
+     }
+     console.warn('Related topic not found:', title);
+  };
+
+  window.checkFillBlank = function(idx, answer) {
+    const input = document.getElementById(`ex-input-${idx}`);
+    const feedback = document.getElementById(`ex-feedback-${idx}`);
+    if(input.value.toLowerCase().trim() === answer.toLowerCase().trim()) {
+      input.classList.add('text-green-600');
+      feedback.textContent = "Correct! Well done!";
+      feedback.className = "mt-3 text-label-sm font-bold text-green-600";
+    } else {
+      input.classList.remove('text-green-600');
+      feedback.textContent = "";
+    }
+  };
+
+  window.checkMcqExercise = function(idx, opt, answer) {
+    const feedback = document.getElementById(`ex-feedback-${idx}`);
+    if(opt.toLowerCase().trim() === answer.toLowerCase().trim()) {
+      feedback.textContent = "Correct! Great choice.";
+      feedback.className = "mt-3 text-label-sm font-bold text-green-600";
+    } else {
+      feedback.textContent = "Incorrect. Try another option!";
+      feedback.className = "mt-3 text-label-sm font-bold text-error";
+    }
+  };
+
+  window.selectQuizAnswer = function(idx, opt, answer) {
+    // Clear selection for this question
+    const btns = document.querySelectorAll(`.quiz-opt-btn-${idx}`);
+    btns.forEach(b => b.classList.remove('bg-primary-container/30', 'text-primary', 'font-bold', 'border-primary'));
+    
+    // Mark active
+    let optClean = opt.replace(/'/g, "").replace(/"/g, "");
+    const activeBtn = document.getElementById(`quiz-btn-${idx}-${optClean}`);
+    if(activeBtn) {
+       activeBtn.classList.add('bg-primary-container/30', 'text-primary', 'font-bold', 'border-primary');
+    }
+    
+    quizAnswers[idx] = { selected: opt, correct: answer };
+  };
+
+  window.submitQuiz = function() {
+    let score = 0;
+    let total = currentLessonContent.quiz.length;
+    
+    for(let i=0; i<total; i++) {
+       if(quizAnswers[i] && quizAnswers[i].selected.toLowerCase().trim() === quizAnswers[i].correct.toLowerCase().trim()) {
+          score++;
+       }
+    }
+    
+    const result = document.getElementById('quiz-result');
+    result.textContent = `Quiz Completed! Your Score: ${score} / ${total}`;
+    if(score === total) {
+       result.className = "mt-4 font-bold text-body-lg text-green-600";
+    } else {
+       result.className = "mt-4 font-bold text-body-lg text-primary";
+    }
+  };
+
+  async function markComplete(lessonId) {
+     try {
+       await fetch(`/api/classroom/lessons/${lessonId}/progress?status=COMPLETED`, {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + token }
+       });
+       fetchLessons(true); // refresh sidebar, preserve current lesson view
+     } catch(e) { console.error(e); }
+  }
+
+  // AI Teacher Logic
+  document.getElementById('ai-teacher-btn').onclick = () => document.getElementById('ai-modal').classList.remove('hidden');
+  document.getElementById('close-ai-modal').onclick = () => document.getElementById('ai-modal').classList.add('hidden');
+  
+  document.getElementById('ai-send-btn').onclick = async () => {
+     const input = document.getElementById('ai-question');
+     const text = input.value.trim();
+     if(!text) return;
+     input.value = '';
+     
+     const history = document.getElementById('ai-chat-history');
+     history.innerHTML += `<div class="self-end bg-primary text-on-primary rounded-xl px-4 py-2 max-w-[80%] text-sm">${text}</div>`;
+     history.scrollTop = history.scrollHeight;
+     
+     try {
+       const res = await fetch('/api/chat/ask-teacher', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+         body: JSON.stringify({
+           question: text,
+           lessonTitle: currentLesson ? currentLesson.title : ''
+         })
+       });
+       const data = await res.json();
+       history.innerHTML += `<div class="self-start bg-surface-container-high text-on-surface rounded-xl px-4 py-2 max-w-[80%] text-sm">${data.answer || 'Sorry, I could not generate a response.'}</div>`;
+       history.scrollTop = history.scrollHeight;
+     } catch(e) {
+       console.error(e);
+       history.innerHTML += `<div class="self-start bg-error-container text-on-error-container rounded-xl px-4 py-2 max-w-[80%] text-sm">Error connecting to AI Teacher.</div>`;
+     }
+  };
+
+  // Allow Enter key to send AI question
+  document.getElementById('ai-question').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('ai-send-btn').click();
+  });
+
+  // Wire up search box
+  const searchInput = document.querySelector('#lesson-nav')?.closest('aside')?.querySelector('input[type="text"]');
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      const nav = document.querySelector('#lesson-nav .space-y-1');
+      if (!nav) return;
+      nav.querySelectorAll('a').forEach(link => {
+        const title = link.querySelector('span.text-body-md')?.textContent?.toLowerCase() || '';
+        link.style.display = (!q || title.includes(q)) ? '' : 'none';
+      });
+      // Also show/hide section headers based on whether any child is visible
+      nav.querySelectorAll('div.uppercase').forEach(header => {
+        let next = header.nextElementSibling;
+        let hasVisible = false;
+        while (next && !next.classList.contains('uppercase')) {
+          if (next.style.display !== 'none') hasVisible = true;
+          next = next.nextElementSibling;
+        }
+        header.style.display = hasVisible ? '' : 'none';
+      });
+    });
+  }
+
+  fetchLessons();
+</script>
+</body>
+</html>

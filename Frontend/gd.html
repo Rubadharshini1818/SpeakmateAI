@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;family=Poppins:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+                "on-primary-container": "#6d5400",
+                "on-background": "#1f1b12",
+                "on-tertiary": "#ffffff",
+                "on-error": "#ffffff",
+                "primary-fixed-dim": "#edc146",
+                "on-tertiary-container": "#5b5749",
+                "on-error-container": "#93000a",
+                "on-tertiary-fixed": "#1e1c10",
+                "tertiary": "#625e50",
+                "secondary-container": "#fdbf4d",
+                "surface-bright": "#fff8f1",
+                "tertiary-container": "#d3cdbb",
+                "surface-container-low": "#fcf2e3",
+                "secondary-fixed": "#ffdeab",
+                "on-primary-fixed-variant": "#594400",
+                "on-tertiary-fixed-variant": "#4a4739",
+                "inverse-surface": "#353026",
+                "secondary-fixed-dim": "#fabc4a",
+                "on-surface-variant": "#4e4635",
+                "surface-container-highest": "#ebe1d2",
+                "on-secondary": "#ffffff",
+                "on-primary": "#ffffff",
+                "inverse-primary": "#edc146",
+                "surface-container-lowest": "#ffffff",
+                "primary-container": "#f5c84c",
+                "on-secondary-fixed": "#271900",
+                "surface": "#fff8f1",
+                "tertiary-fixed-dim": "#ccc6b4",
+                "on-secondary-fixed-variant": "#5f4100",
+                "background": "#fff8f1",
+                "on-surface": "#1f1b12",
+                "inverse-on-surface": "#f9f0e0",
+                "outline-variant": "#d1c5af",
+                "outline": "#7f7663",
+                "surface-tint": "#765b00",
+                "on-primary-fixed": "#241a00",
+                "surface-dim": "#e2d9ca",
+                "error": "#ba1a1a",
+                "tertiary-fixed": "#e9e2d0",
+                "secondary": "#7e5700",
+                "on-secondary-container": "#714e00",
+                "surface-container": "#f6eddd",
+                "primary": "#765b00",
+                "error-container": "#ffdad6",
+                "surface-container-high": "#f0e7d7",
+                "primary-fixed": "#ffdf93",
+                "surface-variant": "#ebe1d2"
+            },
+            borderRadius: {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+            },
+            spacing: {
+                "margin-mobile": "20px",
+                "gutter": "24px",
+                "container-max": "1100px",
+                "margin-desktop": "40px",
+                "stack-md": "24px",
+                "unit": "8px",
+                "stack-sm": "12px",
+                "stack-lg": "48px"
+            },
+            fontFamily: {
+                "label-sm": ["Quicksand", "sans-serif"],
+                "headline-md": ["Quicksand", "sans-serif"],
+                "display-lg": ["Quicksand", "sans-serif"],
+                "body-md": ["Poppins", "sans-serif"],
+                "body-lg": ["Poppins", "sans-serif"],
+                "ui": ["Poppins", "sans-serif"]
+            }
+          }
+        }
+      }
+    }catch(_e){}</script><style>
+  @keyframes sound-wave {
+    0%, 100% { height: 8px; }
+    50% { height: 24px; }
+  }
+  .speaking-glow {
+    box-shadow: 0 0 0 0 rgba(118, 91, 0, 0.4);
+    animation: pulse-gold 2s infinite;
+  }
+  @keyframes pulse-gold {
+    0% { box-shadow: 0 0 0 0 rgba(118, 91, 0, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(118, 91, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(118, 91, 0, 0); }
+  }
+</style></head><body class="text-on-background" style="background-color: #FDF6E3;">
+<!-- Fixed Top Bar -->
+<div id="gd-interface"><header class="fixed top-0 left-0 w-full h-16 bg-white border-b border-[#E8E0D0] z-50 px-4 md:px-8 flex items-center justify-between"><div class="max-w-[1100px] mx-auto w-full px-6 flex items-center justify-between relative h-full"><div class="flex items-center gap-4"><span class="font-headline-md text-headline-md flex items-center gap-2 whitespace-nowrap"><span class="material-symbols-outlined text-primary">groups</span>Live GD Session</span><div class="flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-bold border border-primary/20"><span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>AI Moderator: Active</div></div><div class="absolute left-1/2 -translate-x-1/2"><div class="flex items-center gap-2 px-4 py-1 bg-[#FFF3C4] border border-[#F5C84C] rounded-full font-bold text-primary"><span class="text-lg">⏱</span><span class="tabular-nums">00:00</span></div></div><div class="flex items-center gap-3"><div class="text-sm font-medium text-outline">Topic: Future of AI</div></div></div></header><main class="pt-16 pb-28 min-h-[calc(100vh-64px)] w-full px-6 flex items-center justify-center"><section class="w-full max-w-[900px] mx-auto mt-8"><div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-[700px] mx-auto place-items-center"><div class="flex flex-col items-center w-full max-w-[200px] p-6 bg-white border border-[#E8E0D0] rounded-[20px] shadow-[0_2px_8px_rgba(0,0,0,0.04)]"><div class="relative"><div class="w-20 h-20 md:w-[100px] md:h-[100px] rounded-full border-4 border-[#F5C84C] p-1 bg-white flex items-center justify-center overflow-hidden"><div class="w-full h-full rounded-full bg-surface-container-highest flex items-center justify-center text-primary font-bold text-[26px] font-headline-md">ME</div></div><div class="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-[#F5C84C] text-on-primary-container px-3 py-0.5 rounded-full text-[10px] font-bold shadow-sm">YOU</div></div><span class="mt-4 font-bold text-primary text-sm font-headline-md">You 🎤</span></div><div id="card-sarah" class="flex flex-col items-center w-full max-w-[200px] p-6 bg-white border border-[#E8E0D0] rounded-[20px] shadow-[0_2px_8px_rgba(0,0,0,0.04)]"><div class="relative"><div class="w-20 h-20 md:w-[100px] md:h-[100px] rounded-full border-4 border-transparent p-1 bg-white flex items-center justify-center overflow-hidden"><div class="w-full h-full rounded-full bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center text-white font-bold text-[26px] font-headline-md">DS</div></div><div class="sound-indicator absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-md gap-0.5 items-center px-2 h-6 border border-primary/20" style="display:none"><div class="sound-bar h-2 w-0.5 bg-primary rounded-full" style="animation: sound-wave 1s ease-in-out infinite"></div><div class="sound-bar h-4 w-0.5 bg-primary rounded-full" style="animation: sound-wave 1s ease-in-out infinite; animation-delay: 0.3s"></div><div class="sound-bar h-3 w-0.5 bg-primary rounded-full" style="animation: sound-wave 1s ease-in-out infinite; animation-delay: 0.2s"></div></div></div><span class="mt-4 font-bold text-[#E8A020] text-sm font-headline-md">Dr. Sarah</span></div><div id="card-james" class="flex flex-col items-center w-full max-w-[200px] p-6 bg-white border border-[#E8E0D0] rounded-[20px] shadow-[0_2px_8px_rgba(0,0,0,0.04)]"><div class="relative"><div class="w-20 h-20 md:w-[100px] md:h-[100px] rounded-full border-4 border-transparent p-1 bg-white flex items-center justify-center overflow-hidden"><div class="w-full h-full rounded-full bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center text-on-surface-variant font-bold text-[26px] font-headline-md">JW</div></div><div class="sound-indicator absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-md gap-0.5 items-center px-2 h-6 border border-primary/20" style="display:none"><div class="sound-bar h-2 w-0.5 bg-primary rounded-full" style="animation: sound-wave 1s ease-in-out infinite"></div><div class="sound-bar h-4 w-0.5 bg-primary rounded-full" style="animation: sound-wave 1s ease-in-out infinite; animation-delay: 0.3s"></div><div class="sound-bar h-3 w-0.5 bg-primary rounded-full" style="animation: sound-wave 1s ease-in-out infinite; animation-delay: 0.2s"></div></div></div><span class="mt-4 font-bold text-on-surface-variant text-sm font-headline-md">James</span></div><div id="card-elena" class="flex flex-col items-center w-full max-w-[200px] p-6 bg-white border border-[#E8E0D0] rounded-[20px] shadow-[0_2px_8_rgba(0,0,0,0.04)]"><div class="relative"><div class="w-20 h-20 md:w-[100px] md:h-[100px] rounded-full border-4 border-transparent p-1 bg-white flex items-center justify-center overflow-hidden"><div class="w-full h-full rounded-full bg-gradient-to-br from-rose-100 to-rose-200 flex items-center justify-center text-on-surface-variant font-bold text-[26px] font-headline-md">EL</div></div><div class="sound-indicator absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-md gap-0.5 items-center px-2 h-6 border border-primary/20" style="display:none"><div class="sound-bar h-2 w-0.5 bg-primary rounded-full" style="animation: sound-wave 1s ease-in-out infinite"></div><div class="sound-bar h-4 w-0.5 bg-primary rounded-full" style="animation: sound-wave 1s ease-in-out infinite; animation-delay: 0.3s"></div><div class="sound-bar h-3 w-0.5 bg-primary rounded-full" style="animation: sound-wave 1s ease-in-out infinite; animation-delay: 0.2s"></div></div></div><span class="mt-4 font-bold text-on-surface-variant text-sm font-headline-md">Elena</span></div></div></section></main></div>
+<!-- Meeting Controls -->
+<div class="fixed bottom-0 left-0 w-full bg-white border-t border-[#E8E0D0] px-8 py-4 flex items-center justify-between z-50" id="meeting-controls"><div class="flex items-center gap-4"><button class="p-3 bg-primary text-white rounded-full shadow-md flex items-center justify-center relative"><span class="material-symbols-outlined">mic</span><div class="absolute -top-1 -right-1 flex gap-0.5"><div class="w-1 h-3 bg-primary rounded-full animate-bounce"></div><div class="w-1 h-4 bg-primary rounded-full animate-bounce" style="animation-delay: 0.2s"></div></div></button><button class="p-3 hover:bg-surface-container-low rounded-full transition-colors"><span class="material-symbols-outlined text-outline">videocam</span></button><button class="p-3 hover:bg-surface-container-low rounded-full transition-colors"><span class="material-symbols-outlined text-outline">volume_up</span></button></div><div class="flex items-center gap-4"><button class="flex flex-col items-center gap-1 px-4 py-2 hover:bg-surface-container-low rounded-lg transition-colors"><span class="material-symbols-outlined text-outline">back_hand</span><span class="text-[10px] font-bold uppercase">Raise</span></button><button class="flex flex-col items-center gap-1 px-4 py-2 hover:bg-surface-container-low rounded-lg transition-colors"><span class="material-symbols-outlined text-outline">chat</span><span class="text-[10px] font-bold uppercase">Chat</span></button><button class="flex flex-col items-center gap-1 px-4 py-2 hover:bg-surface-container-low rounded-lg transition-colors"><span class="material-symbols-outlined text-outline">settings</span><span class="text-[10px] font-bold uppercase">Settings</span></button></div><button class="px-8 py-3 bg-error text-white rounded-full font-bold hover:bg-red-600 transition-colors shadow-lg" onclick="endGd()">End GD</button></div>
+
+<!-- Topic Selection Overlay -->
+<div id="topic-overlay" class="fixed inset-0 bg-black/60 z-[200] flex items-center justify-center p-4">
+  <div class="bg-white rounded-3xl shadow-2xl w-full max-w-[520px] p-8 flex flex-col gap-6">
+    <div>
+      <h2 class="font-headline-md text-2xl text-primary font-bold mb-1">Start Group Discussion</h2>
+      <p class="text-sm text-on-surface-variant">Choose a topic or enter your own to begin the AI-powered GD session.</p>
+    </div>
+    <div id="topic-list" class="flex flex-wrap gap-2 max-h-48 overflow-y-auto"></div>
+    <div class="flex gap-2">
+      <input id="custom-topic-input" type="text" placeholder="Or type a custom topic..." class="flex-1 border border-outline-variant rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-primary focus:outline-none"/>
+      <button onclick="fetchRandomTopic()" class="px-4 py-2 bg-surface-container rounded-full text-sm font-bold text-primary hover:bg-primary-container/30 transition-colors">🎲 Random</button>
+    </div>
+    <div id="selected-topic-preview" class="hidden bg-primary-container/20 rounded-xl px-4 py-3 text-sm font-bold text-primary"></div>
+    <button id="start-gd-btn" onclick="startGd()" class="w-full py-3 rounded-full font-bold text-sm shadow-md transition-all active:scale-95" style="background:linear-gradient(135deg,#F5C84C,#F2B544);color:#241a00;" disabled>
+      Start GD Session
+    </button>
+    <button onclick="window.location.href='dashboard.html'" class="text-center text-sm text-on-surface-variant hover:text-primary">← Back to Dashboard</button>
+  </div>
+</div>
+
+<!-- Chat feed -->
+<div id="chat-feed" class="fixed left-0 bottom-20 w-full max-w-[500px] max-h-[50vh] overflow-y-auto px-4 flex flex-col gap-2 z-40"></div>
+
+<!-- Mic input bar -->
+<div id="mic-bar" class="hidden fixed bottom-20 right-4 z-50">
+  <div class="flex gap-2 items-center bg-white border border-outline-variant rounded-full px-4 py-2 shadow-lg">
+    <input id="text-input-field" type="text" placeholder="Type your point..." class="w-56 text-sm border-none focus:ring-0 outline-none bg-transparent"/>
+    <button onclick="toggleMic()" id="mic-toggle-btn" class="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center">
+      <span class="material-symbols-outlined text-[18px]" id="mic-icon">mic</span>
+    </button>
+    <button onclick="sendUserSpeech()" class="w-9 h-9 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+      <span class="material-symbols-outlined text-[18px]">send</span>
+    </button>
+  </div>
+</div>
+
+<!-- Performance Report -->
+<section class="hidden fixed inset-0 bg-[#FDF6E3] z-[100] overflow-y-auto flex flex-col" id="performance-report">
+  <header class="p-8 flex justify-between items-start flex-wrap gap-4">
+    <div class="space-y-2">
+      <h1 class="text-4xl font-bold text-primary">GD Performance Report</h1>
+      <p class="text-on-surface-variant" id="report-topic">Topic: —</p>
+    </div>
+    <div class="bg-white p-6 rounded-3xl shadow-sm border border-[#E8E0D0] text-center min-w-[140px]">
+      <div class="text-sm font-bold text-outline uppercase tracking-wider">Overall Score</div>
+      <div class="text-5xl font-bold text-primary" id="report-overall">—<span class="text-2xl text-outline">/100</span></div>
+    </div>
+  </header>
+  <div class="flex-1 px-8 pb-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-white p-6 rounded-3xl border border-[#E8E0D0] shadow-sm flex flex-col gap-4">
+      <h3 class="font-bold text-lg flex items-center gap-2"><span class="material-symbols-outlined text-primary">analytics</span>Core Metrics</h3>
+      <div class="space-y-4" id="report-metrics"></div>
+    </div>
+    <div class="bg-white p-6 rounded-3xl border border-[#E8E0D0] shadow-sm flex flex-col gap-4">
+      <h3 class="font-bold text-lg flex items-center gap-2"><span class="material-symbols-outlined text-primary">timer</span>Speaking Stats</h3>
+      <div class="grid grid-cols-2 gap-4" id="report-stats"></div>
+    </div>
+    <div class="bg-white p-6 rounded-3xl border border-[#E8E0D0] shadow-sm flex flex-col gap-4">
+      <h3 class="font-bold text-lg flex items-center gap-2"><span class="material-symbols-outlined text-primary">psychology</span>AI Feedback</h3>
+      <div id="report-feedback" class="space-y-3 text-sm text-on-surface-variant leading-relaxed"></div>
+      <button onclick="window.location.href='dashboard.html'" class="w-full py-3 bg-[#F5C84C] text-on-primary-container rounded-full font-bold text-sm shadow-sm hover:opacity-90 transition-opacity">Back to Dashboard</button>
+    </div>
+  </div>
+</section>
+
+<script>
+// ── Auth ──────────────────────────────────────────────────────────────────────
+const token = localStorage.getItem('speakmate_token');
+if (!token) window.location.href = 'login.html';
+
+// ── Persona definitions (must match backend PERSONAS order: James=0, Elena=1, Dr.Sarah=2) ─
+const PERSONA_NAMES  = ['James', 'Elena', 'Dr. Sarah'];
+// Card IDs baked into the HTML above
+const PERSONA_CARDS  = ['card-james', 'card-elena', 'card-sarah'];
+
+// ── Session state ─────────────────────────────────────────────────────────────
+let sessionId          = null;
+let selectedTopic      = '';
+let speakingSeconds    = 0;
+let speakingTimer      = null;
+let isMicOn            = false;
+let gdActive           = false;
+
+// ── Autonomous turn engine state ──────────────────────────────────────────────
+let nextSpeakerIndex    = 0;    // 0=James, 1=Elena, 2=Dr.Sarah — round-robin
+let turnTimer           = null; // setTimeout handle for the scheduled next turn
+let isTtsBusy           = false;// true while SpeechSynthesis is speaking
+let userTyping          = false;// true while user is composing a message
+
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition         = null;
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SPEAKER INDICATOR HELPERS
+// ═══════════════════════════════════════════════════════════════════════════════
+function setActiveSpeaker(cardId) {
+  PERSONA_CARDS.forEach(id => {
+    const card = document.getElementById(id);
+    if (!card) return;
+    const ring      = card.querySelector('.rounded-full.border-4');
+    const indicator = card.querySelector('.sound-indicator');
+    if (ring)      { ring.classList.remove('border-primary','speaking-glow'); ring.classList.add('border-transparent'); }
+    if (indicator) { indicator.style.display = 'none'; }
+  });
+  if (!cardId) return;
+  const card = document.getElementById(cardId);
+  if (!card) return;
+  const ring      = card.querySelector('.rounded-full.border-4');
+  const indicator = card.querySelector('.sound-indicator');
+  if (ring)      { ring.classList.remove('border-transparent'); ring.classList.add('border-primary','speaking-glow'); }
+  if (indicator) { indicator.style.display = 'flex'; }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// TTS ENGINE WITH PER-PERSONA VOICE
+// ═══════════════════════════════════════════════════════════════════════════════
+// Voices are resolved lazily (getVoices() may be async on some browsers)
+function getVoiceForPersona(personaIdx) {
+  const voices = window.speechSynthesis.getVoices();
+  if (!voices || voices.length === 0) return null;
+  // James (0): male English
+  // Elena (1): female English, different from Sarah
+  // Dr. Sarah (2): female English
+  const prefs = [
+    ['Google UK English Male', 'Microsoft David', 'Male'],   // James
+    ['Google UK English Female', 'Microsoft Zira', 'Zira'],  // Elena
+    ['Google US English', 'Microsoft Hazel', 'Samantha'],    // Dr. Sarah
+  ];
+  const p = prefs[personaIdx % 3];
+  for (const keyword of p) {
+    const v = voices.find(v => v.name.toLowerCase().includes(keyword.toLowerCase()));
+    if (v) return v;
+  }
+  // Fallback: iterate through all English voices and pick different ones per persona
+  const enVoices = voices.filter(v => v.lang.startsWith('en'));
+  return enVoices[personaIdx % Math.max(enVoices.length, 1)] || voices[0];
+}
+
+function stopSpeech() {
+  window.speechSynthesis.cancel();
+  isTtsBusy = false;
+}
+
+function speakAsPersona(text, personaIdx, onDone) {
+  if (!('speechSynthesis' in window)) { onDone && onDone(); return; }
+  stopSpeech();
+  const utt   = new SpeechSynthesisUtterance(text);
+  utt.lang    = 'en-US';
+  utt.rate    = [0.87, 0.93, 0.97][personaIdx % 3];
+  utt.pitch   = [0.82, 1.12, 1.04][personaIdx % 3];
+  const voice = getVoiceForPersona(personaIdx);
+  if (voice) utt.voice = voice;
+  utt.onend   = () => { isTtsBusy = false; onDone && onDone(); };
+  utt.onerror = () => { isTtsBusy = false; onDone && onDone(); };
+  isTtsBusy = true;
+  // Chrome bug workaround: pause/resume for long utterances
+  window.speechSynthesis.speak(utt);
+}
+
+function speakModerator(text, onDone) {
+  if (!('speechSynthesis' in window)) { onDone && onDone(); return; }
+  stopSpeech();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.lang  = 'en-US'; utt.rate = 0.92;
+  utt.onend   = () => { isTtsBusy = false; onDone && onDone(); };
+  utt.onerror = () => { isTtsBusy = false; onDone && onDone(); };
+  isTtsBusy = true;
+  window.speechSynthesis.speak(utt);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// AUTONOMOUS TURN SCHEDULER
+// ═══════════════════════════════════════════════════════════════════════════════
+function cancelTurnTimer() {
+  if (turnTimer) { clearTimeout(turnTimer); turnTimer = null; }
+}
+
+function scheduleNextTurn(delayMs) {
+  cancelTurnTimer();
+  if (!gdActive || !sessionId) return;
+  // Default: 45–60 s random delay to feel natural
+  const delay = (delayMs !== undefined) ? delayMs : (45000 + Math.random() * 15000);
+  turnTimer = setTimeout(doAiTurn, delay);
+}
+
+async function doAiTurn() {
+  if (!gdActive || !sessionId) return;
+  // Defer if TTS is still going or user is composing
+  if (isTtsBusy || userTyping) { scheduleNextTurn(5000); return; }
+
+  const idx    = nextSpeakerIndex % 3;
+  const cardId = PERSONA_CARDS[idx];
+
+  try {
+    const res = await fetch('/api/gd/ai-turn', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+      body: JSON.stringify({ sessionId: String(sessionId), speakerIndex: idx })
+    });
+    if (!res.ok) { scheduleNextTurn(8000); return; }
+    const data = await res.json();
+
+    const name    = data.speaker  || PERSONA_NAMES[idx];
+    const content = data.content  || '';
+    nextSpeakerIndex = (typeof data.nextSpeakerIndex === 'number')
+      ? data.nextSpeakerIndex : (idx + 1) % 3;
+
+    appendChat(name, content, 'ai');
+    setActiveSpeaker(cardId);
+    speakAsPersona(content, idx, () => {
+      setActiveSpeaker(null);
+      scheduleNextTurn();      // schedule next person after speech ends
+    });
+  } catch (e) {
+    console.error('GD ai-turn error:', e);
+    scheduleNextTurn(10000);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// TOPIC LOADING
+// ═══════════════════════════════════════════════════════════════════════════════
+async function loadTopics() {
+  try {
+    const res  = await fetch('/api/gd/topics', { headers: { Authorization: 'Bearer ' + token } });
+    const data = await res.json();
+    const container = document.getElementById('topic-list');
+    container.innerHTML = (data.topics || []).map(t =>
+      `<button onclick="selectTopic(this,'${t.replace(/'/g,"\\'")}') " class="px-3 py-1.5 bg-surface-container border border-outline-variant rounded-full text-sm hover:bg-primary-container/30 hover:border-primary transition-all">${t}</button>`
+    ).join('');
+  } catch(e) { console.error('Topics load failed', e); }
+}
+loadTopics();
+
+function selectTopic(btn, topic) {
+  selectedTopic = topic;
+  document.querySelectorAll('#topic-list button').forEach(b => b.classList.remove('bg-primary-container','border-primary','font-bold'));
+  btn.classList.add('bg-primary-container','border-primary','font-bold');
+  showTopicPreview(topic);
+}
+
+function showTopicPreview(topic) {
+  const preview = document.getElementById('selected-topic-preview');
+  preview.textContent = '📌 ' + topic;
+  preview.classList.remove('hidden');
+  document.getElementById('start-gd-btn').disabled = false;
+}
+
+async function fetchRandomTopic() {
+  try {
+    const res  = await fetch('/api/gd/random-topic', { method: 'POST', headers: { Authorization: 'Bearer ' + token } });
+    const data = await res.json();
+    selectedTopic = data.topic;
+    document.getElementById('custom-topic-input').value = selectedTopic;
+    showTopicPreview(selectedTopic);
+  } catch(e) { console.error(e); }
+}
+
+document.getElementById('custom-topic-input').addEventListener('input', function() {
+  if (this.value.trim()) { selectedTopic = this.value.trim(); showTopicPreview(selectedTopic); }
+});
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// START GD SESSION
+// ═══════════════════════════════════════════════════════════════════════════════
+async function startGd() {
+  if (!selectedTopic) return;
+  document.getElementById('start-gd-btn').disabled = true;
+  document.getElementById('start-gd-btn').textContent = 'Starting…';
+
+  try {
+    const res  = await fetch('/api/gd/start', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+      body: JSON.stringify({ topic: selectedTopic })
+    });
+    const data = await res.json();
+    sessionId = data.sessionId;
+    gdActive  = true;
+
+    // Bootstrap nextSpeakerIndex: backend says James (0) just spoke, next is Elena (1)
+    nextSpeakerIndex = (typeof data.nextSpeakerIndex === 'number') ? data.nextSpeakerIndex : 1;
+
+    // Update UI
+    document.getElementById('topic-overlay').classList.add('hidden');
+    document.getElementById('mic-bar').classList.remove('hidden');
+    document.querySelector('#gd-interface header .text-sm.font-medium').textContent = 'Topic: ' + selectedTopic;
+    setActiveSpeaker(null); // clear any hardcoded glow
+    startTimer();
+
+    // 1. Moderator speaks
+    appendChat('Moderator', data.opening, 'moderator');
+    speakModerator(data.opening, () => {
+      // 2. First AI turn (James, index 0) was returned by /start
+      const firstTurns = data.aiTurns || [];
+      if (firstTurns.length > 0) {
+        const ft  = firstTurns[0];
+        const fi  = (typeof ft.speakerIndex === 'number') ? ft.speakerIndex : 0;
+        appendChat(ft.speaker, ft.content, 'ai');
+        setActiveSpeaker(PERSONA_CARDS[fi]);
+        speakAsPersona(ft.content, fi, () => {
+          setActiveSpeaker(null);
+          // 3. Schedule Elena's autonomous turn after 45-60 s
+          scheduleNextTurn();
+        });
+      } else {
+        scheduleNextTurn();
+      }
+    });
+  } catch(e) {
+    console.error(e);
+    alert('Failed to start GD. Please try again.');
+    document.getElementById('start-gd-btn').disabled = false;
+    document.getElementById('start-gd-btn').textContent = 'Start GD Session';
+    gdActive = false;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// CHAT FEED
+// ═══════════════════════════════════════════════════════════════════════════════
+function appendChat(speaker, content, type) {
+  const feed   = document.getElementById('chat-feed');
+  const isUser = type === 'user';
+  const div    = document.createElement('div');
+  div.className = `flex ${isUser ? 'justify-end' : 'justify-start'} mb-1`;
+  const bubble  = document.createElement('div');
+  bubble.className = `max-w-[80%] px-4 py-2 rounded-2xl text-sm shadow-sm ${
+    isUser      ? 'bg-primary text-white rounded-br-sm'
+    : type === 'moderator' ? 'bg-surface-container border border-outline-variant rounded-bl-sm text-on-surface'
+    : 'bg-white border border-outline-variant rounded-bl-sm text-on-surface'
+  }`;
+  bubble.innerHTML = `<span class="text-[10px] font-bold opacity-70 block mb-0.5">${speaker}</span>${content}`;
+  div.appendChild(bubble);
+  feed.appendChild(div);
+  feed.scrollTop = feed.scrollHeight;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// USER INTERJECT
+// ═══════════════════════════════════════════════════════════════════════════════
+async function sendUserSpeech() {
+  const input = document.getElementById('text-input-field');
+  const text  = input.value.trim();
+  if (!text || !sessionId) return;
+  input.value  = '';
+  userTyping   = false;
+
+  // Immediately stop any AI speech and cancel the pending AI turn
+  stopSpeech();
+  cancelTurnTimer();
+  setActiveSpeaker(null);
+
+  appendChat('You', text, 'user');
+
+  try {
+    const res  = await fetch('/api/gd/speak', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+      body: JSON.stringify({ sessionId: String(sessionId), text, speakingSeconds })
+    });
+    const data = await res.json();
+    speakingSeconds = 0;
+
+    const turns = data.aiTurns || [];
+    if (turns.length === 0) { scheduleNextTurn(); return; }
+
+    // Play each AI response sequentially with proper speaker glow
+    let i = 0;
+    function playNext() {
+      if (i >= turns.length) { scheduleNextTurn(); return; }
+      const turn    = turns[i];
+      const pIdx    = PERSONA_NAMES.indexOf(turn.speaker);
+      const pSafe   = pIdx >= 0 ? pIdx : i % 3;
+      appendChat(turn.speaker, turn.content, 'ai');
+      setActiveSpeaker(PERSONA_CARDS[pSafe]);
+      speakAsPersona(turn.content, pSafe, () => {
+        setActiveSpeaker(null);
+        i++;
+        playNext();
+      });
+    }
+    playNext();
+  } catch(e) {
+    console.error('sendUserSpeech error:', e);
+    scheduleNextTurn(8000);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// MIC TOGGLE
+// ═══════════════════════════════════════════════════════════════════════════════
+function toggleMic() {
+  if (!SpeechRecognition) { alert('Voice recognition not supported. Please type your point.'); return; }
+  if (isMicOn) { recognition && recognition.stop(); return; }
+  recognition = new SpeechRecognition();
+  recognition.lang = 'en-US'; recognition.continuous = false; recognition.interimResults = false;
+  recognition.onstart = () => {
+    isMicOn    = true;
+    userTyping = true;
+    document.getElementById('mic-icon').textContent = 'stop';
+    document.getElementById('mic-toggle-btn').classList.add('bg-error');
+    document.getElementById('mic-toggle-btn').classList.remove('bg-primary');
+    speakingTimer = setInterval(() => speakingSeconds++, 1000);
+  };
+  recognition.onresult = e => {
+    document.getElementById('text-input-field').value = e.results[0][0].transcript;
+  };
+  recognition.onend = () => {
+    isMicOn    = false;
+    userTyping = false;
+    clearInterval(speakingTimer);
+    document.getElementById('mic-icon').textContent = 'mic';
+    document.getElementById('mic-toggle-btn').classList.remove('bg-error');
+    document.getElementById('mic-toggle-btn').classList.add('bg-primary');
+  };
+  recognition.onerror = () => { isMicOn = false; userTyping = false; clearInterval(speakingTimer); };
+  recognition.start();
+}
+
+// Mark userTyping when user focuses the input so AI doesn't cut in while typing
+document.getElementById('text-input-field').addEventListener('focus', () => { userTyping = true; });
+document.getElementById('text-input-field').addEventListener('blur',  () => { userTyping = false; });
+document.getElementById('text-input-field').addEventListener('keydown', e => {
+  if (e.key === 'Enter') sendUserSpeech();
+});
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// TIMER
+// ═══════════════════════════════════════════════════════════════════════════════
+let timerInterval = null; let elapsed = 0;
+function startTimer() {
+  elapsed = 0;
+  timerInterval = setInterval(() => {
+    elapsed++;
+    const m  = String(Math.floor(elapsed / 60)).padStart(2, '0');
+    const s  = String(elapsed % 60).padStart(2, '0');
+    const el = document.querySelector('#gd-interface header .tabular-nums');
+    if (el) el.textContent = m + ':' + s;
+  }, 1000);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// END GD
+// ═══════════════════════════════════════════════════════════════════════════════
+async function endGd() {
+  if (!sessionId) { window.location.href = 'dashboard.html'; return; }
+  gdActive = false;
+  cancelTurnTimer();
+  clearInterval(timerInterval);
+  stopSpeech();
+  setActiveSpeaker(null);
+
+  document.getElementById('gd-interface').classList.add('hidden');
+  document.getElementById('meeting-controls').classList.add('hidden');
+  document.getElementById('mic-bar').classList.add('hidden');
+
+  const report = document.getElementById('performance-report');
+  report.classList.remove('hidden');
+  document.getElementById('report-feedback').innerHTML = '<p class="text-center text-sm text-on-surface-variant animate-pulse">Generating your report…</p>';
+
+  try {
+    const res  = await fetch('/api/gd/end', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+      body: JSON.stringify({ sessionId: String(sessionId) })
+    });
+    const data = await res.json();
+    renderReport(data);
+  } catch(e) {
+    console.error(e);
+    document.getElementById('report-feedback').innerHTML = '<p class="text-error text-sm">Could not load report. Please try again.</p>';
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// RENDER REPORT
+// ═══════════════════════════════════════════════════════════════════════════════
+function renderReport(r) {
+  document.getElementById('report-topic').textContent   = 'Topic: ' + selectedTopic;
+  document.getElementById('report-overall').innerHTML   = `${r.overallScore || '—'}<span class="text-2xl text-outline">/100</span>`;
+
+  const metrics = [
+    ['Fluency',       r.fluencyScore],
+    ['Grammar',       r.grammarScore],
+    ['Vocabulary',    r.vocabularyScore],
+    ['Confidence',    r.confidenceScore],
+    ['Pronunciation', r.pronunciationScore],
+  ];
+  document.getElementById('report-metrics').innerHTML = metrics.map(([label, val]) => `
+    <div class="space-y-1">
+      <div class="flex justify-between text-sm font-bold"><span>${label}</span><span>${val || 0}%</span></div>
+      <div class="h-2 bg-surface-container-low rounded-full overflow-hidden">
+        <div class="h-full bg-primary transition-all" style="width:${val || 0}%"></div>
+      </div>
+    </div>`).join('');
+
+  const talkSec = r.speakingTimeSeconds || 0;
+  const talkMin = String(Math.floor(talkSec / 60)).padStart(2, '0');
+  const talkS   = String(talkSec % 60).padStart(2, '0');
+  document.getElementById('report-stats').innerHTML = `
+    <div class="p-4 bg-surface-container-low rounded-2xl text-center col-span-2">
+      <div class="text-2xl font-bold text-primary">${talkMin}:${talkS}</div>
+      <div class="text-[10px] font-bold uppercase text-outline">Talk Time</div>
+    </div>`;
+
+  const strengths  = (r.strengths  || '').split('|').filter(Boolean);
+  const weaknesses = (r.weaknesses || '').split('|').filter(Boolean);
+  document.getElementById('report-feedback').innerHTML = `
+    <p class="leading-relaxed">${r.aiFeedback || ''}</p>
+    ${strengths.length  ? `<div class="p-3 bg-green-50 rounded-xl border border-green-100"><div class="text-xs font-bold text-green-700 uppercase mb-1">Strengths</div>${strengths.map(s=>`<p>${s.trim()}</p>`).join('')}</div>` : ''}
+    ${weaknesses.length ? `<div class="p-3 bg-amber-50 rounded-xl border border-amber-100"><div class="text-xs font-bold text-amber-700 uppercase mb-1">Improvements</div>${weaknesses.map(s=>`<p>${s.trim()}</p>`).join('')}</div>` : ''}
+    ${r.suggestions     ? `<div class="p-3 bg-blue-50 rounded-xl border border-blue-100"><div class="text-xs font-bold text-blue-700 uppercase mb-1">Suggestions</div>${r.suggestions.split('|').map(s=>`<p>${s.trim()}</p>`).join('')}</div>` : ''}`;
+}
+</script></body></html>

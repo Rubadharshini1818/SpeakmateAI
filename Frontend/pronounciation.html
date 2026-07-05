@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>SpeakMate AI – Premium Pronunciation Mentor</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-fixed": "#e9e2d0",
+                        "tertiary-fixed-dim": "#ccc6b4",
+                        "surface-container-high": "#f0e7d7",
+                        "primary-fixed-dim": "#edc146",
+                        "on-tertiary-fixed": "#1e1c10",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#6d5400",
+                        "on-surface": "#1f1b12",
+                        "inverse-surface": "#353026",
+                        "on-secondary-container": "#714e00",
+                        "background": "#fff8f1",
+                        "secondary": "#7e5700",
+                        "primary-container": "#f5c84c",
+                        "surface-container-low": "#fcf2e3",
+                        "on-primary-fixed": "#241a00",
+                        "surface-bright": "#fff8f1",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#f6eddd",
+                        "primary-fixed": "#ffdf93",
+                        "on-primary-fixed-variant": "#594400",
+                        "secondary-fixed-dim": "#fabc4a",
+                        "on-surface-variant": "#4e4635",
+                        "on-secondary-fixed-variant": "#5f4100",
+                        "surface-container-highest": "#ebe1d2",
+                        "outline": "#7f7663",
+                        "outline-variant": "#d1c5af",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#ebe1d2",
+                        "secondary-container": "#fdbf4d",
+                        "on-tertiary-container": "#5b5749",
+                        "secondary-fixed": "#ffdeab",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#765b00",
+                        "on-background": "#1f1b12",
+                        "surface": "#fff8f1",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#edc146",
+                        "surface-dim": "#e2d9ca",
+                        "tertiary-container": "#d3cdbb",
+                        "on-secondary-fixed": "#271900",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f9f0e0",
+                        "on-tertiary-fixed-variant": "#4a4739",
+                        "surface-tint": "#765b00",
+                        "tertiary": "#625e50",
+                        "on-secondary": "#ffffff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "container-max": "1200px",
+                        "margin-desktop": "40px",
+                        "unit": "8px",
+                        "stack-md": "24px",
+                        "stack-lg": "48px",
+                        "gutter": "24px",
+                        "stack-sm": "12px",
+                        "margin-mobile": "20px"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Poppins"],
+                        "display-lg": ["Quicksand"],
+                        "display-lg-mobile": ["Quicksand"],
+                        "headline-md": ["Quicksand"],
+                        "label-sm": ["Quicksand"],
+                        "body-md": ["Poppins"]
+                    },
+                    fontSize: {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-sm": ["13px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body { background-color: #FDF6E3; font-family: 'Poppins', sans-serif; }
+        .font-display { font-family: 'Quicksand', sans-serif; }
+        .glass-card { 
+            background: #ffffff; 
+            border: 1px solid #E8E0D0; 
+            border-radius: 20px; 
+            box-shadow: 0 12px 32px rgba(67, 62, 51, 0.05); 
+        }
+        .gold-gradient { background: linear-gradient(135deg, #F5C84C 0%, #F2B544 100%); }
+        .mic-pulse { animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(245, 200, 76, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(245, 200, 76, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 200, 76, 0); }
+        }
+        .fade-in-stagger > * { opacity: 0; transform: translateY(20px); animation: fadeIn 0.6s forwards; }
+        .fade-in-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in-stagger > *:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in-stagger > *:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in-stagger > *:nth-child(4) { animation-delay: 0.4s; }
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .audio-wave span {
+            display: inline-block;
+            width: 4px;
+            height: 10px;
+            background-color: #765b00;
+            border-radius: 2px;
+            margin: 0 2px;
+            animation: wave 1.2s infinite ease-in-out;
+        }
+        @keyframes wave {
+            0%, 100% { height: 8px; }
+            50% { height: 28px; }
+        }
+        .toc-link {
+            display: block;
+            padding: 6px 12px;
+            border-left: 2px solid transparent;
+            font-size: 13px;
+            font-weight: 600;
+            color: #7f7663;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+        .toc-link:hover {
+            color: #765b00;
+            background: rgba(245, 200, 76, 0.05);
+            border-left-color: #d1c5af;
+        }
+        .toc-link.active {
+            color: #765b00;
+            border-left-color: #765b00;
+            background: rgba(245, 200, 76, 0.1);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="text-on-surface overflow-x-hidden">
+
+<!-- Reading Progress Bar -->
+<div id="reading-progress" class="fixed top-0 left-[260px] h-1 bg-primary z-50 transition-all duration-100" style="width: 0%"></div>
+
+<!-- Fixed Left Sidebar -->
+<aside class="fixed left-0 top-0 h-screen w-[260px] bg-surface-container-low border-r border-outline-variant z-50 flex flex-col py-6 px-4 overflow-y-auto">
+    <div class="mb-6 px-2">
+        <h1 class="font-display text-headline-md text-primary font-bold">SpeakMate AI</h1>
+        <p class="text-label-sm text-on-surface-variant opacity-70">Enlightened Learning</p>
+    </div>
+
+    <!-- Search Box -->
+    <div class="mb-4 px-2">
+        <div class="relative flex items-center bg-white rounded-full border border-outline-variant px-3 py-1.5 shadow-sm">
+            <span class="material-symbols-outlined text-[18px] text-outline mr-2">search</span>
+            <input type="text" placeholder="Search topics..." class="w-full bg-transparent border-none p-0 text-body-md text-on-surface placeholder:text-outline-variant focus:ring-0 outline-none"/>
+        </div>
+    </div>
+
+    <!-- Progress Pill -->
+    <div class="mb-4 px-2">
+        <div class="bg-primary-container/20 text-primary border border-primary/20 rounded-full px-4 py-2 flex items-center gap-2">
+            <div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+            <span class="text-on-primary-container font-bold text-label-sm">0 / 0 Lessons</span>
+        </div>
+    </div>
+
+    <!-- Navigation List -->
+    <nav id="lesson-nav" class="flex-1 space-y-1">
+        <!-- Dyn generated -->
+    </nav>
+
+    <div class="mt-auto pt-4 border-t border-outline-variant px-2">
+        <a class="flex items-center justify-center gap-1 text-on-surface-variant hover:text-primary transition-colors text-label-sm font-bold py-2" href="classroom.html">
+            <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+            Back to Classroom
+        </a>
+    </div>
+</aside>
+
+<!-- Top App Bar -->
+<header class="fixed top-0 right-0 w-[calc(100%-260px)] h-20 bg-surface/80 backdrop-blur-md z-40 px-margin-desktop flex justify-between items-center border-b border-outline-variant/30">
+    <div class="flex items-center gap-4">
+        <span class="material-symbols-outlined text-outline">menu</span>
+        <h2 id="header-lesson-title" class="font-display text-headline-md font-bold text-on-surface">Lesson: Loading...</h2>
+    </div>
+    <div class="flex items-center gap-6">
+        <div class="flex items-center gap-3 bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant">
+            <div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-primary font-bold">ST</div>
+            <span class="font-body-md font-semibold text-on-surface-variant" id="user-display-name">Student</span>
+        </div>
+    </div>
+</header>
+
+<!-- Main Layout Grid -->
+<div class="ml-[260px] pt-28 pb-20 px-margin-desktop flex gap-gutter max-w-container-max mx-auto">
+    <!-- Main Content Viewport -->
+    <main id="main-content-container" class="flex-1 overflow-y-auto max-h-[calc(100vh-140px)] pr-4">
+        <!-- Rendered dynamically -->
+    </main>
+
+    <!-- Sticky Table of Contents -->
+    <aside id="toc-panel" class="w-[220px] hidden xl:flex flex-col gap-4 p-4 border border-outline-variant/30 rounded-2xl bg-surface-container-lowest soft-shadow h-fit sticky top-24">
+        <h4 class="font-display font-bold text-primary text-label-sm uppercase tracking-wider">On This Page</h4>
+        <div id="toc-panel-links" class="flex flex-col gap-2">
+            <!-- Dyn generated -->
+        </div>
+    </aside>
+</div>
+
+<!-- Floating Ask AI Button -->
+<div class="fixed bottom-10 right-10 z-50">
+    <button id="ai-teacher-btn" class="w-16 h-16 rounded-full gold-gradient shadow-2xl flex items-center justify-center text-on-primary-fixed hover:scale-110 active:scale-95 transition-all">
+        <span class="material-symbols-outlined text-3xl">chat</span>
+    </button>
+</div>
+
+<!-- Ask AI Teacher Modal -->
+<div id="ai-modal" class="fixed inset-0 bg-black/50 hidden z-[60] flex items-center justify-center">
+    <div class="bg-surface w-[420px] rounded-xl shadow-2xl flex flex-col overflow-hidden">
+        <div class="bg-primary p-4 text-on-primary flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <h3 class="font-bold font-display">Pronunciation AI Teacher</h3>
+            </div>
+            <button id="close-ai-modal" class="text-white hover:opacity-75"><span class="material-symbols-outlined">close</span></button>
+        </div>
+        <div id="ai-chat-history" class="p-4 h-72 overflow-y-auto flex flex-col gap-3 bg-surface-container-lowest">
+            <div class="text-sm text-on-surface-variant italic">Hi! I am your Pronunciation Mentor. Ask me anything about IPA phonemes, mouth positions, or speaking feedback!</div>
+        </div>
+        <div class="p-3 border-t border-outline-variant bg-surface-container flex gap-2">
+            <input type="text" id="ai-question" class="flex-1 rounded-full border border-outline-variant px-4 py-2 text-body-md outline-none focus:border-primary bg-white" placeholder="Ask a question..."/>
+            <button id="ai-send-btn" class="bg-primary text-on-primary rounded-full w-10 h-10 flex items-center justify-center hover:scale-105 transition-transform"><span class="material-symbols-outlined">send</span></button>
+        </div>
+    </div>
+</div>
+
+<script>
+  // ── State Management ────────────────────────────────────────────────────────
+  let currentLesson = null;
+  let allSections   = [];
+  const token = localStorage.getItem('speakmate_token');
+
+  // Verify Auth immediately to avoid redirect issues
+  if (!token) {
+    window.location.href = '/login.html';
+  }
+
+  // Parse User Name from token (JWT payload) if available
+  try {
+    if (token) {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const payload = JSON.parse(window.atob(base64));
+      if (payload && payload.sub) {
+        document.getElementById('user-display-name').textContent = payload.sub;
+        const initLetters = payload.sub.substring(0, 2).toUpperCase();
+        document.querySelector('.bg-primary-container').textContent = initLetters;
+      }
+    }
+  } catch(e) {
+    console.warn("Could not parse user name from JWT:", e);
+  }
+
+  // ── Markdown Parser Helper ───────────────────────────────────────────────────
+  function renderMarkdown(text) {
+    if (!text) return '';
+    const lines = text.split('\n');
+    let html = '', inUl = false;
+    for (let line of lines) {
+      if (line.startsWith('### ')) {
+        if (inUl) { html += '</ul>'; inUl = false; }
+        html += `<h3 class="font-display text-headline-md text-primary mt-6 mb-2 font-bold">${line.slice(4)}</h3>`;
+        continue;
+      }
+      if (line.startsWith('## ')) {
+        if (inUl) { html += '</ul>'; inUl = false; }
+        html += `<h2 class="font-display text-2xl text-primary mt-8 mb-4 font-bold border-b border-outline-variant/30 pb-2">${line.slice(3)}</h2>`;
+        continue;
+      }
+      if (line.startsWith('**') && line.endsWith('**')) {
+        if (inUl) { html += '</ul>'; inUl = false; }
+        html += `<p class="font-bold text-on-surface mb-2">${line.slice(2, -2)}</p>`;
+        continue;
+      }
+      if (line.startsWith('- ') || line.startsWith('* ')) {
+        if (!inUl) { html += '<ul class="list-disc pl-6 space-y-2 mb-4 text-on-surface-variant">'; inUl = true; }
+        let inner = line.slice(2).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*([^*]+)\*/g, '<em>$1</em>');
+        html += `<li class="text-body-md">${inner}</li>`;
+        continue;
+      }
+      if (inUl) { html += '</ul>'; inUl = false; }
+      if (line.trim() === '') continue;
+      let para = line.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*([^*]+)\*/g, '<em>$1</em>');
+      html += `<p class="text-body-md text-on-surface-variant leading-relaxed mb-4">${para}</p>`;
+    }
+    if (inUl) html += '</ul>';
+    return html;
+  }
+
+  // ── Speech Synthesis (Click-to-Hear) ─────────────────────────────────────────
+  window.playAudio = function(text, rate = 1.0) {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = rate;
+      window.speechSynthesis.speak(utterance);
+    } else {
+      alert("Text-to-speech is not supported by your browser.");
+    }
+  };
+
+  // ── Speech Recognition practice (Listen & Repeat) ────────────────────────────
+  let recognition = null;
+  let isRecognitionActive = false;
+
+  function initSpeechRecognition() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      console.warn("Speech Recognition API is not supported in this browser.");
+      return null;
+    }
+    const rec = new SpeechRecognition();
+    rec.continuous = false;
+    rec.interimResults = false;
+    rec.lang = 'en-US';
+    return rec;
+  }
+
+  window.toggleSpeechPractice = function(targetText) {
+    const btn = document.getElementById('mic-record-btn');
+    const label = document.getElementById('mic-status-label');
+    const waves = document.querySelectorAll('.audio-wave span');
+    const feedbackBox = document.getElementById('practice-recognition-feedback');
+
+    if (!recognition) {
+      recognition = initSpeechRecognition();
+    }
+
+    if (!recognition) {
+      alert("Voice speech recognition is only natively supported in Google Chrome, Edge, and Safari. Please type or try on Chrome.");
+      return;
+    }
+
+    if (isRecognitionActive) {
+      recognition.stop();
+      return;
+    }
+
+    feedbackBox.classList.add('hidden');
+    recognition.onstart = () => {
+      isRecognitionActive = true;
+      btn.classList.remove('gold-gradient');
+      btn.classList.add('bg-error');
+      btn.innerHTML = '<span class="material-symbols-outlined text-4xl text-white">stop</span>';
+      label.textContent = "Listening... Repeat now!";
+      waves.forEach(w => w.style.animationPlayState = 'running');
+    };
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      evaluateSpeechInput(transcript, targetText);
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Speech Recognition Error:", event.error);
+      label.textContent = "Error: " + event.error;
+      resetMicUI();
+    };
+
+    recognition.onend = () => {
+      isRecognitionActive = false;
+      resetMicUI();
+    };
+
+    recognition.start();
+  };
+
+  window.startPractice = function(text) {
+    // Update the target phrase in the Listen & Repeat Practice box dynamically
+    const targetBox = document.querySelector('#practice-section p.font-display');
+    if (targetBox) {
+      targetBox.textContent = `"${text}"`;
+    }
+    // Also update the volume button and mic button target phrase
+    const micBtn = document.getElementById('mic-record-btn');
+    if (micBtn) {
+      micBtn.setAttribute('onclick', `toggleSpeechPractice('${text.replace(/'/g, "\\'")}')`);
+    }
+    const hearBtn = document.querySelector('#practice-section button[onclick^="playAudio"]');
+    if (hearBtn) {
+      hearBtn.setAttribute('onclick', `playAudio('${text.replace(/'/g, "\\'")}')`);
+    }
+    // Scroll to the practice section
+    const practiceSec = document.getElementById('practice-section');
+    if (practiceSec && mainScrollContainer) {
+      const containerRect = mainScrollContainer.getBoundingClientRect();
+      const elRect = practiceSec.getBoundingClientRect();
+      const offset = elRect.top - containerRect.top + mainScrollContainer.scrollTop - 20;
+      mainScrollContainer.scrollTo({ top: offset, behavior: 'smooth' });
+    }
+    // Automatically trigger the speech recognition
+    setTimeout(() => {
+      window.toggleSpeechPractice(text);
+    }, 800);
+  };
+
+  function resetMicUI() {
+    const btn = document.getElementById('mic-record-btn');
+    const label = document.getElementById('mic-status-label');
+    const waves = document.querySelectorAll('.audio-wave span');
+    if (btn) {
+      btn.classList.remove('bg-error');
+      btn.classList.add('gold-gradient');
+      btn.innerHTML = '<span class="material-symbols-outlined text-4xl" data-weight="fill">mic</span>';
+    }
+    if (label) label.textContent = "Tap to Record & Repeat";
+    waves.forEach(w => w.style.animationPlayState = 'paused');
+  }
+
+  function evaluateSpeechInput(transcript, target) {
+    const feedbackBox = document.getElementById('practice-recognition-feedback');
+    const recognizedTextEl = document.getElementById('recognized-text');
+    const matchScoreEl = document.getElementById('match-score');
+    const scoreCircle = document.getElementById('score-circle');
+    const scoreText = document.getElementById('score-text');
+    const scoreFeedback = document.getElementById('score-feedback');
+    const markCompleteBtn = document.getElementById('mark-complete-btn');
+
+    // Simple word comparison score
+    const cleanStr = s => s.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"").replace(/\s+/g," ").trim();
+    const cleanTranscript = cleanStr(transcript);
+    const cleanTarget = cleanStr(target);
+    
+    const wordsT = cleanTranscript.split(" ");
+    const wordsTarget = cleanTarget.split(" ");
+    
+    let matches = 0;
+    wordsT.forEach(w => {
+      if (wordsTarget.includes(w)) matches++;
+    });
+
+    const score = Math.min(100, Math.round((matches / Math.max(1, wordsTarget.length)) * 100));
+
+    // Show feedback panel
+    feedbackBox.classList.remove('hidden');
+    recognizedTextEl.textContent = `"${transcript}"`;
+    matchScoreEl.textContent = `${score}% Match`;
+
+    // Update main performance circle
+    if (scoreCircle && scoreText) {
+      scoreText.textContent = `${score}%`;
+      const offset = 440 - (440 * score) / 100;
+      scoreCircle.style.strokeDashoffset = offset;
+    }
+
+    if (score >= 80) {
+      scoreFeedback.textContent = "✅ Excellent! Your pronunciation is clear and correct!";
+      scoreFeedback.className = "text-body-md font-semibold text-green-600 mt-2";
+      if (markCompleteBtn) {
+        markCompleteBtn.disabled = false;
+        markCompleteBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+      }
+    } else if (score >= 50) {
+      scoreFeedback.textContent = "⚠️ Close! Keep your tongue placement correct and try again.";
+      scoreFeedback.className = "text-body-md font-semibold text-secondary mt-2";
+    } else {
+      scoreFeedback.textContent = "❌ Try again. Focus on clarity and pronounce all syllables.";
+      scoreFeedback.className = "text-body-md font-semibold text-error mt-2";
+    }
+  }
+
+  // ── Minimal Pairs discrimination listening game ──────────────────────────────
+  let currentRound = 1;
+  let correctGuesses = 0;
+  let minimalPairTarget = '';
+  let minimalPairsList = [];
+
+  window.startMinimalPairsGame = function() {
+    currentRound = 1;
+    correctGuesses = 0;
+    document.getElementById('listening-game-start').classList.add('hidden');
+    document.getElementById('listening-game-play').classList.remove('hidden');
+    document.getElementById('listening-game-result').classList.add('hidden');
+    
+    // Read from current lesson content
+    const content = JSON.parse(currentLesson.content);
+    minimalPairsList = content.minimal_pairs_listen || [
+      { word1: "sip", word2: "zip", correct: "sip", ipa1: "/sɪp/", ipa2: "/zɪp/" }
+    ];
+    
+    loadListeningRound();
+  };
+
+  function loadListeningRound() {
+    if (currentRound > 5 || currentRound > minimalPairsList.length) {
+      showListeningGameResults();
+      return;
+    }
+
+    document.getElementById('listening-round-num').textContent = currentRound;
+    const pair = minimalPairsList[currentRound - 1];
+    
+    // Pick random target word from pair (word1 or word2)
+    minimalPairTarget = Math.random() > 0.5 ? pair.word1 : pair.word2;
+
+    // Reset options layout
+    const optContainer = document.getElementById('listening-options');
+    optContainer.innerHTML = `
+      <button onclick="guessMinimalPairWord('${pair.word1}', '${pair.word1 === minimalPairTarget}')" class="flex-1 py-6 bg-white border-2 border-outline-variant hover:border-primary hover:bg-primary-container/5 rounded-2xl font-display font-bold text-2xl text-on-surface transition-all">
+        ${pair.word1} <br/><span class="text-label-sm text-outline font-normal">${pair.ipa1}</span>
+      </button>
+      <button onclick="guessMinimalPairWord('${pair.word2}', '${pair.word2 === minimalPairTarget}')" class="flex-1 py-6 bg-white border-2 border-outline-variant hover:border-primary hover:bg-primary-container/5 rounded-2xl font-display font-bold text-2xl text-on-surface transition-all">
+        ${pair.word2} <br/><span class="text-label-sm text-outline font-normal">${pair.ipa2}</span>
+      </button>
+    `;
+
+    document.getElementById('listening-feedback').textContent = '';
+    document.getElementById('listening-next-btn').classList.add('hidden');
+
+    // Auto play target audio
+    setTimeout(() => { playAudio(minimalPairTarget, 0.95); }, 400);
+  }
+
+  window.replayMinimalPairTarget = function() {
+    if (minimalPairTarget) {
+      playAudio(minimalPairTarget, 0.95);
+    }
+  };
+
+  window.guessMinimalPairWord = function(word, isCorrect) {
+    const feedback = document.getElementById('listening-feedback');
+    const buttons = document.getElementById('listening-options').querySelectorAll('button');
+    
+    // Disable buttons
+    buttons.forEach(b => b.disabled = true);
+
+    if (isCorrect === 'true' || isCorrect === true) {
+      feedback.innerHTML = `<span class="text-green-600 font-bold">✅ Correct! The word was indeed "${word}".</span>`;
+      correctGuesses++;
+    } else {
+      feedback.innerHTML = `<span class="text-error font-bold">❌ Not quite. The spoken word was "${minimalPairTarget}".</span>`;
+    }
+
+    document.getElementById('listening-next-btn').classList.remove('hidden');
+  };
+
+  window.nextListeningRound = function() {
+    currentRound++;
+    loadListeningRound();
+  };
+
+  function showListeningGameResults() {
+    document.getElementById('listening-game-play').classList.add('hidden');
+    document.getElementById('listening-game-result').classList.remove('hidden');
+    document.getElementById('listening-game-final-score').textContent = `${correctGuesses} / ${Math.min(5, minimalPairsList.length)}`;
+  }
+
+  // ── Practice MCQ validation ─────────────────────────────────────────────────
+  window.checkQuizAnswer = function(element, opt, answer) {
+    const parent = element.closest('.quiz-question-box');
+    const buttons = parent.querySelectorAll('button');
+    const feedback = parent.querySelector('.quiz-feedback');
+
+    buttons.forEach(b => b.disabled = true);
+
+    const isCorrect = opt.trim().toLowerCase() === answer.trim().toLowerCase();
+    element.classList.remove('bg-white', 'border-outline-variant');
+    
+    if (isCorrect) {
+      element.classList.add('bg-green-100', 'border-green-600', 'text-green-800');
+      feedback.innerHTML = '<span class="text-green-600 font-bold">Correct! Well done.</span>';
+    } else {
+      element.classList.add('bg-red-100', 'border-red-600', 'text-red-800');
+      feedback.innerHTML = `<span class="text-error font-bold">Incorrect. The correct answer is: ${answer}.</span>`;
+    }
+  };
+
+  // ── Collapsible Sidebar Categories ─────────────────────────────────────────
+  function renderSidebar(sections) {
+    const nav = document.getElementById('lesson-nav');
+    if (!nav) return;
+    nav.innerHTML = '';
+    
+    let totalLessons = 0, completedCount = 0;
+
+    // Initialize collapsible state
+    if (!window.collapsedSections) {
+      window.collapsedSections = {};
+      sections.forEach(s => {
+        const hasActive = currentLesson && s.lessons.some(l => l.id === currentLesson.id);
+        window.collapsedSections[s.section] = !hasActive;
+      });
+    }
+
+    sections.forEach(sec => {
+      const isCollapsed = window.collapsedSections[sec.section];
+      
+      const secHeader = document.createElement('div');
+      secHeader.className = 'px-2 py-2 text-label-sm text-outline uppercase tracking-wider font-bold mt-4 flex items-center justify-between cursor-pointer hover:text-primary transition-colors';
+      secHeader.innerHTML = `
+        <span>${sec.section}</span>
+        <span class="material-symbols-outlined text-[16px] transition-transform duration-200 ${isCollapsed ? '-rotate-90' : ''}">expand_more</span>
+      `;
+      nav.appendChild(secHeader);
+
+      const lessonGroup = document.createElement('div');
+      lessonGroup.className = 'lesson-group-container space-y-1 pl-2';
+      if (isCollapsed) {
+        lessonGroup.classList.add('hidden');
+      }
+      nav.appendChild(lessonGroup);
+
+      sec.lessons.forEach(lesson => {
+        totalLessons++;
+        if (lesson.status === 'COMPLETED') completedCount++;
+        
+        const isActive = currentLesson && currentLesson.id === lesson.id;
+        const dotColor = lesson.status === 'COMPLETED' ? 'bg-green-500' : (lesson.status === 'IN_PROGRESS' ? 'bg-primary animate-pulse' : 'bg-on-surface-variant/40');
+        const activeClass = isActive ? 'bg-primary-container/10 border-r-4 border-primary font-bold text-primary' : 'text-on-surface-variant hover:bg-surface-variant/50';
+        
+        const link = document.createElement('a');
+        link.href = '#';
+        link.className = `flex items-center justify-between px-3 py-2 rounded-lg transition-colors ${activeClass}`;
+        link.innerHTML = `
+          <div class="flex items-center gap-2">
+            <div class="w-2 h-2 rounded-full ${dotColor}"></div>
+            <span class="text-body-md text-[14px]">${lesson.title}</span>
+          </div>
+          ${lesson.status === 'COMPLETED' ? '<span class="material-symbols-outlined text-green-500 text-[16px]">check_circle</span>' : ''}
+        `;
+        link.addEventListener('click', e => {
+          e.preventDefault();
+          window.collapsedSections[sec.section] = false;
+          loadLesson(lesson);
+        });
+        lessonGroup.appendChild(link);
+      });
+
+      secHeader.addEventListener('click', () => {
+        window.collapsedSections[sec.section] = !window.collapsedSections[sec.section];
+        renderSidebar(allSections);
+      });
+    });
+
+    // Update Progress Pill
+    const pill = document.querySelector('.bg-primary-container');
+    if (pill) {
+      pill.innerHTML = `<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div><span class="text-on-primary-container font-bold text-label-sm">${completedCount} / ${totalLessons} Lessons</span>`;
+    }
+  }
+
+  // ── Sidebar Search ──────────────────────────────────────────────────────────
+  const searchInput = document.querySelector('input[placeholder*="Search"]');
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      const nav = document.getElementById('lesson-nav');
+      if (!nav) return;
+
+      const headers = nav.querySelectorAll('div');
+      headers.forEach(header => {
+        const titleSpan = header.querySelector('span');
+        if (!titleSpan || header.querySelector('input')) return;
+        const secName = titleSpan.textContent;
+        const lessonGroup = header.nextElementSibling;
+        if (!lessonGroup || !lessonGroup.classList.contains('lesson-group-container')) return;
+
+        let matches = 0;
+        lessonGroup.querySelectorAll('a').forEach(link => {
+          const lTitle = link.querySelector('span.text-body-md')?.textContent?.toLowerCase() || '';
+          const match = !q || lTitle.includes(q);
+          link.style.display = match ? '' : 'none';
+          if (match) matches++;
+        });
+
+        if (q && matches > 0) {
+          header.style.display = '';
+          lessonGroup.classList.remove('hidden');
+          const chevron = header.querySelector('.material-symbols-outlined');
+          if (chevron) chevron.className = 'material-symbols-outlined text-[16px] transition-transform duration-200';
+        } else if (q && matches === 0) {
+          header.style.display = 'none';
+          lessonGroup.classList.add('hidden');
+        } else {
+          header.style.display = '';
+          const isCollapsed = window.collapsedSections[secName];
+          lessonGroup.classList.toggle('hidden', isCollapsed);
+          const chevron = header.querySelector('.material-symbols-outlined');
+          if (chevron) {
+            chevron.className = `material-symbols-outlined text-[16px] transition-transform duration-200 ${isCollapsed ? '-rotate-90' : ''}`;
+          }
+        }
+      });
+    });
+  }
+
+  // ── Dynamic Layout Builders ─────────────────────────────────────────────────
+  function loadLesson(lesson) {
+    currentLesson = lesson;
+    renderSidebar(allSections);
+
+    document.getElementById('header-lesson-title').textContent = `Lesson: ${lesson.title}`;
+
+    const container = document.getElementById('main-content-container');
+    const tocPanel = document.getElementById('toc-panel');
+
+    if (!lesson.content || lesson.content === '{}') {
+      if (tocPanel) tocPanel.classList.add('hidden');
+      container.innerHTML = `
+        <div class="px-4 py-20 text-center text-on-surface-variant">
+          <p class="text-body-lg mb-2">Content coming soon!</p>
+          <p class="text-body-md opacity-75">Check back after the next content update.</p>
+        </div>
+        ${buildBottomNav(lesson)}
+      `;
+      container.scrollTop = 0;
+      return;
+    }
+
+    let content;
+    try {
+      content = JSON.parse(lesson.content);
+    } catch(e) {
+      console.error("JSON parse error:", e);
+      if (tocPanel) tocPanel.classList.add('hidden');
+      container.innerHTML = `<p class="text-center py-20 text-error">Error loading lesson data.</p>`;
+      container.scrollTop = 0;
+      return;
+    }
+
+    // Build Table of Contents dynamically
+    const tocItems = [
+      { name: 'Introduction', link: '#intro-section', anchor: 'intro-section' },
+      { name: 'Sound & Position', link: '#mouth-section', anchor: 'mouth-section' }
+    ];
+
+    if (content.words && content.words.length > 0) {
+      tocItems.push({ name: 'Example Words', link: '#words-section', anchor: 'words-section' });
+    }
+    if (content.spotlight && content.spotlight.length > 0) {
+      tocItems.push({ name: 'Common Mistakes', link: '#spotlight-section', anchor: 'spotlight-section' });
+    }
+    tocItems.push({ name: 'Speak Practice', link: '#practice-section', anchor: 'practice-section' });
+    if (content.minimal_pairs_listen && content.minimal_pairs_listen.length > 0) {
+      tocItems.push({ name: 'Listening Test', link: '#minpairs-section', anchor: 'minpairs-section' });
+    }
+    if (content.tongue_twister) {
+      tocItems.push({ name: 'Tongue Twister', link: '#twister-section', anchor: 'twister-section' });
+    }
+    if (content.mini_quiz && content.mini_quiz.length > 0) {
+      tocItems.push({ name: 'Mini Quiz', link: '#quiz-section', anchor: 'quiz-section' });
+    }
+
+    const tocPanelLinks = document.getElementById('toc-panel-links');
+    if (tocPanel && tocPanelLinks) {
+      tocPanel.classList.remove('hidden');
+      tocPanelLinks.innerHTML = tocItems.map(item =>
+        `<a href="${item.link}" data-anchor="${item.anchor}" class="toc-link">${item.name}</a>`
+      ).join('');
+    }
+
+    // Build Words Table HTML
+    let wordsTableHTML = '';
+    if (content.words && content.words.length > 0) {
+      const rows = content.words.map((w, idx) => `
+        <tr class="hover:bg-surface-container-low transition-colors">
+          <td class="px-6 py-4 font-bold text-body-md text-on-surface flex items-center gap-2">
+            ${w.word}
+            <button onclick="playAudio('${w.word.replace(/'/g, "\\'")}')" class="p-1 rounded-full text-primary hover:bg-primary-container/20 transition-colors">
+              <span class="material-symbols-outlined text-[18px]">volume_up</span>
+            </button>
+          </td>
+          <td class="px-6 py-4 font-mono text-body-md text-secondary tracking-wide">${w.ipa}</td>
+          <td class="px-6 py-4 text-on-surface-variant text-body-md">${w.meaning}</td>
+        </tr>
+      `).join('');
+      wordsTableHTML = `
+        <div id="words-section" class="glass-card p-6 mt-6">
+          <h3 class="font-display text-headline-md font-bold text-on-surface mb-4">Example Words</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead class="bg-surface-container border-b border-outline-variant">
+                <tr>
+                  <th class="px-6 py-3 text-label-sm uppercase font-bold text-on-surface-variant">Word</th>
+                  <th class="px-6 py-3 text-label-sm uppercase font-bold text-on-surface-variant">Phonetics</th>
+                  <th class="px-6 py-3 text-label-sm uppercase font-bold text-on-surface-variant">Definition</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-outline-variant/30">${rows}</tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    }
+
+    // Build Spotlight HTML
+    let spotlightHTML = '';
+    if (content.spotlight && content.spotlight.length > 0) {
+      const spots = content.spotlight.map(s => `
+        <div class="p-4 bg-white rounded-xl shadow-sm border border-outline-variant/30 flex gap-3">
+          <span class="material-symbols-outlined text-error mt-0.5">report_problem</span>
+          <div>
+            <h4 class="font-bold text-on-surface text-body-md">${s.title}</h4>
+            <p class="text-on-surface-variant text-body-sm mt-1 leading-relaxed">${s.desc}</p>
+            ${s.example ? `<p class="text-primary font-medium text-body-sm mt-2 italic">${s.example}</p>` : ''}
+          </div>
+        </div>
+      `).join('');
+      spotlightHTML = `
+        <div id="spotlight-section" class="glass-card p-6 mt-6 bg-secondary-container/5 border-secondary/20">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="material-symbols-outlined text-secondary">tips_and_updates</span>
+            <h3 class="font-display text-headline-md font-bold text-secondary">Common Mistakes &amp; Fixes</h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">${spots}</div>
+        </div>
+      `;
+    }
+
+    // Build Listening Game HTML
+    let listeningGameHTML = '';
+    if (content.minimal_pairs_listen && content.minimal_pairs_listen.length > 0) {
+      listeningGameHTML = `
+        <div id="minpairs-section" class="glass-card p-6 mt-6">
+          <h3 class="font-display text-headline-md font-bold text-on-surface mb-2">Auditory Discrimination Game</h3>
+          <p class="text-body-md text-on-surface-variant mb-6">Test your listening comprehension. Listen to the word spoken by the AI, and choose the correct option.</p>
+          
+          <div id="listening-game-start" class="text-center py-6">
+            <button onclick="startMinimalPairsGame()" class="px-8 py-3 bg-primary text-on-primary font-bold rounded-full soft-shadow hover:scale-105 transition-all">Start Listening Game</button>
+          </div>
+          
+          <div id="listening-game-play" class="hidden flex flex-col items-center gap-6 py-4">
+            <div class="flex items-center gap-3">
+              <span class="text-label-sm font-bold text-outline">ROUND: <span id="listening-round-num" class="text-primary">1</span> / 5</span>
+            </div>
+            
+            <div class="flex items-center gap-4">
+              <button onclick="replayMinimalPairTarget()" class="w-16 h-16 rounded-full bg-primary-container text-primary flex items-center justify-center shadow-md active:scale-95 transition-all hover:scale-105">
+                <span class="material-symbols-outlined text-3xl">volume_up</span>
+              </button>
+              <span class="text-body-md text-outline-variant font-bold uppercase tracking-widest">Tap to Replay Sound</span>
+            </div>
+            
+            <div class="w-full flex gap-4 mt-4" id="listening-options">
+              <!-- Render options dynamically -->
+            </div>
+            
+            <p id="listening-feedback" class="text-body-md font-semibold mt-2 h-6"></p>
+            <button id="listening-next-btn" onclick="nextListeningRound()" class="hidden px-6 py-2 bg-secondary text-white font-bold rounded-full transition-transform hover:scale-105">Next Round</button>
+          </div>
+          
+          <div id="listening-game-result" class="hidden text-center py-6">
+            <span class="material-symbols-outlined text-[64px] text-primary">emoji_events</span>
+            <h4 class="font-display text-headline-md font-bold text-on-surface mt-2">Game Completed!</h4>
+            <p class="text-body-lg mt-2">Your Score: <span id="listening-game-final-score" class="font-bold text-primary">0 / 0</span></p>
+            <button onclick="startMinimalPairsGame()" class="px-6 py-2 bg-primary text-on-primary font-bold rounded-full mt-4 hover:scale-105 transition-all">Play Again</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // Build Tongue Twister HTML
+    let twisterHTML = '';
+    if (content.tongue_twister) {
+      const t = content.tongue_twister;
+      twisterHTML = `
+        <div id="twister-section" class="glass-card p-6 mt-6">
+          <h3 class="font-display text-headline-md font-bold text-on-surface mb-2">Tongue Twister Practice</h3>
+          <p class="text-body-md text-on-surface-variant mb-6">Build fluency and speech muscles by practicing target twisters at different speeds.</p>
+          
+          <div class="bg-surface-container-low border border-outline-variant/30 rounded-2xl p-6 text-center shadow-inner">
+            <p class="font-display text-2xl font-bold text-secondary mb-6 leading-relaxed">"${t.text}"</p>
+            
+            <div class="flex justify-center gap-3">
+              <button onclick="playAudio('${t.text.replace(/'/g, "\\'")}', 0.7)" class="px-4 py-2 bg-white border border-outline-variant text-outline rounded-full font-bold text-body-sm hover:text-primary hover:border-primary transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px]">play_arrow</span> Slow (0.7x)
+              </button>
+              <button onclick="playAudio('${t.text.replace(/'/g, "\\'")}', 1.0)" class="px-4 py-2 bg-primary text-on-primary rounded-full font-bold text-body-sm hover:shadow-md transition-all flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px]">play_arrow</span> Normal (1.0x)
+              </button>
+              <button onclick="playAudio('${t.text.replace(/'/g, "\\'")}', 1.3)" class="px-4 py-2 bg-white border border-outline-variant text-outline rounded-full font-bold text-body-sm hover:text-primary hover:border-primary transition-colors flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px]">play_arrow</span> Fast (1.3x)
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Build Mini Quiz HTML
+    let quizHTML = '';
+    if (content.mini_quiz && content.mini_quiz.length > 0) {
+      const questions = content.mini_quiz.map((q, idx) => {
+        const opts = (q.options || []).map(opt => `
+          <button onclick="checkQuizAnswer(this, '${opt.replace(/'/g, "\\'")}', '${q.answer.replace(/'/g, "\\'")}')" class="px-4 py-3 bg-white border border-outline-variant rounded-xl text-left hover:bg-primary-container/10 transition-colors text-body-md font-semibold w-full">
+            ${opt}
+          </button>
+        `).join('');
+        
+        return `
+          <div class="quiz-question-box p-5 bg-white border border-outline-variant/30 rounded-2xl shadow-sm">
+            <span class="text-label-sm text-outline uppercase font-bold">Question ${idx + 1}</span>
+            <p class="font-bold text-on-surface text-body-lg mt-1 mb-4">${q.question}</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">${opts}</div>
+            <p class="quiz-feedback mt-3 h-5 font-bold text-sm"></p>
+          </div>
+        `;
+      }).join('');
+
+      quizHTML = `
+        <div id="quiz-section" class="glass-card p-6 mt-6 bg-primary-container/5 border-primary-container/20">
+          <h3 class="font-display text-headline-md font-bold text-primary mb-4">Lesson Quiz</h3>
+          <div class="space-y-4">${questions}</div>
+        </div>
+      `;
+    }
+
+    // Embed all sections
+    container.innerHTML = `
+      <!-- Breadcrumb -->
+      <nav class="pt-4 pb-2 flex items-center gap-2 text-label-sm text-on-surface-variant">
+        <span>AI Classroom</span>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <span>Pronunciation</span>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <span class="text-primary font-bold">${lesson.title}</span>
+      </nav>
+
+      <!-- Header Introduction -->
+      <section id="intro-section" class="glass-card p-6 mt-4">
+        <h1 class="font-display text-3xl font-extrabold text-on-surface mb-4">${content.title || lesson.title}</h1>
+        <div class="text-body-md text-on-surface-variant leading-relaxed">
+          ${renderMarkdown(content.intro || '')}
+        </div>
+      </section>
+
+      <!-- Mouth Position & IPA Reference -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter mt-6">
+        <section id="mouth-section" class="col-span-12 lg:col-span-4 glass-card p-6 flex flex-col items-center text-center justify-between">
+          <div class="w-full">
+            <div class="w-20 h-20 rounded-full gold-gradient flex items-center justify-center mb-4 shadow-lg mx-auto">
+              <span class="text-3xl font-display font-extrabold text-on-primary-fixed">${content.phoneme || ''}</span>
+            </div>
+            <h3 class="font-display text-headline-md font-bold mb-2">${content.phoneme || ''} Phoneme</h3>
+            <p class="text-body-md text-on-surface-variant mb-6 leading-relaxed">${content.description || ''}</p>
+          </div>
+          
+          <div class="w-full bg-surface-container-low rounded-xl p-3 border border-outline-variant/30 mt-auto">
+            <div class="w-full h-32 bg-cover bg-center rounded-lg shadow-sm" style="background-image: url('${content.mouth_image}')"></div>
+            <span class="text-label-sm font-bold text-primary block mt-2">MOUTH POSITION GUIDE</span>
+          </div>
+        </section>
+
+        <!-- Speech Practice Module -->
+        <section id="practice-section" class="col-span-12 lg:col-span-8 glass-card p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h3 class="font-display text-headline-md font-bold">Listen &amp; Repeat Practice</h3>
+                <p class="text-body-sm text-on-surface-variant mt-1">Speak into your microphone and match the phrase.</p>
+              </div>
+              <button onclick="playAudio('${content.target_phrase.replace(/'/g, "\\'")}')" class="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-all flex items-center gap-1 font-bold text-body-sm">
+                <span class="material-symbols-outlined text-[18px]">volume_up</span> Hear AI Say It
+              </button>
+            </div>
+            
+            <div class="bg-surface-container-low border border-outline-variant/30 rounded-xl p-5 text-center mt-4">
+              <p class="text-body-lg text-on-surface-variant">Practice Saying:</p>
+              <p class="font-display text-2xl font-bold text-on-surface mt-2 leading-relaxed">"${content.target_phrase || ''}"</p>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center gap-6 py-6">
+            <!-- Recording Waveform & Mic -->
+            <div class="audio-wave flex items-end h-10 gap-1">
+              <span style="animation-delay: 0.1s; animation-play-state: paused;"></span>
+              <span style="animation-delay: 0.3s; animation-play-state: paused;"></span>
+              <span style="animation-delay: 0.5s; animation-play-state: paused;"></span>
+              <span style="animation-delay: 0.2s; animation-play-state: paused;"></span>
+              <span style="animation-delay: 0.4s; animation-play-state: paused;"></span>
+              <span style="animation-delay: 0.6s; animation-play-state: paused;"></span>
+            </div>
+            
+            <button id="mic-record-btn" onclick="toggleSpeechPractice('${content.target_phrase.replace(/'/g, "\\'")}')" class="w-16 h-16 rounded-full gold-gradient text-on-primary-fixed flex items-center justify-center shadow-lg mic-pulse active:scale-95 transition-all">
+              <span class="material-symbols-outlined text-3xl" data-weight="fill">mic</span>
+            </button>
+            <p id="mic-status-label" class="text-label-sm font-bold text-on-surface-variant uppercase tracking-widest">Tap to Record &amp; Repeat</p>
+          </div>
+
+          <!-- Speech Transcript Feedback -->
+          <div id="practice-recognition-feedback" class="hidden p-4 rounded-xl border border-outline-variant/40 bg-surface-container-lowest mt-4 shadow-sm">
+            <div class="flex justify-between items-center pb-2 border-b border-outline-variant/20">
+              <span class="text-label-sm text-outline uppercase font-bold">You Said:</span>
+              <span id="match-score" class="px-3 py-0.5 bg-primary-container text-primary font-bold rounded-full text-label-sm">85% Match</span>
+            </div>
+            <p id="recognized-text" class="text-body-md text-on-surface italic mt-2">"..."</p>
+          </div>
+        </section>
+      </div>
+
+      ${wordsTableHTML}
+      ${spotlightHTML}
+      ${listeningGameHTML}
+      ${twisterHTML}
+      ${quizHTML}
+
+      <!-- Performance & Completion summary bar -->
+      <section class="glass-card p-6 mt-6 grid grid-cols-1 md:grid-cols-12 items-center gap-6 pb-20">
+        <div class="md:col-span-8 flex items-center gap-4">
+          <div class="relative flex items-center justify-center">
+            <svg class="w-24 h-24 transform -rotate-90">
+              <circle class="text-surface-container-highest" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+              <circle id="score-circle" class="text-primary shadow-md" cx="48" cy="48" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="440" stroke-dashoffset="440" stroke-linecap="round" stroke-width="8"></circle>
+            </svg>
+            <div class="absolute flex flex-col items-center">
+              <span id="score-text" class="text-2xl font-display font-extrabold text-primary">--%</span>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-display font-bold text-on-surface text-body-lg">Practice Completion</h4>
+            <p id="score-feedback" class="text-body-sm text-on-surface-variant mt-0.5">Please complete the Listen &amp; Repeat recording to pass.</p>
+          </div>
+        </div>
+        <div class="md:col-span-4 flex justify-end">
+          <button id="mark-complete-btn" onclick="markComplete('${lesson.id}')" disabled class="w-full md:w-auto bg-primary text-on-primary font-bold py-3 px-8 rounded-full shadow-md hover:scale-105 transition-all opacity-50 cursor-not-allowed flex items-center justify-center gap-2">
+            Mark Complete
+            <span class="material-symbols-outlined">check</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Bottom Nav Bar -->
+      ${buildBottomNav(lesson)}
+    `;
+
+    container.scrollTop = 0;
+  }
+
+  // ── Bottom Nav Bar Builder ──────────────────────────────────────────────────
+  function buildBottomNav(lesson) {
+    const all = allSections.flatMap(s => s.lessons);
+    const idx = all.findIndex(l => l.id === lesson.id);
+    const prev = idx > 0 ? all[idx - 1] : null;
+    const next = idx < all.length - 1 ? all[idx + 1] : null;
+    const isDone = lesson.status === 'COMPLETED';
+
+    return `
+      <nav class="fixed bottom-0 right-0 w-[calc(100%-260px)] h-20 bg-surface/90 backdrop-blur-xl border-t border-outline-variant/30 px-margin-desktop flex items-center justify-between z-50">
+        <button onclick="navigateLessons(-1)" ${!prev ? 'disabled' : ''} class="flex items-center gap-2 text-on-surface-variant font-bold hover:text-primary transition-colors py-2 px-4 rounded-full hover:bg-primary-container/10 disabled:opacity-30">
+          <span class="material-symbols-outlined">arrow_back</span> Previous
+        </button>
+        <div class="flex items-center gap-4">
+          ${next ? `<div class="hidden md:flex flex-col items-end"><span class="text-label-sm text-on-surface-variant">Next up:</span><span class="text-body-md font-bold text-on-surface">${next.title}</span></div>` : ''}
+          <button onclick="navigateLessons(1)" ${!next ? 'disabled' : ''} class="flex items-center gap-2 text-primary font-bold hover:bg-primary-container/10 py-2 px-4 rounded-full transition-colors disabled:opacity-30">
+            Next <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+        </div>
+      </nav>
+    `;
+  }
+
+  // ── Bottom Nav Navigation Click Handlers ─────────────────────────────────────
+  window.navigateLessons = function(direction) {
+    const all = allSections.flatMap(s => s.lessons);
+    const idx = currentLesson ? all.findIndex(l => l.id === currentLesson.id) : -1;
+    const next = all[idx + direction];
+    if (next) {
+      loadLesson(next);
+    }
+  };
+
+  // ── Mark Complete Handler ──────────────────────────────────────────────────
+  window.markComplete = async function(lessonId) {
+    try {
+      await fetch(`/api/classroom/lessons/${lessonId}/progress?status=COMPLETED`, {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      // Refresh lessons and update sidebar
+      const res = await fetch('/api/classroom/lessons?module=PRONUNCIATION', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      allSections = await res.json();
+      const updated = allSections.flatMap(s => s.lessons).find(l => l.id === lessonId);
+      if (updated) {
+        currentLesson = updated;
+        loadLesson(updated);
+      } else {
+        renderSidebar(allSections);
+      }
+    } catch(e) {
+      console.error("markComplete error:", e);
+    }
+  };
+
+  // ── Sticky TOC Scroll Sync ───────────────────────────────────────────────────
+  const mainScrollContainer = document.getElementById('main-content-container');
+  if (mainScrollContainer) {
+    mainScrollContainer.addEventListener('scroll', () => {
+      const scrollTop = mainScrollContainer.scrollTop;
+      const docHeight = mainScrollContainer.scrollHeight - mainScrollContainer.clientHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      
+      const progressEl = document.getElementById('reading-progress');
+      if (progressEl) progressEl.style.width = progress + '%';
+
+      // Highlight active TOC link
+      const sections = mainScrollContainer.querySelectorAll('[id]');
+      let activeSectionId = '';
+      sections.forEach(sec => {
+        if (sec.id && sec.id !== 'reading-progress') {
+          const rect = sec.getBoundingClientRect();
+          if (rect.top <= 200) {
+            activeSectionId = sec.id;
+          }
+        }
+      });
+
+      document.querySelectorAll('.toc-link').forEach(link => {
+        link.classList.toggle('active', link.dataset.anchor === activeSectionId);
+      });
+    });
+  }
+
+  // Intercept click on TOC links to smooth scroll main container
+  document.addEventListener('click', e => {
+    const link = e.target.closest('.toc-link');
+    if (link) {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').slice(1);
+      const targetEl = document.getElementById(targetId);
+      if (targetEl && mainScrollContainer) {
+        const containerRect = mainScrollContainer.getBoundingClientRect();
+        const elRect = targetEl.getBoundingClientRect();
+        const offset = elRect.top - containerRect.top + mainScrollContainer.scrollTop - 20;
+        mainScrollContainer.scrollTo({ top: offset, behavior: 'smooth' });
+      }
+    }
+  });
+
+  // ── Ask AI Teacher Handlers ─────────────────────────────────────────────────
+  document.getElementById('ai-teacher-btn').onclick = () => document.getElementById('ai-modal').classList.remove('hidden');
+  document.getElementById('close-ai-modal').onclick = () => document.getElementById('ai-modal').classList.add('hidden');
+
+  document.getElementById('ai-send-btn').onclick = async () => {
+    const input = document.getElementById('ai-question');
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    
+    const history = document.getElementById('ai-chat-history');
+    history.innerHTML += `<div class="self-end bg-primary text-on-primary rounded-xl px-4 py-2 max-w-[85%] text-body-md font-semibold">${text}</div>`;
+    history.scrollTop = history.scrollHeight;
+
+    try {
+      const res = await fetch('/api/chat/ask-teacher', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+        body: JSON.stringify({ question: text, lessonTitle: currentLesson ? currentLesson.title : '' })
+      });
+      const data = await res.json();
+      history.innerHTML += `<div class="self-start bg-surface-container-high text-on-surface rounded-xl px-4 py-2 max-w-[85%] text-body-md leading-relaxed">${data.answer || 'Sorry, I couldn\'t fetch a response.'}</div>`;
+      history.scrollTop = history.scrollHeight;
+    } catch(e) {
+      console.error(e);
+      history.innerHTML += `<div class="self-start bg-red-100 text-red-800 rounded-xl px-4 py-2 max-w-[85%] text-body-sm font-bold">Error connecting to AI teacher.</div>`;
+    }
+  };
+
+  document.getElementById('ai-question').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('ai-send-btn').click();
+  });
+
+  // ── Initialize App ──────────────────────────────────────────────────────────
+  async function init() {
+    try {
+      const res = await fetch('/api/classroom/lessons?module=PRONUNCIATION', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      if (res.status === 401 || res.status === 403) {
+        localStorage.removeItem('speakmate_token');
+        window.location.href = '/login.html';
+        return;
+      }
+      if (!res.ok) {
+        throw new Error('HTTP ' + res.status);
+      }
+      allSections = await res.json();
+      renderSidebar(allSections);
+      
+      // Auto-load first lesson or specified active lesson
+      if (allSections.length > 0 && allSections[0].lessons.length > 0) {
+        loadLesson(allSections[0].lessons[0]);
+      }
+    } catch(e) {
+      console.error("Init Error:", e);
+    }
+  }
+
+  init();
+</script>
+</body>
+</html>

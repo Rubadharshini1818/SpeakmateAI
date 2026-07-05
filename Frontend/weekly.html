@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Weekly Assessment | SpeakMate AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&amp;family=Quicksand:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-variant": "#ebe1d2",
+                        "surface-container-high": "#f0e7d7",
+                        "primary-fixed": "#ffdf93",
+                        "surface-container": "#f6eddd",
+                        "primary": "#765b00",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#714e00",
+                        "secondary": "#7e5700",
+                        "tertiary-fixed": "#e9e2d0",
+                        "surface-dim": "#e2d9ca",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#241a00",
+                        "surface-tint": "#765b00",
+                        "outline": "#7f7663",
+                        "outline-variant": "#d1c5af",
+                        "on-surface": "#1f1b12",
+                        "inverse-on-surface": "#f9f0e0",
+                        "tertiary-fixed-dim": "#ccc6b4",
+                        "on-secondary-fixed-variant": "#5f4100",
+                        "background": "#fff8f1",
+                        "surface": "#fff8f1",
+                        "primary-container": "#f5c84c",
+                        "on-secondary-fixed": "#271900",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#edc146",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#ebe1d2",
+                        "secondary-fixed-dim": "#fabc4a",
+                        "on-surface-variant": "#4e4635",
+                        "inverse-surface": "#353026",
+                        "on-tertiary-fixed-variant": "#4a4739",
+                        "on-primary-fixed-variant": "#594400",
+                        "tertiary-container": "#d3cdbb",
+                        "surface-container-low": "#fcf2e3",
+                        "secondary-fixed": "#ffdeab",
+                        "surface-bright": "#fff8f1",
+                        "secondary-container": "#fdbf4d",
+                        "tertiary": "#625e50",
+                        "on-tertiary-fixed": "#1e1c10",
+                        "on-tertiary-container": "#5b5749",
+                        "on-error-container": "#93000a",
+                        "primary-fixed-dim": "#edc146",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#6d5400",
+                        "on-background": "#1f1b12"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "container-max": "1200px",
+                        "margin-desktop": "40px",
+                        "stack-md": "24px",
+                        "unit": "8px",
+                        "stack-sm": "12px",
+                        "stack-lg": "48px"
+                    },
+                    fontFamily: {
+                        "label-sm": ["Quicksand"],
+                        "headline-md": ["Quicksand"],
+                        "display-lg": ["Quicksand"],
+                        "body-md": ["Poppins"],
+                        "body-lg": ["Poppins"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #FDF6E3;
+            font-family: 'Poppins', sans-serif;
+            color: #1f1b12;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .step-pulse {
+            animation: pulse-gold 2s infinite;
+        }
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(245, 200, 76, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(245, 200, 76, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 200, 76, 0); }
+        }
+        .custom-shadow {
+            box-shadow: 0 12px 32px rgba(67, 62, 51, 0.05);
+        }
+        .nav-footer-glass {
+            background: rgba(255, 248, 241, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-32">
+<!-- Top AppBar (from JSON context) -->
+<header class="w-full top-0 sticky z-50 bg-background/80 backdrop-blur-md">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-[900px] mx-auto">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center bg-white rounded-full custom-shadow active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">SpeakMate AI</h1>
+</div>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<main class="max-w-[900px] mx-auto px-margin-mobile md:px-margin-desktop mt-stack-sm">
+<!-- Header Section -->
+<section class="mb-stack-lg">
+<h2 class="font-display-lg text-[32px] md:text-display-lg text-primary mb-2">📅 Weekly Assessment</h2>
+<p class="text-body-lg text-on-surface-variant">Complete all sections to earn your weekly badge.</p>
+</section>
+<!-- Progress Stepper (Sticky) -->
+<nav class="sticky top-20 z-40 mb-stack-lg bg-surface-container-low/95 backdrop-blur-sm p-4 rounded-lg custom-shadow overflow-x-auto no-scrollbar">
+    <div class="flex items-center justify-between min-w-[600px] px-2" id="stepper-container">
+        <!-- Will be dynamically updated by JavaScript -->
+    </div>
+</nav>
+
+<!-- Main Assessment Container -->
+<div id="assessment-card" class="bg-surface-container-lowest rounded-lg custom-shadow p-8 mb-stack-lg transition-all duration-300">
+    <div class="flex flex-col items-center justify-center p-12 text-center">
+        <span class="material-symbols-outlined text-4xl text-brand-gold animate-spin">sync</span>
+        <p class="mt-4 font-bold text-on-surface">Loading your weekly assessment...</p>
+    </div>
+</div>
+
+<!-- Bento Grid: Hints & Stats -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-stack-lg">
+    <div class="md:col-span-2 bg-surface-container p-6 rounded-lg custom-shadow flex flex-col justify-between border-l-4 border-secondary">
+        <div class="flex items-start gap-4">
+            <span class="material-symbols-outlined text-secondary text-3xl">lightbulb</span>
+            <div>
+                <p class="font-bold text-on-surface mb-1">Stuck on a task?</p>
+                <p class="text-label-sm text-on-surface-variant">Answer as best as you can. SpeakMate AI analyzes grammar, vocabulary, pronunciation, and coherence using Groq AI.</p>
+            </div>
+        </div>
+    </div>
+    <div class="bg-primary p-6 rounded-lg custom-shadow text-white relative overflow-hidden group">
+        <div class="relative z-10">
+            <p class="font-bold text-label-sm opacity-80 mb-2 uppercase tracking-tighter">Your Goal</p>
+            <p class="text-3xl font-display-lg" id="sidebar-streak-text">Weekly Badge</p>
+            <p class="text-label-sm mt-4 opacity-90">Unlock after completing all six sections successfully!</p>
+        </div>
+        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-8xl opacity-10 group-hover:scale-110 transition-transform duration-500">stars</span>
+    </div>
+</div>
+</main>
+
+<script>
+    const token = localStorage.getItem('speakmate_token');
+    if (!token) window.location.href = 'login.html';
+
+    let assessment = null;
+    let activeStepKey = 'reading'; // default starting
+    let currentTaskSubIndex = 0; // for multi-sentence tasks (reading/listening)
+    let isRecording = false;
+    let recognition = null;
+    let recordedTranscript = "";
+    let essayTimerInterval = null;
+    let speechTimerInterval = null;
+    let currentSubmissionsList = []; // temporary holder for scores/transcripts
+
+    const STEPS_CONFIG = [
+        { key: 'reading', label: 'Reading', number: 1, icon: 'menu_book' },
+        { key: 'listening', label: 'Listen & Repeat', number: 2, icon: 'volume_up' },
+        { key: 'essay', label: 'Writing', number: 3, icon: 'edit' },
+        { key: 'errorSpot', label: 'Error Spotting', number: 4, icon: 'spellcheck' },
+        { key: 'story', label: 'Listening', number: 5, icon: 'headphones' },
+        { key: 'speech', label: 'Speaking', number: 6, icon: 'mic' }
+    ];
+
+    async function loadAssessment() {
+        try {
+            const res = await fetch('/api/weekly/current', {
+                headers: { 'Authorization': 'Bearer ' + token }
+            });
+            if (!res.ok) throw new Error("Failed to load");
+            assessment = await res.json();
+            
+            if (assessment.status === 'COMPLETED') {
+                renderFinalReport();
+            } else {
+                determineActiveStep();
+                renderStepper();
+                renderActiveStep();
+            }
+        } catch (err) {
+            console.error(err);
+            document.getElementById('assessment-card').innerHTML = `
+                <div class="text-center p-8">
+                    <span class="material-symbols-outlined text-4xl text-error">error</span>
+                    <p class="text-error mt-2 font-bold">Failed to load weekly assessment. Please try again.</p>
+                </div>
+            `;
+        }
+    }
+
+    function determineActiveStep() {
+        const tasks = assessment.tasks;
+        for (let cfg of STEPS_CONFIG) {
+            if (tasks[cfg.key] && tasks[cfg.key].status === 'PENDING') {
+                activeStepKey = cfg.key;
+                currentTaskSubIndex = 0;
+                currentSubmissionsList = [];
+                return;
+            }
+        }
+        // If all are completed but session status is ACTIVE, send complete request
+        completeAssessment();
+    }
+
+    async function completeAssessment() {
+        try {
+            const res = await fetch('/api/weekly/complete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify({ assessmentId: assessment.assessmentId })
+            });
+            if (res.ok) {
+                assessment = await res.json();
+                renderFinalReport();
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    function renderStepper() {
+        const stepper = document.getElementById('stepper-container');
+        stepper.innerHTML = "";
+        
+        STEPS_CONFIG.forEach((step, idx) => {
+            const task = assessment.tasks[step.key];
+            const isCompleted = task && task.status === 'COMPLETED';
+            const isActive = step.key === activeStepKey;
+            
+            let circleClass = "";
+            let textClass = "";
+            let innerHtml = "";
+            let opacityClass = "";
+
+            if (isCompleted) {
+                circleClass = "bg-primary text-white border-primary";
+                textClass = "text-primary font-bold";
+                innerHtml = `<span class="material-symbols-outlined text-sm">check</span>`;
+            } else if (isActive) {
+                circleClass = "bg-primary-container text-on-primary-container border-primary step-pulse";
+                textClass = "text-primary font-bold";
+                innerHtml = `<span class="font-bold text-label-sm">${step.number}</span>`;
+            } else {
+                circleClass = "bg-surface-container-highest text-on-surface-variant border-transparent";
+                textClass = "text-on-surface-variant";
+                innerHtml = `<span class="font-bold text-label-sm">${step.number}</span>`;
+                opacityClass = "opacity-50";
+            }
+
+            const stepNode = document.createElement('div');
+            stepNode.className = `flex flex-col items-center gap-2 ${opacityClass}`;
+            stepNode.innerHTML = `
+                <div class="w-10 h-10 rounded-full flex items-center justify-center border-2 ${circleClass}">
+                    ${innerHtml}
+                </div>
+                <span class="font-label-sm text-xs ${textClass}">${step.label}</span>
+            `;
+            stepper.appendChild(stepNode);
+
+            if (idx < STEPS_CONFIG.length - 1) {
+                const line = document.createElement('div');
+                line.className = `h-[2px] flex-1 mx-2 ${isCompleted ? 'bg-primary' : 'bg-outline-variant'}`;
+                stepper.appendChild(line);
+            }
+        });
+    }
+
+    function renderActiveStep() {
+        const card = document.getElementById('assessment-card');
+        const task = assessment.tasks[activeStepKey];
+        if (!task) return;
+
+        clearInterval(essayTimerInterval);
+        clearInterval(speechTimerInterval);
+        stopSpeechAndMic();
+
+        if (activeStepKey === 'reading') {
+            renderReadingStep(task);
+        } else if (activeStepKey === 'listening') {
+            renderListeningStep(task);
+        } else if (activeStepKey === 'essay') {
+            renderEssayStep(task);
+        } else if (activeStepKey === 'errorSpot') {
+            renderErrorSpotStep(task);
+        } else if (activeStepKey === 'story') {
+            renderStoryStep(task);
+        } else if (activeStepKey === 'speech') {
+            renderSpeechStep(task);
+        }
+    }
+
+    // ── STEP 1: READING PRACTICE ─────────────────────────────────────────────
+    function renderReadingStep(task) {
+        const sentences = task.sentences;
+        const currentSentence = sentences[currentTaskSubIndex];
+        const card = document.getElementById('assessment-card');
+
+        card.innerHTML = `
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined">menu_book</span>
+                </div>
+                <div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface font-bold">Step 1: Reading Practice</h3>
+                    <p class="font-label-sm text-on-surface-variant text-sm">Read the sentence aloud clearly into your microphone.</p>
+                </div>
+            </div>
+            
+            <div class="bg-[#FDFAF4] rounded-lg p-6 mb-8 border-[1.5px] border-primary-container text-center">
+                <p class="text-lg font-bold text-brand-dark italic">"${currentSentence}"</p>
+            </div>
+
+            <div class="space-y-6">
+                <div class="flex justify-between items-center text-sm">
+                    <span class="px-4 py-1 bg-secondary-container/20 text-on-secondary-container rounded-full font-bold uppercase tracking-wider">Sentence ${currentTaskSubIndex + 1} of ${sentences.length}</span>
+                    <span class="text-primary font-bold">+15 XP</span>
+                </div>
+
+                <div class="flex flex-col items-center gap-4">
+                    <button id="mic-btn" onclick="toggleMicReading('${currentSentence.replace(/'/g, "\\'")}')" class="w-16 h-16 rounded-full bg-gradient-to-r from-primary to-[#edc146] text-white flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+                        <span class="material-symbols-outlined text-3xl" id="mic-icon">mic</span>
+                    </button>
+                    <p class="font-bold text-on-surface" id="mic-status-text">Tap to Read</p>
+                    <p id="transcription-text" class="text-sm text-brand-muted italic max-w-md text-center"></p>
+                </div>
+
+                <div id="match-score-container" class="hidden">
+                    <!-- Dynamic checkmark/score -->
+                </div>
+            </div>
+        `;
+    }
+
+    function toggleMicReading(targetSentence) {
+        if (isRecording) {
+            stopMic();
+            return;
+        }
+        startMic((transcript) => {
+            document.getElementById('transcription-text').textContent = `You said: "${transcript}"`;
+            
+            // Calculate similarity match
+            const score = calculateSimilarity(transcript, targetSentence);
+            currentSubmissionsList.push(score);
+
+            const scoreContainer = document.getElementById('match-score-container');
+            scoreContainer.className = "bg-[#F0FFF4] border border-[#86EFAC] p-4 rounded-lg flex items-center justify-between";
+            scoreContainer.innerHTML = `
+                <div class="flex items-center gap-2 text-[#166534]">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <span class="font-bold">Pronunciation Match: ${score}%</span>
+                </div>
+                <button class="px-6 py-2 bg-primary text-white font-bold rounded-full text-xs" onclick="nextReadingSentence()">
+                    ${currentTaskSubIndex < 4 ? 'Next Sentence' : 'Finish Reading'}
+                </button>
+            `;
+            scoreContainer.classList.remove('hidden');
+        });
+    }
+
+    function nextReadingSentence() {
+        if (currentTaskSubIndex < 4) {
+            currentTaskSubIndex++;
+            renderActiveStep();
+        } else {
+            // Calculate average score and submit
+            const averageScore = Math.round(currentSubmissionsList.reduce((a,b) => a+b, 0) / 5);
+            submitTaskResult('reading', averageScore);
+        }
+    }
+
+    // ── STEP 2: LISTEN & REPEAT ──────────────────────────────────────────────
+    function renderListeningStep(task) {
+        const sentences = task.sentences;
+        const currentSentence = sentences[currentTaskSubIndex];
+        const card = document.getElementById('assessment-card');
+
+        card.innerHTML = `
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined">volume_up</span>
+                </div>
+                <div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface font-bold">Step 2: Listen & Repeat</h3>
+                    <p class="font-label-sm text-on-surface-variant text-sm">Listen to the speaker, then click the microphone to repeat it.</p>
+                </div>
+            </div>
+
+            <div class="bg-[#FDFAF4] rounded-lg p-6 mb-8 border-[1.5px] border-primary-container flex flex-col items-center justify-center gap-4">
+                <button onclick="speakAssessmentSentence('${currentSentence.replace(/'/g, "\\'")}')" class="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+                    <span class="material-symbols-outlined text-3xl">play_arrow</span>
+                </button>
+                <button onclick="speakAssessmentSentence('${currentSentence.replace(/'/g, "\\'")}')" class="text-[#E8A020] font-bold text-xs hover:underline">Play Audio</button>
+            </div>
+
+            <div class="space-y-6">
+                <div class="flex justify-between items-center text-sm">
+                    <span class="px-4 py-1 bg-secondary-container/20 text-on-secondary-container rounded-full font-bold uppercase tracking-wider">Sentence ${currentTaskSubIndex + 1} of ${sentences.length}</span>
+                    <span class="text-primary font-bold">+15 XP</span>
+                </div>
+
+                <div class="flex flex-col items-center gap-4">
+                    <button id="mic-btn" onclick="toggleMicListening('${currentSentence.replace(/'/g, "\\'")}')" class="w-16 h-16 rounded-full bg-gradient-to-r from-primary to-[#edc146] text-white flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+                        <span class="material-symbols-outlined text-3xl" id="mic-icon">mic</span>
+                    </button>
+                    <p class="font-bold text-on-surface" id="mic-status-text">Tap to Repeat</p>
+                    <p id="transcription-text" class="text-sm text-brand-muted italic max-w-md text-center"></p>
+                </div>
+
+                <div id="match-score-container" class="hidden">
+                    <!-- Dynamic score -->
+                </div>
+            </div>
+        `;
+    }
+
+    function speakAssessmentSentence(text) {
+        window.speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        window.speechSynthesis.speak(u);
+    }
+
+    function toggleMicListening(targetSentence) {
+        if (isRecording) {
+            stopMic();
+            return;
+        }
+        startMic((transcript) => {
+            document.getElementById('transcription-text').textContent = `You repeated: "${transcript}"`;
+            const score = calculateSimilarity(transcript, targetSentence);
+            currentSubmissionsList.push(score);
+
+            const scoreContainer = document.getElementById('match-score-container');
+            scoreContainer.className = "bg-[#F0FFF4] border border-[#86EFAC] p-4 rounded-lg flex items-center justify-between";
+            scoreContainer.innerHTML = `
+                <div class="flex items-center gap-2 text-[#166534]">
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <span class="font-bold">Pronunciation Match: ${score}%</span>
+                </div>
+                <button class="px-6 py-2 bg-primary text-white font-bold rounded-full text-xs" onclick="nextListeningSentence()">
+                    ${currentTaskSubIndex < 4 ? 'Next Sentence' : 'Finish Section'}
+                </button>
+            `;
+            scoreContainer.classList.remove('hidden');
+        });
+    }
+
+    function nextListeningSentence() {
+        if (currentTaskSubIndex < 4) {
+            currentTaskSubIndex++;
+            renderActiveStep();
+        } else {
+            const averageScore = Math.round(currentSubmissionsList.reduce((a,b) => a+b, 0) / 5);
+            submitTaskResult('listening', averageScore);
+        }
+    }
+
+    // ── STEP 3: WRITING PRACTICE (ESSAY) ─────────────────────────────────────
+    function renderEssayStep(task) {
+        const card = document.getElementById('assessment-card');
+        let timeLeftSeconds = task.timeMinutes * 60;
+
+        card.innerHTML = `
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined">edit</span>
+                </div>
+                <div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface font-bold">Step 3: Essay Writing</h3>
+                    <p class="font-label-sm text-on-surface-variant text-sm">Write a detailed essay responding to the topic below.</p>
+                </div>
+            </div>
+
+            <div class="bg-[#FDFAF4] p-6 rounded-lg mb-6 border-[1.5px] border-primary-container">
+                <h4 class="font-bold text-primary mb-2">Topic:</h4>
+                <p class="text-lg text-on-surface italic">"${task.topic}"</p>
+            </div>
+
+            <div class="mb-6">
+                <div class="flex justify-between items-center text-sm mb-2 font-semibold text-brand-dark">
+                    <span>Write your response below (at least 100 words recommended):</span>
+                    <span id="essay-timer" class="text-error flex items-center gap-1 font-bold">
+                        <span class="material-symbols-outlined">timer</span> 15:00
+                    </span>
+                </div>
+                <textarea id="essay-textarea" rows="8" class="w-full rounded-lg border border-outline-variant p-4 text-sm focus:ring-primary focus:border-primary" placeholder="Start typing here..."></button>
+            </div>
+
+            <div class="flex justify-end">
+                <button id="essay-submit-btn" onclick="submitEssay()" class="px-8 py-3 rounded-full bg-gradient-to-r from-primary to-[#edc146] text-white font-bold shadow-md hover:shadow-lg active:scale-95 transition-all">
+                    Submit Essay
+                </button>
+            </div>
+        `;
+
+        // Start countdown
+        clearInterval(essayTimerInterval);
+        essayTimerInterval = setInterval(() => {
+            timeLeftSeconds--;
+            if (timeLeftSeconds <= 0) {
+                clearInterval(essayTimerInterval);
+                submitEssay();
+            } else {
+                const mins = String(Math.floor(timeLeftSeconds / 60)).padStart(2, '0');
+                const secs = String(timeLeftSeconds % 60).padStart(2, '0');
+                document.getElementById('essay-timer').innerHTML = `<span class="material-symbols-outlined">timer</span> ${mins}:${secs}`;
+            }
+        }, 1000);
+    }
+
+    async function submitEssay() {
+        clearInterval(essayTimerInterval);
+        const text = document.getElementById('essay-textarea').value.trim();
+        if (!text) {
+            alert("Please type something before submitting!");
+            return;
+        }
+
+        const btn = document.getElementById('essay-submit-btn');
+        btn.disabled = true;
+        btn.innerHTML = `<span class="animate-spin material-symbols-outlined">sync</span> Evaluating...`;
+
+        await submitTaskResult('essay', text);
+    }
+
+    // ── STEP 4: ERROR SPOTTING ───────────────────────────────────────────────
+    function renderErrorSpotStep(task) {
+        const card = document.getElementById('assessment-card');
+        const items = task.items;
+        const currentItem = items[currentTaskSubIndex];
+
+        card.innerHTML = `
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined">spellcheck</span>
+                </div>
+                <div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface font-bold">Step 4: Error Spotting</h3>
+                    <p class="font-label-sm text-on-surface-variant text-sm">Find the grammatical error and write the correct version.</p>
+                </div>
+            </div>
+
+            <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6 text-center">
+                <p class="text-sm font-bold text-red-500 mb-1">Incorrect Sentence:</p>
+                <p class="text-lg text-red-700 font-semibold">"${currentItem.sentence}"</p>
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-sm font-bold text-on-surface mb-2">Type the Correct Sentence:</label>
+                <input id="error-correction-input" type="text" class="w-full rounded-lg border border-outline-variant p-4 text-sm focus:ring-primary focus:border-primary" placeholder="Enter corrected sentence here...">
+            </div>
+
+            <div class="flex justify-between items-center">
+                <span class="px-4 py-1 bg-secondary-container/20 text-on-secondary-container rounded-full text-xs font-bold">Sentence ${currentTaskSubIndex + 1} of ${items.length}</span>
+                <button id="error-submit-btn" onclick="submitErrorCorrection()" class="px-8 py-3 rounded-full bg-gradient-to-r from-primary to-[#edc146] text-white font-bold text-sm shadow-md active:scale-95 transition-all">
+                    Next
+                </button>
+            </div>
+        `;
+    }
+
+    function submitErrorCorrection() {
+        const correctionInput = document.getElementById('error-correction-input');
+        const correctedText = correctionInput.value.trim();
+        if (!correctedText) {
+            alert("Please type the corrected sentence!");
+            return;
+        }
+
+        const task = assessment.tasks[activeStepKey];
+        const items = task.items;
+        const currentItem = items[currentTaskSubIndex];
+
+        // Perform validation
+        const matchScore = calculateSimilarity(correctedText.toLowerCase(), currentItem.correction.toLowerCase());
+        currentSubmissionsList.push({
+            sentence: currentItem.sentence,
+            userCorrection: correctedText,
+            score: matchScore
+        });
+
+        if (currentTaskSubIndex < items.length - 1) {
+            currentTaskSubIndex++;
+            renderActiveStep();
+        } else {
+            // Submit entire section
+            const totalScore = Math.round(currentSubmissionsList.reduce((acc, x) => acc + x.score, 0) / items.length);
+            submitTaskResult('errorSpot', totalScore);
+        }
+    }
+
+    // ── STEP 5: LISTENING PASSAGE & COMPREHENSION ────────────────────────────
+    function renderStoryStep(task) {
+        const card = document.getElementById('assessment-card');
+
+        card.innerHTML = `
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined">headphones</span>
+                </div>
+                <div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface font-bold">Step 5: Listening Comprehension</h3>
+                    <p class="font-label-sm text-on-surface-variant text-sm">Listen to the story read aloud, then answer the questions below.</p>
+                </div>
+            </div>
+
+            <div class="bg-[#FDFAF4] rounded-lg p-6 mb-8 border-[1.5px] border-primary-container flex flex-col items-center justify-center gap-4">
+                <button onclick="speakStory('${task.story.replace(/'/g, "\\'")}')" class="w-14 h-14 rounded-full bg-primary text-white flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+                    <span class="material-symbols-outlined text-3xl">play_arrow</span>
+                </button>
+                <p class="font-bold text-xs text-brand-muted">Click to Listen to the Story</p>
+            </div>
+
+            <div class="space-y-8" id="comprehension-questions">
+                <!-- Will render questions -->
+            </div>
+
+            <div class="flex justify-end mt-6">
+                <button onclick="submitStoryComprehension()" class="px-8 py-3 rounded-full bg-gradient-to-r from-primary to-[#edc146] text-white font-bold text-sm shadow-md active:scale-95 transition-all">
+                    Submit Answers
+                </button>
+            </div>
+        `;
+
+        renderStoryQuestions(task.questions);
+    }
+
+    function speakStory(text) {
+        window.speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        window.speechSynthesis.speak(u);
+    }
+
+    function renderStoryQuestions(questions) {
+        const container = document.getElementById('comprehension-questions');
+        container.innerHTML = "";
+        
+        questions.forEach((q, qIdx) => {
+            const qDiv = document.createElement('div');
+            qDiv.className = "border-b border-outline-variant/30 pb-4";
+            qDiv.innerHTML = `
+                <p class="font-bold text-on-surface mb-3">${qIdx + 1}. ${q.question}</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    ${q.options.map(opt => `
+                        <label class="option-label flex items-center gap-3 p-4 bg-surface-container rounded-lg border border-outline-variant hover:bg-primary-container/10 cursor-pointer transition-all">
+                            <input type="radio" name="q_${qIdx}" value="${opt}" class="text-primary focus:ring-primary">
+                            <span class="text-sm font-semibold">${opt}</span>
+                        </label>
+                    `).join('')}
+                </div>
+            `;
+            container.appendChild(qDiv);
+        });
+
+        // Add interactive styling to custom radio selections
+        document.querySelectorAll('.option-label').forEach(lbl => {
+            lbl.addEventListener('click', function() {
+                const siblingLabels = this.parentNode.querySelectorAll('.option-label');
+                siblingLabels.forEach(l => {
+                    l.classList.remove('border-primary', 'bg-primary-container/5');
+                    l.classList.add('border-outline-variant', 'bg-surface-container');
+                });
+                this.classList.add('border-primary', 'bg-primary-container/5');
+                this.classList.remove('border-outline-variant', 'bg-surface-container');
+            });
+        });
+    }
+
+    function submitStoryComprehension() {
+        const task = assessment.tasks[activeStepKey];
+        const questions = task.questions;
+        let scoreCount = 0;
+
+        for (let idx = 0; idx < questions.length; idx++) {
+            const selected = document.querySelector(`input[name="q_${idx}"]:checked`);
+            if (!selected) {
+                alert("Please answer all comprehension questions!");
+                return;
+            }
+            if (selected.value.trim().toLowerCase() === questions[idx].answer.trim().toLowerCase()) {
+                scoreCount++;
+            }
+        }
+
+        const percentageScore = Math.round((scoreCount / questions.length) * 100);
+        submitTaskResult('story', percentageScore);
+    }
+
+    // ── STEP 6: SPEAKING PRACTICE ────────────────────────────────────────────
+    function renderSpeechStep(task) {
+        const card = document.getElementById('assessment-card');
+
+        card.innerHTML = `
+            <div class="flex items-center gap-3 mb-6">
+                <div class="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary">
+                    <span class="material-symbols-outlined">mic</span>
+                </div>
+                <div>
+                    <h3 class="font-headline-md text-headline-md text-on-surface font-bold">Step 6: Final Speech</h3>
+                    <p class="font-label-sm text-on-surface-variant text-sm">Prepare for 1 minute, then speak for 2 minutes on the topic below.</p>
+                </div>
+            </div>
+
+            <div class="bg-[#FDFAF4] p-6 rounded-lg mb-6 border-[1.5px] border-primary-container">
+                <h4 class="font-bold text-primary mb-2">Speech Topic:</h4>
+                <p class="text-lg text-on-surface italic">"${task.topic}"</p>
+            </div>
+
+            <div class="flex flex-col items-center gap-6 py-6">
+                <div id="speaking-timer-container" class="flex flex-col items-center">
+                    <span id="speaking-timer-title" class="font-bold text-brand-muted text-sm uppercase">Preparation Time:</span>
+                    <span id="speech-countdown" class="text-4xl font-bold font-display-lg text-brand-amber mt-1">01:00</span>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button id="speaking-btn" onclick="startSpeechTimer()" class="px-8 py-3 rounded-full bg-gradient-to-r from-primary to-[#edc146] text-white font-bold text-sm shadow-md active:scale-95 transition-all">
+                        Start Speaking Now
+                    </button>
+                </div>
+
+                <p id="transcription-text" class="text-sm italic text-brand-muted max-w-lg text-center mt-2"></p>
+            </div>
+        `;
+    }
+
+    let speakingRemaining = 60;
+    let mode = 'prep'; // 'prep' or 'speak'
+
+    function startSpeechTimer() {
+        const button = document.getElementById('speaking-btn');
+        const title = document.getElementById('speaking-timer-title');
+        const countdown = document.getElementById('speech-countdown');
+
+        if (mode === 'prep') {
+            mode = 'speak';
+            speakingRemaining = 120; // 2 minutes
+            title.textContent = "Speaking Time Left:";
+            countdown.textContent = "02:00";
+            button.textContent = "Stop & Submit";
+            button.className = "px-8 py-3 rounded-full bg-red-500 text-white font-bold text-sm shadow-md active:scale-95 transition-all";
+
+            // Start mic continuous capturing
+            recordedTranscript = "";
+            startMicContinuous();
+            
+            clearInterval(speechTimerInterval);
+            speechTimerInterval = setInterval(() => {
+                speakingRemaining--;
+                if (speakingRemaining <= 0) {
+                    clearInterval(speechTimerInterval);
+                    finishSpeechSubmit();
+                } else {
+                    const mins = String(Math.floor(speakingRemaining / 60)).padStart(2, '0');
+                    const secs = String(speakingRemaining % 60).padStart(2, '0');
+                    countdown.textContent = `${mins}:${secs}`;
+                }
+            }, 1000);
+        } else {
+            clearInterval(speechTimerInterval);
+            finishSpeechSubmit();
+        }
+    }
+
+    function startMicContinuous() {
+        try {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+
+            recognition.onresult = (event) => {
+                let current = "";
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        current += event.results[i][0].transcript + " ";
+                    }
+                }
+                recordedTranscript += current;
+                document.getElementById('transcription-text').textContent = recordedTranscript;
+            };
+
+            recognition.onerror = (e) => {
+                console.error("Speech Recognition continuous error: ", e);
+            };
+
+            recognition.start();
+        } catch (err) {
+            console.error("Browser speech recognition not supported: ", err);
+        }
+    }
+
+    async function finishSpeechSubmit() {
+        stopSpeechAndMic();
+        const text = recordedTranscript.trim();
+        if (!text) {
+            alert("No speech transcript recorded. Please speak into the mic!");
+            // Reset to step start
+            renderActiveStep();
+            return;
+        }
+
+        const countdown = document.getElementById('speech-countdown');
+        countdown.textContent = "Evaluating...";
+        countdown.className = "text-xl font-bold text-brand-dark animate-pulse";
+
+        await submitTaskResult('speech', text);
+    }
+
+    // ── SUBMIT GENERAL RESULT ────────────────────────────────────────────────
+    async function submitTaskResult(taskKey, submission) {
+        try {
+            const res = await fetch('/api/weekly/submit-task', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify({
+                    assessmentId: assessment.assessmentId,
+                    task: taskKey,
+                    submission: submission
+                })
+            });
+            if (res.ok) {
+                // Reload current assessment state
+                loadAssessment();
+            } else {
+                alert("Submission failed. Please try again.");
+                renderActiveStep();
+            }
+        } catch (err) {
+            console.error(err);
+            alert("Connection error during submission.");
+            renderActiveStep();
+        }
+    }
+
+    // ── STEP 7: RENDER FINAL REPORT ──────────────────────────────────────────
+    function renderFinalReport() {
+        const card = document.getElementById('assessment-card');
+        const stepper = document.getElementById('stepper-container');
+        
+        // Hide stepper
+        stepper.parentNode.style.display = "none";
+
+        card.innerHTML = `
+            <div class="flex flex-col items-center text-center p-8">
+                <span class="w-16 h-16 rounded-full bg-brand-gold text-brand-dark flex items-center justify-center shadow-lg text-4xl mb-4">🏆</span>
+                <h2 class="text-3xl font-display-lg text-primary font-bold mb-2">Weekly Assessment Complete!</h2>
+                <p class="text-brand-muted text-sm max-w-md leading-relaxed">Congratulations! You have completed all six assessment sections. Your weekly report is ready.</p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
+                <div class="bg-surface p-4 rounded-lg border border-outline-variant/30 text-center">
+                    <span class="text-xs uppercase text-brand-muted font-bold block mb-1">Overall Score</span>
+                    <span class="text-3xl font-bold text-brand-dark font-display-lg">${assessment.overallScore}%</span>
+                </div>
+                <div class="bg-surface p-4 rounded-lg border border-outline-variant/30 text-center">
+                    <span class="text-xs uppercase text-brand-muted font-bold block mb-1">Reading Match</span>
+                    <span class="text-3xl font-bold text-primary font-display-lg">${assessment.tasks.reading.score}%</span>
+                </div>
+                <div class="bg-surface p-4 rounded-lg border border-outline-variant/30 text-center">
+                    <span class="text-xs uppercase text-brand-muted font-bold block mb-1">Listen & Repeat</span>
+                    <span class="text-3xl font-bold text-primary font-display-lg">${assessment.tasks.listening.score}%</span>
+                </div>
+                <div class="bg-surface p-4 rounded-lg border border-outline-variant/30 text-center">
+                    <span class="text-xs uppercase text-brand-muted font-bold block mb-1">Essay Writing</span>
+                    <span class="text-3xl font-bold text-[#E8A020] font-display-lg">${assessment.tasks.essay.score}%</span>
+                </div>
+                <div class="bg-surface p-4 rounded-lg border border-outline-variant/30 text-center">
+                    <span class="text-xs uppercase text-brand-muted font-bold block mb-1">Error Spotting</span>
+                    <span class="text-3xl font-bold text-[#E8A020] font-display-lg">${assessment.tasks.errorSpot.score}%</span>
+                </div>
+                <div class="bg-surface p-4 rounded-lg border border-outline-variant/30 text-center">
+                    <span class="text-xs uppercase text-brand-muted font-bold block mb-1">Speech Fluency</span>
+                    <span class="text-3xl font-bold text-brand-dark font-display-lg">${assessment.tasks.speech.score}%</span>
+                </div>
+            </div>
+
+            <div class="bg-[#FDFAF4] p-6 rounded-lg border-[1.5px] border-primary-container mb-6">
+                <h4 class="font-bold text-primary mb-3 flex items-center gap-2">
+                    <span class="material-symbols-outlined">psychology</span> AI Holistic Feedback Report:
+                </h4>
+                <p class="text-sm leading-relaxed text-on-surface italic">"${assessment.aiFeedback}"</p>
+            </div>
+
+            <div class="flex justify-center">
+                <button onclick="window.location.href='dashboard.html'" class="px-8 py-3 rounded-full bg-primary text-white font-bold text-sm shadow-md active:scale-95 transition-all">
+                    Return to Dashboard
+                </button>
+            </div>
+        `;
+    }
+
+    // ── SPEECH UTILS ──────────────────────────────────────────────────────────
+    function calculateSimilarity(s1, s2) {
+        const w1 = s1.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(' ');
+        const w2 = s2.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(' ');
+        const matches = w1.filter(word => w2.includes(word)).length;
+        return Math.round((matches / Math.max(1, w2.length)) * 100);
+    }
+
+    function startMic(onFinalResult) {
+        try {
+            isRecording = true;
+            document.getElementById('mic-btn').className = "w-16 h-16 rounded-full bg-red-500 text-white flex items-center justify-center shadow-lg animate-pulse";
+            document.getElementById('mic-status-text').textContent = "Listening... Speak now";
+            document.getElementById('mic-icon').textContent = "pause";
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                onFinalResult(transcript);
+                stopMic();
+            };
+
+            recognition.onerror = (e) => {
+                console.error("Speech Recognition error: ", e);
+                stopMic();
+            };
+
+            recognition.onend = () => {
+                stopMic();
+            };
+
+            recognition.start();
+        } catch (err) {
+            console.error("Mic start failed: ", err);
+            isRecording = false;
+        }
+    }
+
+    function stopMic() {
+        isRecording = false;
+        const btn = document.getElementById('mic-btn');
+        if (btn) {
+            btn.className = "w-16 h-16 rounded-full bg-gradient-to-r from-primary to-[#edc146] text-white flex items-center justify-center shadow-lg active:scale-95 transition-transform";
+            document.getElementById('mic-status-text').textContent = "Tap to Record";
+            document.getElementById('mic-icon').textContent = "mic";
+        }
+        if (recognition) {
+            try { recognition.stop(); } catch(ignored) {}
+            recognition = null;
+        }
+    }
+
+    function stopSpeechAndMic() {
+        window.speechSynthesis.cancel();
+        stopMic();
+    }
+
+    // Load on start
+    loadAssessment();
+</script>
+</body></html>

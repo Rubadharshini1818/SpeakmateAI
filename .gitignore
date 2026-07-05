@@ -1,0 +1,27 @@
+# Compiled class files
+target/
+*.class
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+
+# IDE files
+.idea/
+*.iml
+*.iws
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment / secrets — never commit these
+.env
+application-local.properties
+
+# Node modules (if any frontend tooling)
+node_modules/

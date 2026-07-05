@@ -1,0 +1,346 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AI Teacher | Enlightened Learning</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#4e4635",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#5f4100",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#ebe1d2",
+                    "on-secondary-fixed": "#271900",
+                    "inverse-primary": "#edc146",
+                    "tertiary-container": "#d3cdbb",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#714e00",
+                    "surface-dim": "#e2d9ca",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#fdbf4d",
+                    "outline-variant": "#d1c5af",
+                    "on-primary-container": "#6d5400",
+                    "surface-container-high": "#f0e7d7",
+                    "on-surface": "#1f1b12",
+                    "on-primary-fixed": "#241a00",
+                    "inverse-surface": "#353026",
+                    "tertiary-fixed-dim": "#ccc6b4",
+                    "primary-fixed-dim": "#edc146",
+                    "on-tertiary-container": "#5b5749",
+                    "background": "#fff8f1",
+                    "surface-container": "#f6eddd",
+                    "primary-fixed": "#ffdf93",
+                    "on-primary-fixed-variant": "#594400",
+                    "surface-variant": "#ebe1d2",
+                    "outline": "#7f7663",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f9f0e0",
+                    "surface-tint": "#765b00",
+                    "tertiary": "#625e50",
+                    "primary-container": "#f5c84c",
+                    "primary": "#765b00",
+                    "error-container": "#ffdad6",
+                    "on-background": "#1f1b12",
+                    "tertiary-fixed": "#e9e2d0",
+                    "secondary-fixed": "#ffdeab",
+                    "surface-bright": "#fff8f1",
+                    "on-tertiary-fixed": "#1e1c10",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#fcf2e3",
+                    "surface": "#fff8f1",
+                    "on-tertiary-fixed-variant": "#4a4739",
+                    "error": "#ba1a1a",
+                    "secondary-fixed-dim": "#fabc4a",
+                    "secondary": "#7e5700"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "container-max": "1200px",
+                    "stack-sm": "12px",
+                    "stack-lg": "48px",
+                    "stack-md": "24px",
+                    "unit": "8px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "body-md": ["Quicksand"],
+                    "label-sm": ["Quicksand"],
+                    "display-lg": ["Quicksand"],
+                    "body-lg": ["Quicksand"],
+                    "display-lg-mobile": ["Quicksand"],
+                    "headline-md": ["Quicksand"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "label-sm": ["13px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #FDF6E3;
+            color: #1f1b12;
+            overflow: hidden;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chat-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-container::-webkit-scrollbar-thumb {
+            background-color: #ebe1d2;
+            border-radius: 10px;
+        }
+        .soft-shadow {
+            box-shadow: 0 12px 32px rgba(67, 62, 51, 0.05);
+        }
+        .active-glow {
+            box-shadow: 0 0 15px rgba(245, 200, 76, 0.3);
+        }
+        .bubble-pointer-left {
+            position: relative;
+        }
+        .bubble-pointer-left::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 8px solid white;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Side Navigation Shell -->
+<aside class="fixed left-0 top-0 h-full w-[220px] flex flex-col py-stack-md z-40 bg-surface-container-low dark:bg-surface-dim shadow-sm">
+<div class="px-6 mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">Enlightened Learning</h1>
+
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="grammer.html">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="">Grammar</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="vocablurry.html">
+<span class="material-symbols-outlined">translate</span>
+<span class="">Vocabulary</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="pronounciation.html">
+<span class="material-symbols-outlined">record_voice_over</span>
+<span class="">Pronunciation</span>
+</a>
+</nav>
+<div class="px-4 mt-auto space-y-4">
+</div>
+</aside>
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 right-0 left-[220px] h-16 flex justify-between items-center px-margin-desktop z-30 bg-surface/80 backdrop-blur-md">
+<div class="flex items-center gap-4">
+<div class="font-headline-md text-headline-md font-bold text-primary">Learning Hub</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm w-64 focus:ring-2 focus:ring-primary" placeholder="Search lessons..." type="text">
+<span class="material-symbols-outlined absolute left-3 top-2 text-on-surface-variant">search</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">notifications</span>
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center cursor-pointer overflow-hidden" onclick="window.location.href='profile.html'">
+<img class="w-full h-full object-cover" data-alt="A focused close-up of a student's smiling face in a warmly lit, modern library environment. The aesthetic is clean and optimistic, with soft gold and cream tones that match the Enlightened Learning brand identity. The lighting is gentle and domestic, creating a feeling of approachable professionalism and successful educational growth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfqNicxWhbI1jOdfBecjJHYKUt64aBC0EnchlFzDoWBRfXrWsr4vFO1M7WsE3doycscTpVtr7gmHf_MnwyOsSxuCbfvjlmZDe68rnHGAcv4Eg7h1WGnvoG-uvrt_khX7rRxd-dVKiXANwX7gH3uqEY6twkN3q9vWO8Lk3GK-i5ER7p1lqzZyGXZzY2aqadvrGs4GJ1RzW3nhNTk61aoj1dWEc5u0JefAGx-KYppAQGyxkYZ_cTbtSR">
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-[220px] pt-16 h-screen flex flex-col bg-background">
+<!-- Chat Area -->
+<div class="flex-1 overflow-y-auto px-margin-desktop py-stack-md flex flex-col gap-8 scroll-smooth" id="chat-feed">
+<!-- Intro / Greeting -->
+<div class="max-w-[800px] mx-auto w-full flex gap-4">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center shrink-0 shadow-sm border-2 border-white">
+<span class="material-symbols-outlined text-on-primary-container text-2xl">school</span>
+</div>
+<div class="flex flex-col gap-4">
+<div class="bg-white p-6 rounded-lg rounded-tl-none soft-shadow border border-surface-container-highest/50">
+<p class="font-body-lg text-body-lg text-on-surface">
+                            Hi! I'm your AI English Teacher. Ask me any grammar, vocabulary, or pronunciation doubt! 📚
+                        </p>
+</div>
+<!-- Quick Actions -->
+<div class="flex flex-wrap gap-2">
+<button onclick="sendStarter('Explain Present Perfect')" class="px-4 py-2 bg-surface-container-low border border-primary/20 rounded-full text-sm text-primary font-semibold hover:bg-primary-fixed transition-colors active:scale-95">
+                            Explain Present Perfect
+                        </button>
+<button onclick="sendStarter('Difference: Since vs For')" class="px-4 py-2 bg-surface-container-low border border-primary/20 rounded-full text-sm text-primary font-semibold hover:bg-primary-fixed transition-colors active:scale-95">
+                            Difference: Since vs For
+                        </button>
+<button onclick="sendStarter('Explain Common Idioms')" class="px-4 py-2 bg-surface-container-low border border-primary/20 rounded-full text-sm text-primary font-semibold hover:bg-primary-fixed transition-colors active:scale-95">
+                            Common Idioms
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Chat Input Shell (Fixed at bottom) -->
+<div class="bg-white/80 backdrop-blur-xl border-t border-surface-container-highest/50 px-margin-desktop py-6">
+<div class="max-w-[900px] mx-auto flex flex-col gap-4">
+<!-- Input Field -->
+<div class="relative group">
+<input id="chat-input" class="w-full pl-6 pr-32 py-4 bg-surface-container-low border-2 border-transparent rounded-full focus:border-primary-container focus:ring-0 text-on-surface placeholder:text-on-surface-variant/50 transition-all soft-shadow" placeholder="Type your doubt here..." type="text" onkeydown="if(event.key === 'Enter') handleSend()">
+<div class="absolute right-2 top-2 bottom-2 flex gap-2">
+<button onclick="handleSend()" class="px-6 h-10 rounded-full bg-primary text-on-primary font-bold flex items-center gap-2 hover:brightness-110 active:scale-95 transition-all">
+                            Send
+                            <span class="material-symbols-outlined text-sm">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        const token = localStorage.getItem('speakmate_token');
+        if (!token) window.location.href = 'login.html';
+
+        // Simple input focus behavior
+        const input = document.getElementById('chat-input');
+        const inputWrapper = input.closest('.relative');
+        
+        input.addEventListener('focus', () => {
+            inputWrapper.classList.add('active-glow');
+        });
+        
+        input.addEventListener('blur', () => {
+            inputWrapper.classList.remove('active-glow');
+        });
+
+        const chatFeed = document.getElementById('chat-feed');
+
+        function appendUserMessage(text) {
+            const div = document.createElement('div');
+            div.className = "max-w-[800px] mx-auto w-full flex justify-end gap-4";
+            div.innerHTML = `
+                <div class="bg-primary text-on-primary p-6 rounded-lg rounded-tr-none soft-shadow max-w-[80%]">
+                    <p class="font-body-md">${escapeHtml(text)}</p>
+                </div>
+            `;
+            chatFeed.appendChild(div);
+            chatFeed.scrollTop = chatFeed.scrollHeight;
+        }
+
+        function appendTeacherMessage(text) {
+            const div = document.createElement('div');
+            div.className = "max-w-[800px] mx-auto w-full flex gap-4";
+            div.innerHTML = `
+                <div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center shrink-0 shadow-sm border-2 border-white">
+                    <span class="material-symbols-outlined text-on-primary-container text-2xl">school</span>
+                </div>
+                <div class="flex flex-col gap-4 w-full">
+                    <div class="bg-white p-6 rounded-lg rounded-tl-none soft-shadow border border-surface-container-highest/50">
+                        <p class="font-body-md text-on-surface">${escapeHtml(text)}</p>
+                    </div>
+                </div>
+            `;
+            chatFeed.appendChild(div);
+            chatFeed.scrollTop = chatFeed.scrollHeight;
+        }
+
+        let typingIndicator = null;
+        function showTyping() {
+            if (typingIndicator) return;
+            const div = document.createElement('div');
+            div.className = "max-w-[800px] mx-auto w-full flex gap-4";
+            div.innerHTML = `
+                <div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center shrink-0 shadow-sm border-2 border-white">
+                    <span class="material-symbols-outlined text-on-primary-container text-2xl">school</span>
+                </div>
+                <div class="flex flex-col gap-4 w-full">
+                    <div class="bg-white p-4 rounded-lg rounded-tl-none soft-shadow border border-surface-container-highest/50 w-24 flex items-center justify-around">
+                        <span class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 0.1s"></span>
+                        <span class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
+                        <span class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 0.3s"></span>
+                    </div>
+                </div>
+            `;
+            chatFeed.appendChild(div);
+            chatFeed.scrollTop = chatFeed.scrollHeight;
+            typingIndicator = div;
+        }
+
+        function removeTyping() {
+            if (typingIndicator) {
+                typingIndicator.remove();
+                typingIndicator = null;
+            }
+        }
+
+        async function handleSend() {
+            const query = input.value.trim();
+            if (!query) return;
+            input.value = "";
+
+            appendUserMessage(query);
+            showTyping();
+
+            try {
+                const response = await fetch('/api/chat/ask-teacher', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                    body: JSON.stringify({ question: query })
+                });
+                
+                removeTyping();
+
+                if (response.ok) {
+                    const data = await response.json();
+                    appendTeacherMessage(data.answer);
+                } else {
+                    appendTeacherMessage("Sorry, I could not process your query at this moment. Please try again.");
+                }
+            } catch (err) {
+                removeTyping();
+                console.error(err);
+                appendTeacherMessage("An error occurred connecting to the teacher service.");
+            }
+        }
+
+        function sendStarter(text) {
+            input.value = text;
+            handleSend();
+        }
+
+        function escapeHtml(string) {
+            return String(string).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+    </script>
+</body></html>
+
+
+</body></html>

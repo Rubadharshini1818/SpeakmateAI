@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Active MCQ Test | SpeakMate AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;family=Poppins:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-secondary-fixed-variant": "#5f4100",
+                        "on-surface-variant": "#4e4635",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#edc146",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#ebe1d2",
+                        "on-secondary-fixed": "#271900",
+                        "surface-container-high": "#f0e7d7",
+                        "on-primary-container": "#6d5400",
+                        "tertiary-container": "#d3cdbb",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#e2d9ca",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#fdbf4d",
+                        "outline-variant": "#d1c5af",
+                        "on-secondary-container": "#714e00",
+                        "primary-fixed-dim": "#edc146",
+                        "on-tertiary-container": "#5b5749",
+                        "background": "#fff8f1",
+                        "on-surface": "#1f1b12",
+                        "on-primary-fixed": "#241a00",
+                        "inverse-surface": "#353026",
+                        "tertiary-fixed-dim": "#ccc6b4",
+                        "outline": "#7f7663",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f9f0e0",
+                        "surface-container": "#f6eddd",
+                        "primary-fixed": "#ffdf93",
+                        "on-primary-fixed-variant": "#594400",
+                        "surface-variant": "#ebe1d2",
+                        "error-container": "#ffdad6",
+                        "on-background": "#1f1b12",
+                        "tertiary": "#625e50",
+                        "primary-container": "#f5c84c",
+                        "surface-tint": "#765b00",
+                        "primary": "#765b00",
+                        "on-tertiary-fixed-variant": "#4a4739",
+                        "surface-container-low": "#fcf2e3",
+                        "surface": "#fff8f1",
+                        "tertiary-fixed": "#e9e2d0",
+                        "secondary-fixed": "#ffdeab",
+                        "surface-bright": "#fff8f1",
+                        "on-tertiary-fixed": "#1e1c10",
+                        "on-error-container": "#93000a",
+                        "secondary": "#7e5700",
+                        "error": "#ba1a1a",
+                        "secondary-fixed-dim": "#fabc4a"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "container-max": "1200px",
+                        "stack-sm": "12px",
+                        "stack-lg": "48px",
+                        "stack-md": "24px",
+                        "unit": "8px",
+                        "margin-desktop": "40px"
+                    },
+                    fontFamily: {
+                        "label-sm": ["Quicksand"],
+                        "display-lg": ["Quicksand"],
+                        "body-lg": ["Poppins"],
+                        "body-md": ["Poppins"],
+                        "headline-md": ["Quicksand"],
+                        "display-lg-mobile": ["Quicksand"]
+                    },
+                    fontSize: {
+                        "label-sm": ["13px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #FDF6E3;
+            color: #2D2A26;
+            font-family: 'Poppins', sans-serif;
+        }
+        .font-headline { font-family: 'Quicksand', sans-serif; }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-step {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .question-step.hidden-state {
+            opacity: 0;
+            transform: translateY(10px);
+            display: none !important;
+        }
+
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        .flame-animation {
+            animation: flicker 1.5s infinite alternate;
+        }
+        @keyframes flicker {
+            0% { transform: scale(1); filter: drop-shadow(0 0 2px #f5c84c); }
+            100% { transform: scale(1.1); filter: drop-shadow(0 0 8px #765b00); }
+        }
+
+        .hidden-state {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-24 md:pb-8">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-background/80 backdrop-blur-md shadow-[0_12px_32px_rgba(67,62,51,0.05)] px-margin-mobile md:px-margin-desktop py-4 mb-stack-md">
+<div class="max-w-container-max mx-auto flex items-center justify-between">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary flex items-center gap-2">
+<span>📝</span> Daily MCQ Challenge
+                </h1>
+<nav class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">
+<span>Dashboard</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-primary">Daily MCQ</span>
+</nav>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:block text-right">
+<p class="font-label-sm text-label-sm text-primary">Master of Grammar</p>
+<p class="text-[12px] text-on-surface-variant italic">"Keep the streak alive!"</p>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary-container p-0.5">
+<img class="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl0tbXRC6reKJigOj9XHvw0OyAVizoIbRCqZRY-tPv_FC-RAZamZ-rlNdCxWFZp3T6e-weWKoyaBImU0hyDIRmFV8biGYZk9UBmQlscUdkmggP9B4MyacPx1lPTPlx7nebg7AW6J0hgHl9YM78xA4gxOxpJtQYQ8YGCh-iWHsJwFJSsybF79n_QhmZoZVJliyjKW85RB7nbVZIsiqOTFIZEgCi5Bu5ztKAOJQDnZcXx5iWgFWR_vra"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<!-- Active Test Area -->
+<div class="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-gutter fade-in" id="test-area">
+<!-- Question Panel (70%) -->
+<div class="space-y-stack-md">
+<div class="bg-white rounded-lg p-stack-md shadow-[0_12px_32px_rgba(67,62,51,0.05)]">
+<div class="flex justify-between items-center mb-6">
+<span class="px-4 py-1.5 bg-primary-container text-on-primary-container text-label-sm font-bold rounded-full" id="question-indicator">Question 1 of 10</span>
+<div class="flex items-center gap-2 text-primary font-bold">
+<span class="material-symbols-outlined">timer</span>
+<span>14:32</span>
+</div>
+</div>
+<!-- Step 1 -->
+<div class="question-step" data-step="1">
+<div class="mb-8">
+<h2 class="text-xl font-semibold text-on-surface leading-relaxed mb-6">1. She ___ a doctor for ten years.</h2>
+<div class="space-y-3">
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q1" type="radio"/>
+<span class="font-medium text-on-surface group-hover:text-primary">is</span>
+</label>
+<label class="flex items-center gap-4 p-4 rounded-lg border-2 border-primary bg-primary-container/10 transition-all cursor-pointer group">
+<input checked="" class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q1" type="radio"/>
+<span class="font-medium text-primary">has been</span>
+</label>
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q1" type="radio"/>
+<span class="font-medium text-on-surface group-hover:text-primary">was</span>
+</label>
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q1" type="radio"/>
+<span class="font-medium text-on-surface group-hover:text-primary">had being</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="question-step hidden-state" data-step="2">
+<div class="mb-8">
+<h2 class="text-xl font-semibold text-on-surface leading-relaxed mb-6">2. Which sentence is correct?</h2>
+<div class="space-y-3">
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q2" type="radio"/>
+<span class="font-medium text-on-surface">I have seen him yesterday.</span>
+</label>
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q2" type="radio"/>
+<span class="font-medium text-on-surface">I saw him yesterday.</span>
+</label>
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q2" type="radio"/>
+<span class="font-medium text-on-surface">I had saw him yesterday.</span>
+</label>
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q2" type="radio"/>
+<span class="font-medium text-on-surface">I am seeing him yesterday.</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="question-step hidden-state" data-step="3">
+<div class="mb-8">
+<h2 class="text-xl font-semibold text-on-surface leading-relaxed mb-6">3. The book is ___ the table.</h2>
+<div class="space-y-3">
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q3" type="radio"/>
+<span class="font-medium text-on-surface">in</span>
+</label>
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q3" type="radio"/>
+<span class="font-medium text-on-surface">on</span>
+</label>
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q3" type="radio"/>
+<span class="font-medium text-on-surface">at</span>
+</label>
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q3" type="radio"/>
+<span class="font-medium text-on-surface">between</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="question-step hidden-state" data-step="4">
+<div class="mb-8">
+<h2 class="text-xl font-semibold text-on-surface leading-relaxed mb-6">4. I am looking forward to ___ you.</h2>
+<div class="space-y-3">
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q4" type="radio"/>
+<span class="font-medium text-on-surface">meet</span>
+</label>
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q4" type="radio"/>
+<span class="font-medium text-on-surface">to meet</span>
+</label>
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q4" type="radio"/>
+<span class="font-medium text-on-surface">meeting</span>
+</label>
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q4" type="radio"/>
+<span class="font-medium text-on-surface">met</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Placeholders for 5-10 for simulation -->
+<div class="question-step hidden-state" data-step="5"><div class="mb-8 text-on-surface-variant italic">Question 5 content...</div></div>
+<div class="question-step hidden-state" data-step="6"><div class="mb-8 text-on-surface-variant italic">Question 6 content...</div></div>
+<div class="question-step hidden-state" data-step="7"><div class="mb-8 text-on-surface-variant italic">Question 7 content...</div></div>
+<div class="question-step hidden-state" data-step="8"><div class="mb-8 text-on-surface-variant italic">Question 8 content...</div></div>
+<div class="question-step hidden-state" data-step="9"><div class="mb-8 text-on-surface-variant italic">Question 9 content...</div></div>
+<div class="question-step hidden-state" data-step="10">
+<div class="mb-8">
+<h2 class="text-xl font-semibold text-on-surface leading-relaxed mb-6">10. Select the correct passive form: "The chef cooked the meal."</h2>
+<div class="space-y-3">
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q10" type="radio"/>
+<span class="font-medium text-on-surface">The meal is cooked by the chef.</span>
+</label>
+<label class="flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group">
+<input class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" name="q10" type="radio"/>
+<span class="font-medium text-on-surface">The meal was cooked by the chef.</span>
+</label>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-center mt-stack-lg border-t border-outline-variant/30 pt-6">
+<button class="px-6 py-2 rounded-full border border-outline-variant font-bold text-on-surface-variant hover:bg-surface-variant transition-colors disabled:opacity-30 disabled:cursor-not-allowed" id="prev-btn" onclick="navigateQuestion(-1)">Previous</button>
+<button class="px-8 py-2 rounded-full bg-primary-container text-on-primary-container font-bold hover:bg-secondary-container transition-colors shadow-sm" id="next-btn" onclick="navigateQuestion(1)">Next Question</button>
+</div>
+</div>
+</div>
+<!-- Palette Area (30%) -->
+<aside class="space-y-stack-md">
+<div class="bg-white rounded-lg p-6 shadow-[0_12px_32px_rgba(67,62,51,0.05)]">
+<h3 class="font-headline font-bold text-on-surface mb-4">Question Palette</h3>
+<div class="grid grid-cols-5 gap-3 mb-6" id="palette-container">
+<button class="palette-btn w-10 h-10 rounded-full flex items-center justify-center font-bold bg-primary text-on-primary shadow-lg ring-2 ring-primary ring-offset-2" id="palette-1" onclick="goToQuestion(1)">1</button>
+<button class="palette-btn w-10 h-10 rounded-full flex items-center justify-center font-bold bg-surface-container-highest text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container transition-colors" id="palette-2" onclick="goToQuestion(2)">2</button>
+<button class="palette-btn w-10 h-10 rounded-full flex items-center justify-center font-bold bg-surface-container-highest text-on-surface-variant" id="palette-3" onclick="goToQuestion(3)">3</button>
+<button class="palette-btn w-10 h-10 rounded-full flex items-center justify-center font-bold bg-surface-container-highest text-on-surface-variant" id="palette-4" onclick="goToQuestion(4)">4</button>
+<button class="palette-btn w-10 h-10 rounded-full flex items-center justify-center font-bold bg-surface-container-highest text-on-surface-variant" id="palette-5" onclick="goToQuestion(5)">5</button>
+<button class="palette-btn w-10 h-10 rounded-full flex items-center justify-center font-bold bg-surface-container-highest text-on-surface-variant" id="palette-6" onclick="goToQuestion(6)">6</button>
+<button class="palette-btn w-10 h-10 rounded-full flex items-center justify-center font-bold bg-surface-container-highest text-on-surface-variant" id="palette-7" onclick="goToQuestion(7)">7</button>
+<button class="palette-btn w-10 h-10 rounded-full flex items-center justify-center font-bold bg-surface-container-highest text-on-surface-variant" id="palette-8" onclick="goToQuestion(8)">8</button>
+<button class="palette-btn w-10 h-10 rounded-full flex items-center justify-center font-bold bg-surface-container-highest text-on-surface-variant" id="palette-9" onclick="goToQuestion(9)">9</button>
+<button class="palette-btn w-10 h-10 rounded-full flex items-center justify-center font-bold bg-surface-container-highest text-on-surface-variant" id="palette-10" onclick="goToQuestion(10)">10</button>
+</div>
+<div class="space-y-2 text-xs font-medium text-on-surface-variant mb-6">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span>Active / Answered</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-surface-container-highest"></span>
+<span>Not Answered</span>
+</div>
+</div>
+<button class="w-full py-4 rounded-xl bg-primary text-on-primary font-bold hover:bg-primary/90 transition-all shadow-md active:scale-95" onclick="finishTest()">
+                    Finish Test
+                </button>
+</div>
+<div class="bg-primary-container/20 rounded-lg p-5 border border-primary-container">
+<h4 class="font-bold text-primary text-sm mb-2">Test Instructions</h4>
+<ul class="text-[12px] text-on-surface-variant space-y-2 list-disc pl-4">
+<li>Each question has only one correct answer.</li>
+<li>You can skip and return to questions later.</li>
+<li>Grammar points focus on B2 Intermediate level.</li>
+</ul>
+</div>
+</aside>
+</div>
+<!-- Results View (Hidden by default) -->
+<div class="hidden-state space-y-stack-md fade-in" id="results-area">
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="md:col-span-2 bg-white rounded-lg p-stack-md shadow-[0_12px_32px_rgba(67,62,51,0.05)] flex items-center justify-between">
+<div class="flex items-center gap-6">
+<div class="relative w-24 h-24">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-surface-container-highest" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary progress-ring__circle" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="50.24" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline text-headline-md font-bold text-primary leading-tight">8/10</span>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant">Score</span>
+</div>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg mb-1">Performance Summary</h3>
+<p class="text-on-surface-variant text-sm mb-3">Great job! You've mastered Articles &amp; Prepositions.</p>
+<div class="flex gap-3">
+<span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bolt</span> 80% Accuracy
+                            </span>
+<span class="px-3 py-1 bg-primary-container/20 text-primary rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] flame-animation">local_fire_department</span> 10 Days Streak
+                            </span>
+</div>
+</div>
+</div>
+<div class="hidden lg:block text-center pr-4">
+<p class="text-3xl font-bold text-primary">+20</p>
+<p class="text-xs text-on-surface-variant uppercase font-bold tracking-widest">Points Gained</p>
+</div>
+</div>
+<div class="bg-primary-container rounded-lg p-stack-md shadow-[0_12px_32px_rgba(67,62,51,0.05)] relative overflow-hidden flex flex-col justify-center">
+<div class="relative z-10 text-center">
+<h3 class="font-headline font-bold text-on-primary-container text-lg">Weekly Rank</h3>
+<p class="text-on-primary-container/80 text-sm mb-4">Ranked #3 (+1 UP)</p>
+<button class="px-6 py-2 bg-white text-primary rounded-full font-bold text-sm shadow-sm hover:bg-surface-bright transition-colors" onclick="window.location.href='mcq.html?new=true'">
+                        Try Another Test
+                    </button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<script>
+// ── Auth ──────────────────────────────────────────────────────────────────────
+const token = localStorage.getItem('speakmate_token');
+if (!token) window.location.href = 'login.html';
+
+// Show username in header
+try {
+    const pl = JSON.parse(atob(token.split('.')[1]));
+    const name = pl.username || pl.sub || '';
+    if (name) document.querySelector('header .font-label-sm.text-primary').textContent = name;
+} catch(e) {}
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let questions    = [];   // array of question objects from API
+let sessionId    = null;
+let currentStep  = 1;
+let answers      = {};   // { questionId: selectedOption }
+let submitted    = false;
+
+// ── Load today's MCQ from backend ────────────────────────────────────────────
+async function loadTodayMcq() {
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const forceNew = urlParams.get('new') === 'true';
+        if (forceNew) {
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+        const fetchUrl = forceNew ? '/api/mcq/today?forceNew=true' : '/api/mcq/today';
+
+        const res = await fetch(fetchUrl, {
+            headers: { 'Authorization': 'Bearer ' + token }
+        });
+        if (res.status === 401 || res.status === 403) { localStorage.removeItem('speakmate_token'); window.location.href = 'login.html'; return; }
+        const data = await res.json();
+
+        sessionId = data.sessionId;
+        questions = data.questions || [];
+
+        // If already submitted today, jump straight to results
+        if (data.status === 'SUBMITTED' && data.score >= 0) {
+            showAlreadySubmitted(data);
+            return;
+        }
+
+        renderQuestions(questions);
+        goToQuestion(1);
+    } catch(e) {
+        console.error('Failed to load MCQ:', e);
+        document.querySelector('.space-y-stack-md').insertAdjacentHTML('afterbegin',
+            '<p class="text-error text-center py-8">Could not load today\'s questions. Please refresh.</p>');
+    }
+}
+
+// ── Render questions into the existing question-step DOM structure ────────────
+function renderQuestions(qs) {
+    const container = document.querySelector('#test-area .space-y-stack-md > div');
+    // Remove all existing question-step divs
+    container.querySelectorAll('.question-step').forEach(el => el.remove());
+
+    // Render each question before the nav buttons row
+    const navRow = container.querySelector('#next-btn').parentElement;
+
+    qs.forEach((q, idx) => {
+        const step = idx + 1;
+        const div = document.createElement('div');
+        div.className = 'question-step' + (step === 1 ? '' : ' hidden-state');
+        div.setAttribute('data-step', step);
+
+        const categoryBadge = `<span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-secondary-container/40 text-on-secondary-container">${q.category || ''}</span>`;
+        const optionsHtml = (q.options || []).map(opt => `
+            <label class="mcq-option flex items-center gap-4 p-4 rounded-lg border border-outline-variant hover:border-primary hover:bg-surface-container-low transition-all cursor-pointer group" data-qid="${q.id}" data-opt="${escMcq(opt)}">
+                <input type="radio" name="q${step}" class="w-5 h-5 text-primary focus:ring-primary border-outline-variant" value="${escMcq(opt)}"/>
+                <span class="font-medium text-on-surface group-hover:text-primary">${opt}</span>
+            </label>`).join('');
+
+        div.innerHTML = `
+            <div class="mb-8">
+                <div class="flex items-center gap-2 mb-3">${categoryBadge}</div>
+                <h2 class="text-xl font-semibold text-on-surface leading-relaxed mb-6">${step}. ${q.question}</h2>
+                <div class="space-y-3">${optionsHtml}</div>
+            </div>`;
+
+        container.insertBefore(div, navRow);
+
+        // Attach click listeners for selection highlight
+        div.querySelectorAll('.mcq-option').forEach(label => {
+            label.addEventListener('click', () => {
+                const qid = label.dataset.qid;
+                const opt = label.dataset.opt;
+                answers[qid] = opt;
+                // Highlight selected, clear others in this question
+                div.querySelectorAll('.mcq-option').forEach(l => {
+                    l.classList.remove('border-primary', 'bg-primary-container/10', 'border-2');
+                    l.classList.add('border-outline-variant');
+                    l.querySelector('input').checked = false;
+                });
+                label.classList.remove('border-outline-variant');
+                label.classList.add('border-primary', 'bg-primary-container/10', 'border-2');
+                label.querySelector('input').checked = true;
+                // Mark palette button as answered
+                const palBtn = document.getElementById('palette-' + step);
+                if (palBtn && step !== currentStep) palBtn.classList.add('bg-green-100', 'text-green-700');
+            });
+        });
+    });
+
+    // Update palette and question count
+    document.querySelectorAll('.palette-btn').forEach(btn => {
+        const n = parseInt(btn.id.replace('palette-', ''));
+        if (n > qs.length) btn.style.visibility = 'hidden';
+    });
+}
+
+function escMcq(s) { return s ? s.replace(/"/g, '&quot;').replace(/'/g, '&#39;') : ''; }
+
+// ── Navigation ────────────────────────────────────────────────────────────────
+function navigateQuestion(direction) {
+    const next = currentStep + direction;
+    if (next >= 1 && next <= questions.length) goToQuestion(next);
+    else if (next > questions.length) finishTest();
+}
+
+function goToQuestion(step) {
+    currentStep = step;
+    document.querySelectorAll('.question-step').forEach(q => {
+        parseInt(q.dataset.step) === step
+            ? q.classList.remove('hidden-state')
+            : q.classList.add('hidden-state');
+    });
+
+    document.getElementById('question-indicator').textContent = `Question ${step} of ${questions.length}`;
+
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    prevBtn.disabled = step === 1;
+
+    if (step === questions.length) {
+        nextBtn.textContent = 'Finish Test';
+        nextBtn.classList.remove('bg-primary-container','text-on-primary-container');
+        nextBtn.classList.add('bg-primary','text-on-primary');
+    } else {
+        nextBtn.textContent = 'Next Question';
+        nextBtn.classList.add('bg-primary-container','text-on-primary-container');
+        nextBtn.classList.remove('bg-primary','text-on-primary');
+    }
+
+    document.querySelectorAll('.palette-btn').forEach(btn => {
+        const n = parseInt(btn.id.replace('palette-', ''));
+        const answered = questions[n-1] && answers[questions[n-1].id];
+        if (n === step) {
+            btn.className = 'palette-btn w-10 h-10 rounded-full flex items-center justify-center font-bold bg-primary text-on-primary shadow-lg ring-2 ring-primary ring-offset-2';
+        } else if (answered) {
+            btn.className = 'palette-btn w-10 h-10 rounded-full flex items-center justify-center font-bold bg-green-100 text-green-700';
+        } else {
+            btn.className = 'palette-btn w-10 h-10 rounded-full flex items-center justify-center font-bold bg-surface-container-highest text-on-surface-variant hover:bg-primary-container hover:text-on-primary-container transition-colors';
+        }
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── Submit ────────────────────────────────────────────────────────────────────
+async function finishTest() {
+    if (submitted) return;
+    submitted = true;
+
+    document.getElementById('test-area').classList.add('hidden-state');
+    document.getElementById('results-area').classList.remove('hidden-state');
+
+    // Show loading state
+    const scoreEl = document.querySelector('#results-area .font-headline.text-headline-md');
+    if (scoreEl) scoreEl.textContent = '...';
+
+    try {
+        const res = await fetch('/api/mcq/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+            body: JSON.stringify({ sessionId: String(sessionId), answers })
+        });
+        const data = await res.json();
+        renderResults(data);
+    } catch(e) {
+        console.error('Submit error:', e);
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderResults(data) {
+    const score    = data.score   || 0;
+    const total    = data.total   || 10;
+    const pct      = data.percentage || Math.round(score * 100 / total);
+    const diff     = data.difficulty || 'MEDIUM';
+
+    // Update score circle (SVG dashoffset: 251.2 = full circle, 0 = empty)
+    const offset = Math.round(251.2 - (251.2 * pct / 100));
+    const circle = document.querySelector('#results-area .progress-ring__circle');
+    if (circle) circle.setAttribute('stroke-dashoffset', offset);
+
+    const scoreDisp = document.querySelector('#results-area .font-headline.text-headline-md.font-bold.text-primary');
+    if (scoreDisp) scoreDisp.innerHTML = `${score}/${total}<br><span style="font-size:10px;letter-spacing:.04em;font-weight:700;color:#4e4635">SCORE</span>`;
+
+    const summaryEl = document.querySelector('#results-area .text-on-surface-variant.text-sm.mb-3');
+    if (summaryEl) {
+        const msg = pct >= 80 ? '🎉 Excellent! Keep this up!' : pct >= 60 ? '👍 Good effort! Review missed ones below.' : '📚 Keep practicing — review the explanations below.';
+        summaryEl.textContent = msg;
+    }
+
+    const accuracyBadge = document.querySelector('#results-area .bg-green-100.text-green-700');
+    if (accuracyBadge) accuracyBadge.innerHTML = `<span class="material-symbols-outlined text-[14px]">bolt</span> ${pct}% Accuracy`;
+
+    const xpEl = document.querySelector('#results-area .text-3xl.font-bold.text-primary');
+    if (xpEl) xpEl.textContent = '+' + (score * 10);
+
+    // Append per-question breakdown
+    if (data.results && data.results.length > 0) {
+        const resultsArea = document.getElementById('results-area');
+        let html = '<div class="bg-white rounded-lg p-stack-md shadow-sm mt-4"><h3 class="font-headline font-bold text-lg mb-4">Question Review</h3><div class="space-y-4">';
+        data.results.forEach((r, i) => {
+            const correct = r.correct;
+            html += `
+                <div class="p-4 rounded-lg border ${correct ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}">
+                    <div class="flex items-start gap-2">
+                        <span class="material-symbols-outlined text-${correct ? 'green-600' : 'error'} mt-0.5">${correct ? 'check_circle' : 'cancel'}</span>
+                        <div class="flex-1">
+                            <p class="font-semibold text-sm text-on-surface">${i+1}. ${r.question}</p>
+                            <p class="text-xs mt-1 ${correct ? 'text-green-700' : 'text-error'}">
+                                ${correct ? 'Correct: ' + r.answer : 'Your answer: ' + (r.userAnswer || '(skipped)') + ' • Correct: ' + r.answer}
+                            </p>
+                            ${r.explanation ? `<p class="text-xs mt-1 text-on-surface-variant italic">${r.explanation}</p>` : ''}
+                        </div>
+                    </div>
+                </div>`;
+        });
+        html += '</div></div>';
+        resultsArea.insertAdjacentHTML('beforeend', html);
+    }
+}
+
+function showAlreadySubmitted(data) {
+    document.getElementById('test-area').classList.add('hidden-state');
+    document.getElementById('results-area').classList.remove('hidden-state');
+    renderResults({ score: data.score, total: 10, percentage: data.score * 10, results: [] });
+    document.querySelector('#results-area .text-on-surface-variant.text-sm.mb-3').textContent = "You've already completed today's MCQ. Come back tomorrow!";
+}
+
+// Back button
+document.querySelector('header button').onclick = () => window.location.href = 'dashboard.html';
+
+// Init
+document.addEventListener('DOMContentLoaded', loadTodayMcq);
+</script>
+</body></html>

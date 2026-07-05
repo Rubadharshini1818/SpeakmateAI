@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SpeakMate AI | Vocabulary Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#ebe1d2",
+                        "inverse-primary": "#edc146",
+                        "tertiary-fixed": "#e9e2d0",
+                        "on-tertiary-container": "#5b5749",
+                        "surface-container": "#f6eddd",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#f5c84c",
+                        "primary-fixed-dim": "#edc146",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fff8f1",
+                        "on-secondary-container": "#714e00",
+                        "on-background": "#1f1b12",
+                        "secondary-container": "#fdbf4d",
+                        "on-tertiary-fixed": "#1e1c10",
+                        "secondary-fixed": "#ffdeab",
+                        "on-secondary-fixed": "#271900",
+                        "error-container": "#ffdad6",
+                        "outline-variant": "#d1c5af",
+                        "on-primary-fixed-variant": "#594400",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#ccc6b4",
+                        "surface-dim": "#e2d9ca",
+                        "on-primary-fixed": "#241a00",
+                        "inverse-surface": "#353026",
+                        "tertiary-container": "#d3cdbb",
+                        "primary": "#765b00",
+                        "surface-container-highest": "#ebe1d2",
+                        "primary-fixed": "#ffdf93",
+                        "background": "#fff8f1",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#f0e7d7",
+                        "secondary-fixed-dim": "#fabc4a",
+                        "outline": "#7f7663",
+                        "on-surface": "#1f1b12",
+                        "error": "#ba1a1a",
+                        "secondary": "#7e5700",
+                        "tertiary": "#625e50",
+                        "surface-tint": "#765b00",
+                        "surface": "#fff8f1",
+                        "surface-container-low": "#fcf2e3",
+                        "on-primary-container": "#6d5400",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f9f0e0",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#4a4739",
+                        "on-surface-variant": "#4e4635",
+                        "on-secondary-fixed-variant": "#5f4100"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "12px",
+                        "unit": "8px",
+                        "stack-lg": "48px",
+                        "container-max": "1200px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "stack-md": "24px",
+                        "margin-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Quicksand"],
+                        "body-md": ["Poppins"],
+                        "body-lg": ["Poppins"],
+                        "label-sm": ["Quicksand"],
+                        "headline-md": ["Quicksand"],
+                        "display-lg-mobile": ["Quicksand"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "500"}],
+                        "label-sm": ["13px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #FDF6E3;
+            font-family: 'Poppins', sans-serif;
+        }
+        .soft-shadow {
+            box-shadow: 0 12px 32px rgba(67, 62, 51, 0.05);
+        }
+        .soft-shadow-hover:hover {
+            box-shadow: 0 20px 40px rgba(67, 62, 51, 0.08);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2d9ca;
+            border-radius: 10px;
+        }
+        .orb-pulse {
+            animation: pulse 2s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; box-shadow: 0 0 20px rgba(245, 200, 76, 0.4); }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+        .freq-bar {
+            width: 3px;
+            background: #765b00;
+            border-radius: 2px;
+            animation: bounce 0.8s infinite ease-in-out;
+        }
+        @keyframes bounce {
+            0%, 100% { height: 4px; }
+            50% { height: 16px; }
+        }
+      html { scroll-behavior: smooth; }
+      /* Markdown rendered content */
+      .md-content h1, .md-content h2, .md-content h3 { font-family: 'Quicksand', sans-serif; font-weight: 700; color: #765b00; margin-top: 1.2em; margin-bottom: 0.5em; }
+      .md-content h3 { font-size: 1.1rem; }
+      .md-content p { margin-bottom: 0.85em; line-height: 1.75; color: #4e4635; }
+      .md-content ul { margin-left: 1.5em; margin-bottom: 0.9em; }
+      .md-content li { margin-bottom: 0.35em; line-height: 1.6; color: #4e4635; }
+      .md-content strong { color: #1f1b12; font-weight: 700; }
+      .md-content em { font-style: italic; color: #765b00; }
+      /* Section divider */
+      .section-divider { border: none; border-top: 2px dashed #d1c5af; margin: 1.5rem 0; opacity: 0.5; }
+      /* Word card polish */
+      .word-entry-card { border-radius: 16px; transition: box-shadow 0.2s ease, transform 0.2s ease; }
+      .word-entry-card:hover { box-shadow: 0 16px 40px rgba(67,62,51,0.1); transform: translateY(-1px); }
+
+      /* Reading Progress Bar */
+      #reading-progress { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, #765b00, #edc146); z-index: 9999; transition: width 0.1s linear; }
+
+      /* Sticky right TOC panel */
+      #toc-panel { position: fixed; top: 80px; right: 0; width: 220px; max-height: calc(100vh - 100px); overflow-y: auto; padding: 16px 14px; background: rgba(253, 246, 227, 0.95); border-left: 1px solid #d1c5af; backdrop-filter: blur(8px); z-index: 30; transition: opacity 0.3s; }
+      #toc-panel::-webkit-scrollbar { width: 3px; }
+      #toc-panel::-webkit-scrollbar-thumb { background: #d1c5af; border-radius: 4px; }
+      .toc-link { display: block; padding: 4px 8px; font-size: 12px; color: #4e4635; border-left: 2px solid transparent; margin-bottom: 2px; transition: all 0.2s; text-decoration: none; border-radius: 0 4px 4px 0; line-height: 1.4; font-weight: 500; }
+      .toc-link:hover { color: #765b00; border-left-color: #edc146; background: rgba(245, 200, 76, 0.1); }
+      .toc-link.active { color: #765b00; border-left-color: #765b00; background: rgba(245, 200, 76, 0.15); font-weight: 700; }
+
+      /* Main layout adjustment for right TOC */
+      @media (min-width: 1280px) {
+        #main-content-container > div,
+        #main-content-container > header,
+        #main-content-container > nav {
+          margin-right: 230px;
+        }
+      }
+      @media (max-width: 1279px) {
+        #toc-panel { display: none; }
+      }
+    </style>
+</head>
+<body class="text-on-surface">
+<div id="reading-progress" style="position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,#765b00,#edc146);z-index:9999;transition:width 0.1s linear"></div>
+<div class="flex h-screen overflow-hidden">
+<!-- FIXED SIDEBAR -->
+<aside class="w-[260px] flex-shrink-0 bg-surface-container-low dark:bg-surface-dim flex flex-col h-full border-r border-outline-variant/30 z-50">
+<!-- Top Section -->
+<div class="p-6 pb-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-primary font-bold text-[18px]">📗 Vocabulary</span>
+</div>
+<p class="text-[12px] text-on-surface-variant font-medium">Complete English Vocabulary Guide</p>
+<div class="mt-4 bg-primary-container px-3 py-1.5 rounded-full inline-flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-on-primary-container font-bold text-label-sm">8 / 52 Lessons</span>
+</div>
+</div>
+<!-- Search -->
+<div class="px-4 mb-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-surface-container border-none rounded-full py-2 pl-10 pr-4 text-body-md focus:ring-2 focus:ring-primary transition-all placeholder:text-on-surface-variant/50" placeholder="Search words, topics..." type="text"/>
+</div>
+</div>
+<!-- Scrollable Index -->
+<div id="lesson-nav" class="flex-1 overflow-y-auto custom-scrollbar px-2 space-y-1">
+</div>
+<!-- Footer Section -->
+<div class="p-4 space-y-2 border-t border-outline-variant/20">
+<button id="ai-teacher-btn" class="w-full bg-primary text-on-primary font-bold py-3 rounded-full flex items-center justify-center gap-2 soft-shadow active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">smart_toy</span>
+                    Ask AI Teacher
+                </button>
+<a class="flex items-center justify-center gap-1 text-on-surface-variant hover:text-primary transition-colors text-label-sm font-bold py-2" href="classroom.html">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+                    Back to Classroom
+                </a>
+</div>
+</aside>
+<!-- Sticky Right TOC Panel (desktop) -->
+<nav id="toc-panel" class="hidden">
+  <div class="text-[11px] font-bold uppercase tracking-widest text-on-surface-variant/60 mb-3 flex items-center gap-1.5">
+    <span class="material-symbols-outlined text-[14px]">format_list_bulleted</span> On This Page
+  </div>
+  <div id="toc-panel-links" class="flex flex-col gap-0.5"></div>
+</nav>
+<!-- MAIN CONTENT AREA -->
+<main id="main-content-container" class="flex-1 overflow-y-auto custom-scrollbar relative flex flex-col">
+<!-- Floating Navigation Background Effect -->
+<div class="absolute inset-0 pointer-events-none opacity-50 z-0">
+
+</div>
+<!-- Breadcrumb -->
+<nav class="px-margin-desktop pt-8 pb-4 z-10 flex items-center gap-2 text-label-sm text-on-surface-variant">
+<span>AI Classroom</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span>Vocabulary</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span>Phrasal Verbs</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary font-bold">Phrasal Verbs with GET</span>
+</nav>
+<!-- Header -->
+<header class="px-margin-desktop pb-stack-md z-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface leading-tight mb-2">Phrasal Verbs with <span class="text-primary underline decoration-primary/30">GET</span></h1>
+<div class="flex items-center gap-3">
+<span class="px-3 py-1 bg-secondary-container/20 text-secondary font-bold rounded-full text-label-sm">Intermediate</span>
+<span class="flex items-center gap-1 text-on-surface-variant text-label-sm">
+<span class="material-symbols-outlined text-sm">schedule</span> 12 min
+                            </span>
+<span class="flex items-center gap-1 text-secondary font-bold text-label-sm">
+<span class="material-symbols-outlined text-sm">stars</span> +50 XP
+                            </span>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Grid (Bento Style) -->
+<div class="px-margin-desktop grid grid-cols-12 gap-gutter pb-32 z-10 max-w-container-max">
+<!-- WORD CARD (Primary Featured) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-lg p-stack-md soft-shadow">
+<div class="flex flex-wrap justify-between items-start gap-4 mb-6">
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h2 class="font-display-lg text-[32px] text-on-surface">Get over</h2>
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full font-bold text-label-sm">verb</span>
+</div>
+<span class="text-on-surface-variant font-mono text-body-md tracking-wider">/ɡet ˈəʊvə/</span>
+</div>
+<button class="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-on-primary soft-shadow active:scale-95 transition-all group overflow-hidden relative">
+<span class="material-symbols-outlined text-2xl group-hover:hidden">volume_up</span>
+<div class="hidden group-hover:flex items-center gap-1">
+<div class="freq-bar" style="animation-delay: 0.1s"></div>
+<div class="freq-bar" style="animation-delay: 0.3s"></div>
+<div class="freq-bar" style="animation-delay: 0.2s"></div>
+</div>
+</button>
+</div>
+<div class="mb-8">
+<h4 class="text-label-sm uppercase tracking-widest text-on-surface-variant mb-2">Primary Definition</h4>
+<p class="font-body-lg text-on-surface text-[22px] leading-relaxed">
+                            To recover from an illness, loss, or difficulty; to overcome a mental or emotional challenge.
+                        </p>
+</div>
+<div class="space-y-4">
+<h4 class="text-label-sm uppercase tracking-widest text-on-surface-variant">Multiple Meanings</h4>
+<div class="space-y-3">
+<div class="flex gap-4 p-4 rounded-xl border border-outline-variant/30 bg-surface/50">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-primary">1</div>
+<p class="text-body-md text-on-surface-variant"><span class="text-on-surface font-bold">Overcoming feelings:</span> "It took her a long time to <span class="text-primary font-bold">get over</span> her breakup."</p>
+</div>
+<div class="flex gap-4 p-4 rounded-xl border border-outline-variant/30 bg-surface/50">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-primary">2</div>
+<p class="text-body-md text-on-surface-variant"><span class="text-on-surface font-bold">Physical recovery:</span> "He’s still trying to <span class="text-primary font-bold">get over</span> a nasty cold."</p>
+</div>
+<div class="flex gap-4 p-4 rounded-xl border border-outline-variant/30 bg-surface/50">
+<div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-primary">3</div>
+<p class="text-body-md text-on-surface-variant"><span class="text-on-surface font-bold">Disbelief:</span> "I just can't <span class="text-primary font-bold">get over</span> how much she's grown!"</p>
+</div>
+</div>
+</div>
+</div>
+<!-- SIDE COLUMN -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<!-- AI VOICE CARD -->
+<div class="bg-gradient-to-br from-inverse-surface to-on-surface-variant rounded-lg p-6 text-inverse-on-surface soft-shadow relative overflow-hidden group cursor-pointer active:scale-98 transition-transform">
+<div class="absolute top-0 right-0 p-4 opacity-20 transform translate-x-4 -translate-y-4">
+<span class="material-symbols-outlined text-[80px]">podcasts</span>
+</div>
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center mb-4 orb-pulse">
+<span class="material-symbols-outlined text-primary text-3xl">mic</span>
+</div>
+<h3 class="font-headline-md text-white mb-2">AI Teacher Insight</h3>
+<p class="text-inverse-on-surface/80 text-body-md px-4">Listen to the AI explain the subtle nuances of "Get over" vs "Recover".</p>
+</div>
+</div>
+<!-- MEMORY TIP -->
+<div class="bg-primary-fixed-dim/20 rounded-lg p-6 border-l-4 border-primary">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary">lightbulb</span>
+<h3 class="font-bold text-primary text-body-lg">Memory Tip</h3>
+</div>
+<p class="text-on-surface-variant text-body-md leading-relaxed">
+                            Think of "Over" as a <span class="font-bold underline">fence</span>. You are climbing <span class="font-bold">over</span> the obstacle (illness or sadness) to reach the other side (health or happiness).
+                        </p>
+</div>
+<!-- WORD FAMILY -->
+<div class="bg-surface-container-high rounded-lg p-6">
+<h3 class="font-bold text-on-surface mb-4 text-body-lg">Word Family</h3>
+<div class="space-y-3">
+<div class="flex justify-between border-b border-outline-variant pb-2">
+<span class="text-label-sm uppercase text-on-surface-variant">Noun</span>
+<span class="font-mono text-body-md">Getover (slang)</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant pb-2">
+<span class="text-label-sm uppercase text-on-surface-variant">Verb</span>
+<span class="font-mono text-body-md text-primary font-bold">Get over</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant pb-2">
+<span class="text-label-sm uppercase text-on-surface-variant">Adjective</span>
+<span class="font-mono text-body-md">Overable (rare)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- EXAMPLE TABLE -->
+<div class="col-span-12 bg-surface-container-lowest rounded-lg p-stack-md soft-shadow overflow-hidden">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-green-600">check_circle</span>
+                            Usage in Context
+                        </h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container border-b border-outline-variant">
+<tr>
+<th class="px-6 py-4 text-label-sm uppercase font-bold text-on-surface-variant">Scenario</th>
+<th class="px-6 py-4 text-label-sm uppercase font-bold text-on-surface-variant">Correct Sentence</th>
+<th class="px-6 py-4 text-label-sm uppercase font-bold text-on-surface-variant">Explanation</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-bold text-body-md text-on-surface">Illness</td>
+<td class="px-6 py-4 text-body-md italic">"It took her a week to <span class="text-primary font-bold">get over</span> the flu."</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-md">Refers to physical recovery.</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-bold text-body-md text-on-surface">Emotional</td>
+<td class="px-6 py-4 text-body-md italic">"You need to <span class="text-primary font-bold">get over</span> your fear of failure."</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-md">Managing mental barriers.</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-bold text-body-md text-on-surface">Surprise</td>
+<td class="px-6 py-4 text-body-md italic">"I can't <span class="text-primary font-bold">get over</span> how cheap this is!"</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-md">Expression of astonishment.</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-bold text-body-md text-on-surface">Grief</td>
+<td class="px-6 py-4 text-body-md italic">"He never truly <span class="text-primary font-bold">got over</span> losing his dog."</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-md">Lingering emotional pain.</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-6 py-4 font-bold text-body-md text-on-surface">Problems</td>
+<td class="px-6 py-4 text-body-md italic">"Once we <span class="text-primary font-bold">get over</span> this hurdle, we're set."</td>
+<td class="px-6 py-4 text-on-surface-variant text-body-md">Practical obstacle.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- SYNONYMS & ANTONYMS -->
+<div class="col-span-12 lg:col-span-6 space-y-4">
+<div class="bg-surface-container-lowest rounded-lg p-6 soft-shadow border-t-4 border-green-500">
+<h3 class="font-bold text-on-surface mb-4">Synonyms</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-4 py-2 bg-primary-container/20 text-primary rounded-full font-bold text-body-md hover:bg-primary-container/40 cursor-pointer transition-colors">Recover</span>
+<span class="px-4 py-2 bg-primary-container/20 text-primary rounded-full font-bold text-body-md hover:bg-primary-container/40 cursor-pointer transition-colors">Overcome</span>
+<span class="px-4 py-2 bg-primary-container/20 text-primary rounded-full font-bold text-body-md hover:bg-primary-container/40 cursor-pointer transition-colors">Heal</span>
+<span class="px-4 py-2 bg-primary-container/20 text-primary rounded-full font-bold text-body-md hover:bg-primary-container/40 cursor-pointer transition-colors">Conquer</span>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-6 space-y-4">
+<div class="bg-surface-container-lowest rounded-lg p-6 soft-shadow border-t-4 border-error">
+<h3 class="font-bold text-on-surface mb-4">Antonyms</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-4 py-2 bg-surface-variant/40 text-on-surface-variant rounded-full font-bold text-body-md hover:bg-surface-variant/60 cursor-pointer transition-colors">Suffer</span>
+<span class="px-4 py-2 bg-surface-variant/40 text-on-surface-variant rounded-full font-bold text-body-md hover:bg-surface-variant/60 cursor-pointer transition-colors">Succumb</span>
+<span class="px-4 py-2 bg-surface-variant/40 text-on-surface-variant rounded-full font-bold text-body-md hover:bg-surface-variant/60 cursor-pointer transition-colors">Dwell</span>
+<span class="px-4 py-2 bg-surface-variant/40 text-on-surface-variant rounded-full font-bold text-body-md hover:bg-surface-variant/60 cursor-pointer transition-colors">Relapse</span>
+</div>
+</div>
+</div>
+<!-- PRACTICE SECTION -->
+<div class="col-span-12 bg-secondary-fixed rounded-lg p-stack-md soft-shadow">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-secondary text-3xl">edit_note</span>
+<h3 class="font-display-lg text-[28px] text-on-secondary-fixed">Let's Practice!</h3>
+</div>
+<div class="bg-white/80 backdrop-blur-sm rounded-xl p-6">
+<p class="text-body-lg text-on-background mb-4">Complete the sentence using the correct form of <span class="font-bold">"Get over"</span>:</p>
+<div class="flex flex-wrap items-center gap-3 text-[22px] font-medium text-on-surface">
+<span>"It took my grandmother months to</span>
+<input class="bg-transparent border-b-2 border-dashed border-primary focus:border-solid focus:ring-0 w-32 px-2 text-center text-primary font-bold placeholder:text-primary/30 outline-none" placeholder="....." type="text"/>
+<span>her surgery last winter."</span>
+</div>
+<div class="mt-8 flex justify-between items-center">
+<div class="flex gap-2">
+<button class="px-6 py-2 bg-white border border-secondary-container text-secondary font-bold rounded-full hover:bg-secondary-container/10 transition-colors">Check Answer</button>
+<button class="px-6 py-2 bg-transparent text-on-surface-variant font-bold rounded-full hover:bg-surface-variant/20">I'm stuck</button>
+</div>
+<button class="flex items-center gap-2 px-6 py-2 bg-secondary text-white font-bold rounded-full soft-shadow-hover transition-all group">
+<span class="material-symbols-outlined group-hover:rotate-12 transition-transform">style</span>
+                                Practice with Flashcards
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- STICKY BOTTOM NAV BAR -->
+<nav class="fixed bottom-0 right-0 w-[calc(100%-260px)] h-20 bg-surface/90 backdrop-blur-xl border-t border-outline-variant/30 px-margin-desktop flex items-center justify-between z-50">
+<button class="flex items-center gap-2 text-on-surface-variant font-bold hover:text-primary transition-colors py-2 px-4 rounded-full hover:bg-primary-container/10">
+<span class="material-symbols-outlined">arrow_back</span>
+                    Previous
+                </button>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex flex-col items-end">
+<span class="text-label-sm text-on-surface-variant">Next up:</span>
+<span class="text-body-md font-bold text-on-surface">Phrasal Verbs with MAKE</span>
+</div>
+<button class="bg-primary text-on-primary font-bold py-3 px-8 rounded-full soft-shadow active:scale-95 transition-all flex items-center gap-2">
+                        Mark Complete
+                        <span class="material-symbols-outlined">check</span>
+</button>
+<button class="flex items-center gap-2 text-primary font-bold hover:bg-primary-container/10 py-2 px-4 rounded-full transition-colors">
+                        Next
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</nav>
+</main>
+</div>
+
+<!-- Ask AI Teacher Modal — kept outside main so loadLesson innerHTML swap doesn't destroy it -->
+<div id="ai-modal" class="fixed inset-0 bg-black/50 hidden z-[60] flex items-center justify-center">
+  <div class="bg-surface w-[400px] rounded-xl shadow-2xl flex flex-col overflow-hidden">
+    <div class="bg-primary p-4 text-on-primary flex justify-between items-center">
+      <h3 class="font-bold">Ask AI Teacher</h3>
+      <button id="close-ai-modal"><span class="material-symbols-outlined">close</span></button>
+    </div>
+    <div id="ai-chat-history" class="p-4 h-64 overflow-y-auto flex flex-col gap-3 bg-surface-container-lowest">
+       <div class="text-sm text-on-surface-variant italic">Hi! I am your AI Teacher. Ask me any vocabulary question!</div>
+    </div>
+    <div class="p-3 border-t border-outline-variant bg-surface-container flex gap-2">
+      <input type="text" id="ai-question" class="flex-1 rounded-full border border-outline-variant px-4" placeholder="Ask a question..."/>
+      <button id="ai-send-btn" class="bg-primary text-on-primary rounded-full w-10 h-10 flex items-center justify-center"><span class="material-symbols-outlined">send</span></button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── Reading Progress ────────────────────────────────────────────────────────
+  document.getElementById('main-content-container').addEventListener('scroll', () => {
+    const main = document.getElementById('main-content-container');
+    if (!main) return;
+    const scrollHeight = main.scrollHeight - main.clientHeight;
+    const progress = scrollHeight > 0 ? (main.scrollTop / scrollHeight) * 100 : 0;
+    document.getElementById('reading-progress').style.width = progress + '%';
+  });
+
+  // ── Markdown renderer ───────────────────────────────────────────────────────
+  function renderMarkdown(text) {
+    if (!text) return '';
+    const lines = text.split('\n');
+    let html = '', inUl = false;
+    for (let line of lines) {
+      if (line.startsWith('### ')) { if (inUl) { html += '</ul>'; inUl = false; } html += `<h3 style="font-family:'Quicksand',sans-serif;font-weight:700;color:#765b00;font-size:1.1rem;margin:1em 0 0.4em">${line.slice(4)}</h3>`; continue; }
+      if (line.startsWith('## '))  { if (inUl) { html += '</ul>'; inUl = false; } html += `<h2 style="font-family:'Quicksand',sans-serif;font-weight:700;color:#765b00;font-size:1.3rem;margin:1.2em 0 0.5em">${line.slice(3)}</h2>`; continue; }
+      if (line.startsWith('- ') || line.startsWith('* ')) {
+        if (!inUl) { html += '<ul style="margin-left:1.5em;margin-bottom:0.9em">'; inUl = true; }
+        let inner = line.slice(2).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*([^*]+)\*/g, '<em>$1</em>');
+        html += `<li style="margin-bottom:0.35em;line-height:1.6;color:#4e4635">${inner}</li>`; continue;
+      }
+      if (inUl) { html += '</ul>'; inUl = false; }
+      if (line.trim() === '') continue;
+      let para = line.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/\*([^*]+)\*/g, '<em>$1</em>');
+      html += `<p style="margin-bottom:0.85em;line-height:1.75;color:#4e4635">${para}</p>`;
+    }
+    if (inUl) html += '</ul>';
+    return html;
+  }
+
+  // ── State ───────────────────────────────────────────────────────────────────
+  let currentLesson = null;
+  let allSections   = [];
+  const token = localStorage.getItem('speakmate_token');
+  if (!token) window.location.href = '/login.html';
+
+  // ── Sidebar ─────────────────────────────────────────────────────────────────
+  function renderSidebar(sections) {
+    const nav = document.getElementById('lesson-nav');
+    if (!nav) return;
+    nav.innerHTML = '';
+    let totalLessons = 0, completedCount = 0;
+
+    // Default collapsed state initialization
+    if (!window.collapsedSections) {
+      window.collapsedSections = {};
+      sections.forEach(s => {
+        const hasActive = currentLesson && s.lessons.some(l => l.id === currentLesson.id);
+        window.collapsedSections[s.section] = !hasActive;
+      });
+    }
+
+    sections.forEach(sec => {
+      const secHeader = document.createElement('div');
+      secHeader.className = 'px-3 py-2 text-label-sm text-outline uppercase tracking-widest font-bold mt-4 flex items-center justify-between cursor-pointer hover:text-primary transition-colors';
+      secHeader.dataset.section = sec.section;
+      const isCollapsed = window.collapsedSections[sec.section];
+      secHeader.innerHTML = `
+        <span>${sec.section}</span>
+        <span class="material-symbols-outlined text-[16px] transition-transform duration-200 ${isCollapsed ? '-rotate-90' : ''}">expand_more</span>
+      `;
+      nav.appendChild(secHeader);
+
+      const lessonGroup = document.createElement('div');
+      lessonGroup.className = 'lesson-group-container space-y-1';
+      if (isCollapsed) {
+        lessonGroup.classList.add('hidden');
+      }
+      nav.appendChild(lessonGroup);
+
+      sec.lessons.forEach(lesson => {
+        totalLessons++;
+        if (lesson.status === 'COMPLETED') completedCount++;
+        const isActive   = currentLesson && currentLesson.id === lesson.id;
+        const dotColor   = lesson.status === 'COMPLETED' ? 'bg-green-500' : (lesson.status === 'IN_PROGRESS' ? 'bg-primary animate-pulse' : 'bg-on-surface-variant/40');
+        const activeClass= isActive ? 'bg-primary-container/10 border-r-4 border-primary font-bold text-primary' : 'text-on-surface-variant hover:bg-surface-variant/50';
+        const link = document.createElement('a');
+        link.href = '#';
+        link.className = `flex items-center justify-between px-4 py-2 rounded-lg transition-colors group ${activeClass}`;
+        link.innerHTML = `
+          <div class="flex items-center gap-3">
+            <div class="w-2 h-2 rounded-full ${dotColor}"></div>
+            <span class="text-body-md">${lesson.title}</span>
+          </div>
+          ${lesson.status === 'COMPLETED' ? '<span class="material-symbols-outlined text-green-500 text-[16px]">check_circle</span>' : ''}
+        `;
+        link.addEventListener('click', e => { 
+          e.preventDefault(); 
+          window.collapsedSections[sec.section] = false;
+          loadLesson(lesson); 
+        });
+        lessonGroup.appendChild(link);
+      });
+
+      secHeader.addEventListener('click', () => {
+        window.collapsedSections[sec.section] = !window.collapsedSections[sec.section];
+        renderSidebar(allSections);
+      });
+    });
+
+    // Update progress pill
+    const pill = document.querySelector('.bg-primary-container');
+    if (pill) {
+      pill.innerHTML = `<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div><span class="text-on-primary-container font-bold text-label-sm">${completedCount} / ${totalLessons} Lessons</span>`;
+    }
+  }
+
+  // ── Search ──────────────────────────────────────────────────────────────────
+  const searchInput = document.querySelector('input[placeholder*="Search"]');
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      const nav = document.getElementById('lesson-nav');
+      if (!nav) return;
+
+      const headers = nav.querySelectorAll('div[data-section]');
+      headers.forEach(header => {
+        const secName = header.dataset.section;
+        const lessonGroup = header.nextElementSibling;
+        if (!lessonGroup || !lessonGroup.classList.contains('lesson-group-container')) return;
+
+        let matches = 0;
+        lessonGroup.querySelectorAll('a').forEach(link => {
+          const title = link.querySelector('span.text-body-md')?.textContent?.toLowerCase() || '';
+          const match = !q || title.includes(q);
+          link.style.display = match ? '' : 'none';
+          if (match) matches++;
+        });
+
+        if (q && matches > 0) {
+          header.style.display = '';
+          lessonGroup.classList.remove('hidden');
+          const chevron = header.querySelector('.material-symbols-outlined');
+          if (chevron) chevron.className = 'material-symbols-outlined text-[16px] transition-transform duration-200';
+        } else if (q && matches === 0) {
+          header.style.display = 'none';
+          lessonGroup.classList.add('hidden');
+        } else {
+          header.style.display = '';
+          const isCollapsed = window.collapsedSections[secName];
+          lessonGroup.classList.toggle('hidden', isCollapsed);
+          const chevron = header.querySelector('.material-symbols-outlined');
+          if (chevron) {
+            chevron.className = `material-symbols-outlined text-[16px] transition-transform duration-200 ${isCollapsed ? '-rotate-90' : ''}`;
+          }
+        }
+      });
+    });
+  }
+
+  // ── Load Lesson ─────────────────────────────────────────────────────────────
+  function loadLesson(lesson) {
+    currentLesson = lesson;
+    renderSidebar(allSections);   // refresh sidebar with updated active state
+
+    const container = document.getElementById('main-content-container');
+    const tocPanel = document.getElementById('toc-panel');
+
+    if (!lesson.content || lesson.content === '{}') {
+      if (tocPanel) tocPanel.classList.add('hidden');
+      container.innerHTML = buildShell(lesson, '<p class="text-center py-20 text-on-surface-variant text-body-lg">Content coming soon — check back after the next batch!</p>');
+      container.scrollTop = 0;
+      return;
+    }
+
+    let content;
+    try { content = JSON.parse(lesson.content); } catch(e) {
+      console.error('JSON parse error:', e);
+      if (tocPanel) tocPanel.classList.add('hidden');
+      container.innerHTML = buildShell(lesson, '<p class="text-center py-20 text-error">Error loading lesson data.</p>');
+      container.scrollTop = 0;
+      return;
+    }
+
+    // Build Table of Contents dynamically
+    let tocItems = [];
+    if (content.words && content.words.length > 0) {
+      content.words.forEach((w, idx) => {
+        tocItems.push({ name: w.word, link: `#word-${idx}`, anchor: `word-${idx}` });
+      });
+      if (content.practice) {
+        tocItems.push({ name: 'Quick Check', link: '#practice-section', anchor: 'practice-section' });
+      }
+    } else {
+      const word = content.word || lesson.title;
+      tocItems.push({ name: word, link: '#word-details', anchor: 'word-details' });
+      if (content.memory_tip) {
+        tocItems.push({ name: 'Memory Tip', link: '#memory-tip-section', anchor: 'memory-tip-section' });
+      }
+      if (content.usage_table?.rows && content.usage_table.rows.length > 0) {
+        tocItems.push({ name: 'Usage Table', link: '#usage-table-section', anchor: 'usage-table-section' });
+      }
+      if (content.synonyms?.length > 0 || content.antonyms?.length > 0) {
+        tocItems.push({ name: 'Synonyms & Antonyms', link: '#synonyms-section', anchor: 'synonyms-section' });
+      }
+      if (content.practice) {
+        tocItems.push({ name: 'Practice Exercise', link: '#practice-section', anchor: 'practice-section' });
+      }
+    }
+
+    // Dynamic right-panel TOC population
+    const tocPanelLinks = document.getElementById('toc-panel-links');
+    if (tocPanel && tocPanelLinks) {
+      if (tocItems.length > 1) {
+        tocPanel.classList.remove('hidden');
+        tocPanelLinks.innerHTML = tocItems.map(item =>
+          `<a href="${item.link}" data-anchor="${item.anchor}" class="toc-link">${item.name}</a>`
+        ).join('');
+      } else {
+        tocPanel.classList.add('hidden');
+      }
+    }
+
+    // Markdown-based layout
+    if (content.markdown) {
+      container.innerHTML = buildMarkdownLayout(lesson, content);
+      container.scrollTop = 0;
+      return;
+    }
+
+    // Word-list layout (phrasal verbs with "words" array)
+    if (content.words && content.words.length > 0) {
+      container.innerHTML = buildWordsLayout(lesson, content);
+      container.scrollTop = 0;
+      return;
+    }
+
+    // Single-word layout (legacy)
+    container.innerHTML = buildSingleWordLayout(lesson, content);
+    container.scrollTop = 0;
+  }
+
+  function buildMarkdownLayout(lesson, content) {
+    let practiceHTML = '';
+    if (content.practice) {
+      const p = content.practice;
+      if (p.options) {
+        const optionsHTML = (p.options || []).map(opt => {
+          const safeOpt = opt.replace(/'/g, "\\'");
+          const safeAns = p.answer.replace(/'/g, "\\'");
+          return `<button onclick="checkVocabPractice('${safeOpt}','${safeAns}')" class="px-4 py-3 bg-white border border-outline-variant rounded-xl text-left hover:bg-secondary-container/10 transition-colors text-body-md font-semibold w-full">${opt}</button>`;
+        }).join('');
+        practiceHTML = `
+          <div id="practice-section" class="bg-secondary-fixed rounded-lg p-stack-md soft-shadow mt-6 border border-outline-variant/30">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="material-symbols-outlined text-secondary text-3xl">edit_note</span>
+              <h3 class="font-display-lg text-[28px] text-on-secondary-fixed">Quick Check!</h3>
+            </div>
+            <div class="bg-white/90 backdrop-blur-sm rounded-xl p-6">
+              <p class="text-body-lg text-on-background mb-4 font-semibold">${p.question}</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">${optionsHTML}</div>
+              <p id="practice-feedback" class="mt-4 font-bold text-green-600"></p>
+            </div>
+          </div>`;
+      }
+    }
+
+    return `
+      <nav class="px-margin-desktop pt-8 pb-4 z-10 flex items-center gap-2 text-label-sm text-on-surface-variant">
+        <span>AI Classroom</span>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <span>Vocabulary</span>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <span class="text-primary font-bold">${lesson.title}</span>
+      </nav>
+      <header class="px-margin-desktop pb-stack-md z-10">
+        <h1 class="font-display-lg text-display-lg text-on-surface leading-tight mb-2">${content.title || lesson.title}</h1>
+        <div class="flex items-center gap-3">
+          <span class="px-3 py-1 bg-secondary-container/20 text-secondary font-bold rounded-full text-label-sm">${content.level || 'Intermediate'}</span>
+          <span class="flex items-center gap-1 text-on-surface-variant text-label-sm"><span class="material-symbols-outlined text-sm">schedule</span> ${content.duration || '10 min'}</span>
+          <span class="flex items-center gap-1 text-secondary font-bold text-label-sm"><span class="material-symbols-outlined text-sm">stars</span> ${content.xp || '+50 XP'}</span>
+        </div>
+      </header>
+      <div class="px-margin-desktop pb-32 z-10 max-w-container-max md-content">
+        <div class="bg-white rounded-lg p-8 soft-shadow border border-outline-variant/30">
+          ${renderMarkdown(content.markdown)}
+        </div>
+        ${practiceHTML}
+      </div>
+      ${buildBottomNav(lesson)}`;
+  }
+
+
+  // ── Shell wrapper (breadcrumb + bottom nav) ─────────────────────────────────
+  function buildShell(lesson, innerHTML) {
+    return `
+      <nav class="px-margin-desktop pt-8 pb-4 z-10 flex items-center gap-2 text-label-sm text-on-surface-variant">
+        <span>AI Classroom</span>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <span>Vocabulary</span>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <span class="text-primary font-bold">${lesson.title}</span>
+      </nav>
+      <div class="px-margin-desktop pb-32 flex-1">${innerHTML}</div>
+      ${buildBottomNav(lesson)}
+    `;
+  }
+
+  // ── Bottom nav bar ──────────────────────────────────────────────────────────
+  function buildBottomNav(lesson) {
+    const all  = allSections.flatMap(s => s.lessons);
+    const idx  = all.findIndex(l => l.id === lesson.id);
+    const prev = idx > 0 ? all[idx - 1] : null;
+    const next = idx < all.length - 1 ? all[idx + 1] : null;
+    const isDone = lesson.status === 'COMPLETED';
+    return `
+      <nav class="fixed bottom-0 right-0 w-[calc(100%-260px)] bg-surface/90 backdrop-blur-xl border-t border-outline-variant/30 px-6 py-3 flex items-center justify-between z-50">
+        <button onclick="navigateLessons(-1)" ${!prev ? 'disabled' : ''} class="flex items-center gap-1.5 text-sm text-on-surface-variant font-bold hover:text-primary transition-colors px-3 py-2 rounded-full hover:bg-primary-container/10 disabled:opacity-30">
+          <span class="material-symbols-outlined text-[18px]">arrow_back</span> Previous
+        </button>
+        <div class="flex items-center gap-3">
+          ${next ? `<div class="hidden md:flex flex-col items-end"><span class="text-[11px] text-on-surface-variant uppercase tracking-wider font-bold">Next up:</span><span class="text-sm font-bold text-on-surface">${next.title}</span></div>` : ''}
+          <button onclick="markComplete('${lesson.id}')" class="${isDone ? 'bg-green-500' : 'bg-primary'} text-on-primary text-sm font-bold py-2 px-5 rounded-full shadow-sm active:scale-95 transition-all flex items-center gap-1.5">
+            ${isDone ? 'Completed' : 'Mark Complete'} <span class="material-symbols-outlined text-[16px]">${isDone ? 'check_circle' : 'check'}</span>
+          </button>
+          <button onclick="navigateLessons(1)" ${!next ? 'disabled' : ''} class="flex items-center gap-1.5 text-sm text-primary font-bold hover:bg-primary-container/10 px-3 py-2 rounded-full transition-colors disabled:opacity-30">
+            Next <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </button>
+        </div>
+      </nav>`;
+  }
+
+  // ── Word-list layout (phrasal verbs) ────────────────────────────────────────
+  function buildWordsLayout(lesson, content) {
+    let wordsHTML = '';
+    content.words.forEach((w, wIdx) => {
+      let meaningsHTML = (w.meanings || []).map(m => `
+        <div class="flex gap-4 p-4 rounded-xl border border-outline-variant/30 bg-surface/50">
+          <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-primary">${m.num}</div>
+          <p class="text-body-md text-on-surface-variant"><span class="text-on-surface font-bold">${m.context}:</span> "${m.sentence}"</p>
+        </div>`).join('');
+
+      let synonymsHTML = (w.synonyms || []).map(s => `<span class="px-3 py-1 bg-primary-container/20 text-primary rounded-full font-bold text-label-sm hover:bg-primary-container/45 transition-colors cursor-pointer">${s}</span>`).join('');
+      let antonymsHTML = (w.antonyms || []).map(a => `<span class="px-3 py-1 bg-surface-variant/40 text-on-surface-variant rounded-full font-bold text-label-sm hover:bg-surface-variant/65 transition-colors cursor-pointer">${a}</span>`).join('');
+
+      const escapedWord = w.word.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+      wordsHTML += `
+        <div id="word-${wIdx}" class="col-span-12 word-entry-card bg-surface-container-lowest rounded-lg p-stack-md soft-shadow border border-outline-variant/20 mb-6">
+          <div class="flex flex-wrap justify-between items-start gap-4 mb-4">
+            <div>
+              <div class="flex items-center gap-3 mb-1">
+                <h2 class="font-display-lg text-[28px] text-on-surface">${w.word}</h2>
+                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full font-bold text-label-sm">${w.pos || 'verb'}</span>
+              </div>
+              <span class="text-on-surface-variant font-mono text-body-md tracking-wider">${w.ipa || ''}</span>
+            </div>
+            <button onclick="playWordAudio('${escapedWord}')" title="Listen" class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-on-primary soft-shadow active:scale-95 transition-all hover:scale-105">
+              <span class="material-symbols-outlined text-xl">volume_up</span>
+            </button>
+          </div>
+          <div class="mb-6">
+            <h4 class="text-label-sm uppercase tracking-widest text-on-surface-variant mb-1 font-bold">Definition</h4>
+            <p class="font-body-lg text-on-surface text-[18px] leading-relaxed">${w.definition}</p>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div>
+              <h4 class="text-label-sm uppercase tracking-widest text-on-surface-variant mb-3 font-bold">Meanings &amp; Examples</h4>
+              <div class="space-y-3">${meaningsHTML}</div>
+            </div>
+            <div class="space-y-4">
+              <div class="bg-primary-fixed-dim/15 rounded-lg p-4 border-l-4 border-primary">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="material-symbols-outlined text-primary text-[20px]">lightbulb</span>
+                  <h3 class="font-bold text-primary text-body-md">Memory Tip</h3>
+                </div>
+                <p class="text-on-surface-variant text-body-sm leading-relaxed">${w.memory_tip || ''}</p>
+              </div>
+              <div class="flex flex-col gap-3">
+                <div class="flex flex-wrap gap-2 items-center">
+                  <span class="text-label-sm font-bold text-on-surface-variant">Synonyms:</span>
+                  <div class="flex flex-wrap gap-1">${synonymsHTML}</div>
+                </div>
+                <div class="flex flex-wrap gap-2 items-center">
+                  <span class="text-label-sm font-bold text-on-surface-variant">Antonyms:</span>
+                  <div class="flex flex-wrap gap-1">${antonymsHTML}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`;
+    });
+
+    // Practice MCQ block
+    let practiceHTML = '';
+    if (content.practice) {
+      const p = content.practice;
+      const optionsHTML = (p.options || []).map(opt => {
+        const safeOpt = opt.replace(/'/g, "\\'");
+        const safeAns = p.answer.replace(/'/g, "\\'");
+        return `<button onclick="checkVocabPractice('${safeOpt}','${safeAns}')" class="px-4 py-3 bg-white border border-outline-variant rounded-xl text-left hover:bg-secondary-container/10 transition-colors text-body-md font-semibold">${opt}</button>`;
+      }).join('');
+      practiceHTML = `
+        <div id="practice-section" class="col-span-12 bg-secondary-fixed rounded-lg p-stack-md soft-shadow mt-6 border border-outline-variant/30">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="material-symbols-outlined text-secondary text-3xl">edit_note</span>
+            <h3 class="font-display-lg text-[28px] text-on-secondary-fixed">Quick Check!</h3>
+          </div>
+          <div class="bg-white/90 backdrop-blur-sm rounded-xl p-6">
+            <p class="text-body-lg text-on-background mb-4 font-semibold">${p.question}</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">${optionsHTML}</div>
+            <p id="practice-feedback" class="mt-4 font-bold text-green-600"></p>
+          </div>
+        </div>`;
+    }
+
+    return `
+      <nav class="px-margin-desktop pt-8 pb-4 z-10 flex items-center gap-2 text-label-sm text-on-surface-variant">
+        <span>AI Classroom</span>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <span>Vocabulary</span>
+        <span class="material-symbols-outlined text-xs">chevron_right</span>
+        <span class="text-primary font-bold">${lesson.title}</span>
+      </nav>
+      <header class="px-margin-desktop pb-stack-md z-10">
+        <h1 class="font-display-lg text-display-lg text-on-surface leading-tight mb-2">${content.title || lesson.title}</h1>
+        <div class="text-body-lg text-on-surface-variant mb-4">${renderMarkdown(content.intro || '')}</div>
+        <div class="flex items-center gap-3">
+          <span class="px-3 py-1 bg-secondary-container/20 text-secondary font-bold rounded-full text-label-sm">${content.level || 'Intermediate'}</span>
+          <span class="flex items-center gap-1 text-on-surface-variant text-label-sm"><span class="material-symbols-outlined text-sm">schedule</span> ${content.duration || '15 min'}</span>
+          <span class="flex items-center gap-1 text-secondary font-bold text-label-sm"><span class="material-symbols-outlined text-sm">stars</span> ${content.xp || '+50 XP'}</span>
+        </div>
+      </header>
+      <div class="px-margin-desktop grid grid-cols-12 gap-gutter pb-32 z-10 max-w-container-max">
+        ${wordsHTML}
+        ${practiceHTML}
+      </div>
+      ${buildBottomNav(lesson)}`;
+  }
+
+  // ── Single-word layout (legacy format) ─────────────────────────────────────
+  function buildSingleWordLayout(lesson, content) {
+    let meaningsHTML = (content.meanings || []).map(m => `
+      <div class="flex gap-4 p-4 rounded-xl border border-outline-variant/30 bg-surface/50">
+        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-primary">${m.num}</div>
+        <p class="text-body-md text-on-surface-variant"><span class="text-on-surface font-bold">${m.context}:</span> "${m.sentence}"</p>
+      </div>`).join('');
+
+    let wordFamilyHTML = (content.word_family || []).map(w => `
+      <div class="flex justify-between border-b border-outline-variant pb-2">
+        <span class="text-label-sm uppercase text-on-surface-variant">${w.type}</span>
+        <span class="font-mono text-body-md ${w.type === 'Verb' ? 'text-primary font-bold' : ''}">${w.value}</span>
+      </div>`).join('');
+
+    let usageRowsHTML = (content.usage_table?.rows || []).map(r => `
+      <tr class="hover:bg-surface-container-low transition-colors">
+        <td class="px-6 py-4 font-bold text-body-md text-on-surface">${r[0]}</td>
+        <td class="px-6 py-4 text-body-md italic">"${r[1]}"</td>
+        <td class="px-6 py-4 text-on-surface-variant text-body-md">${r[2]}</td>
+      </tr>`).join('');
+
+    let synonymsHTML = (content.synonyms || []).map(s => `<span class="px-4 py-2 bg-primary-container/20 text-primary rounded-full font-bold text-body-md hover:bg-primary-container/40 cursor-pointer transition-colors">${s}</span>`).join('');
+    let antonymsHTML = (content.antonyms || []).map(a => `<span class="px-4 py-2 bg-surface-variant/40 text-on-surface-variant rounded-full font-bold text-body-md hover:bg-surface-variant/60 cursor-pointer transition-colors">${a}</span>`).join('');
+
+    const word = content.word || lesson.title;
+    const safeWord = word.replace(/'/g, "\\'");
+
+    let practiceHTML = '';
+    if (content.practice) {
+      const p = content.practice;
+      if (p.options) {
+        // MCQ style
+        const optionsHTML = (p.options || []).map(opt => {
+          const safeOpt = opt.replace(/'/g, "\\'");
+          const safeAns = p.answer.replace(/'/g, "\\'");
+          return `<button onclick="checkVocabPractice('${safeOpt}','${safeAns}')" class="px-4 py-3 bg-white border border-outline-variant rounded-xl text-left hover:bg-secondary-container/10 transition-colors text-body-md font-semibold">${opt}</button>`;
+        }).join('');
+        practiceHTML = `<div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">${optionsHTML}</div><p id="practice-feedback" class="mt-4 font-bold text-green-600"></p>`;
+      } else if (p.prompt) {
+        // Fill-in-blank style
+        const parts = (p.prompt || '').split('[input]');
+        practiceHTML = `
+          <div class="flex flex-wrap items-center gap-3 text-[18px] font-medium text-on-surface">
+            <span>${parts[0] || ''}</span>
+            <input type="text" id="practice-input" class="bg-transparent border-b-2 border-dashed border-primary focus:border-solid focus:ring-0 w-48 px-2 text-center text-primary font-bold placeholder:text-primary/30 outline-none" placeholder="....."/>
+            <span>${parts[1] || ''}</span>
+          </div>
+          <p id="practice-feedback" class="mt-4 font-bold text-green-600"></p>
+          <div class="mt-6 flex gap-2">
+            <button onclick="checkPracticeAnswer('${(p.answer||'').replace(/'/g,"\\'")}')"; class="px-6 py-2 bg-white border border-secondary-container text-secondary font-bold rounded-full hover:bg-secondary-container/10 transition-colors">Check Answer</button>
+            <button onclick="revealPracticeAnswer('${(p.answer||'').replace(/'/g,"\\'")}')"; class="px-6 py-2 bg-transparent text-on-surface-variant font-bold rounded-full hover:bg-surface-variant/20">I'm stuck</button>
+          </div>`;
+      }
+    }
+
+    return `
+      <nav class="px-margin-desktop pt-8 pb-4 z-10 flex items-center gap-2 text-label-sm text-on-surface-variant">
+        <span>AI Classroom</span><span class="material-symbols-outlined text-xs">chevron_right</span>
+        <span>Vocabulary</span><span class="material-symbols-outlined text-xs">chevron_right</span>
+        <span class="text-primary font-bold">${lesson.title}</span>
+      </nav>
+      <header class="px-margin-desktop pb-stack-md z-10">
+        <h1 class="font-display-lg text-display-lg text-on-surface leading-tight mb-2">${content.title || lesson.title}</h1>
+        <div class="flex items-center gap-3">
+          <span class="px-3 py-1 bg-secondary-container/20 text-secondary font-bold rounded-full text-label-sm">${content.level || 'Intermediate'}</span>
+          <span class="flex items-center gap-1 text-on-surface-variant text-label-sm"><span class="material-symbols-outlined text-sm">schedule</span> ${content.duration || '10 min'}</span>
+          <span class="flex items-center gap-1 text-secondary font-bold text-label-sm"><span class="material-symbols-outlined text-sm">stars</span> ${content.xp || '+50 XP'}</span>
+        </div>
+      </header>
+      <div class="px-margin-desktop grid grid-cols-12 gap-gutter pb-32 z-10 max-w-container-max">
+        <!-- Word Card -->
+        <div id="word-details" class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-lg p-stack-md soft-shadow">
+          <div class="flex flex-wrap justify-between items-start gap-4 mb-6">
+            <div>
+              <div class="flex items-center gap-3 mb-1">
+                <h2 class="font-display-lg text-[32px] text-on-surface">${word}</h2>
+                <span class="px-3 py-1 bg-primary/10 text-primary rounded-full font-bold text-label-sm">${content.pos || 'noun'}</span>
+              </div>
+              <span class="text-on-surface-variant font-mono text-body-md tracking-wider">${content.ipa || ''}</span>
+            </div>
+            <button onclick="playWordAudio('${safeWord}')" title="Listen" class="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-on-primary soft-shadow active:scale-95 transition-all hover:scale-105 group overflow-hidden">
+              <span class="material-symbols-outlined text-2xl">volume_up</span>
+            </button>
+          </div>
+          <div class="mb-8">
+            <h4 class="text-label-sm uppercase tracking-widest text-on-surface-variant mb-2">Primary Definition</h4>
+            <p class="font-body-lg text-on-surface text-[22px] leading-relaxed">${content.definition || ''}</p>
+          </div>
+          <div class="space-y-4">
+            <h4 class="text-label-sm uppercase tracking-widest text-on-surface-variant">Multiple Meanings</h4>
+            <div class="space-y-3">${meaningsHTML}</div>
+          </div>
+        </div>
+        <!-- Side Column -->
+        <div class="col-span-12 lg:col-span-4 space-y-gutter">
+          <div class="bg-gradient-to-br from-inverse-surface to-on-surface-variant rounded-lg p-6 text-inverse-on-surface soft-shadow relative overflow-hidden cursor-pointer active:scale-98 transition-transform" onclick="document.getElementById('ai-modal').classList.remove('hidden')">
+            <div class="absolute top-0 right-0 p-4 opacity-20 transform translate-x-4 -translate-y-4"><span class="material-symbols-outlined text-[80px]">podcasts</span></div>
+            <div class="relative z-10 flex flex-col items-center text-center">
+              <div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center mb-4 orb-pulse"><span class="material-symbols-outlined text-primary text-3xl">smart_toy</span></div>
+              <h3 class="font-headline-md text-white mb-2">AI Teacher Insight</h3>
+              <p class="text-inverse-on-surface/80 text-body-md px-4">${content.insight || 'Click to ask the AI Teacher about this word!'}</p>
+            </div>
+          </div>
+          <div id="memory-tip-section" class="bg-primary-fixed-dim/20 rounded-lg p-6 border-l-4 border-primary">
+            <div class="flex items-center gap-2 mb-3"><span class="material-symbols-outlined text-primary">lightbulb</span><h3 class="font-bold text-primary text-body-lg">Memory Tip</h3></div>
+            <p class="text-on-surface-variant text-body-md leading-relaxed">${content.memory_tip || ''}</p>
+          </div>
+          ${wordFamilyHTML ? `<div class="bg-surface-container-high rounded-lg p-6"><h3 class="font-bold text-on-surface mb-4 text-body-lg">Word Family</h3><div class="space-y-3">${wordFamilyHTML}</div></div>` : ''}
+        </div>
+        <!-- Usage Table -->
+        ${usageRowsHTML ? `
+        <div id="usage-table-section" class="col-span-12 bg-surface-container-lowest rounded-lg p-stack-md soft-shadow overflow-hidden">
+          <h3 class="font-headline-md text-on-surface flex items-center gap-2 mb-6"><span class="material-symbols-outlined text-green-600">check_circle</span>${content.usage_table?.title || 'Usage in Context'}</h3>
+          <div class="overflow-x-auto"><table class="w-full text-left">
+            <thead class="bg-surface-container border-b border-outline-variant"><tr>
+              ${(content.usage_table?.headers || []).map(h => `<th class="px-6 py-4 text-label-sm uppercase font-bold text-on-surface-variant">${h}</th>`).join('')}
+            </tr></thead>
+            <tbody class="divide-y divide-outline-variant/30">${usageRowsHTML}</tbody>
+          </table></div>
+        </div>` : ''}
+        <!-- Synonyms & Antonyms -->
+        <div id="synonyms-section" class="col-span-12 lg:col-span-6">
+          <div class="bg-surface-container-lowest rounded-lg p-6 soft-shadow border-t-4 border-green-500">
+            <h3 class="font-bold text-on-surface mb-4">Synonyms</h3>
+            <div class="flex flex-wrap gap-2">${synonymsHTML}</div>
+          </div>
+        </div>
+        <div class="col-span-12 lg:col-span-6">
+          <div class="bg-surface-container-lowest rounded-lg p-6 soft-shadow border-t-4 border-error">
+            <h3 class="font-bold text-on-surface mb-4">Antonyms</h3>
+            <div class="flex flex-wrap gap-2">${antonymsHTML}</div>
+          </div>
+        </div>
+        <!-- Practice -->
+        ${practiceHTML ? `
+        <div id="practice-section" class="col-span-12 bg-secondary-fixed rounded-lg p-stack-md soft-shadow">
+          <div class="flex items-center gap-3 mb-6"><span class="material-symbols-outlined text-secondary text-3xl">edit_note</span><h3 class="font-display-lg text-[28px] text-on-secondary-fixed">Let's Practice!</h3></div>
+          <div class="bg-white/80 backdrop-blur-sm rounded-xl p-6">${practiceHTML}</div>
+        </div>` : ''}
+      </div>
+      ${buildBottomNav(lesson)}`;
+  }
+
+  // ── Audio ───────────────────────────────────────────────────────────────────
+  window.playWordAudio = function(word) {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utt = new SpeechSynthesisUtterance(word);
+      utt.lang = 'en-US';
+      utt.rate = 0.85;
+      window.speechSynthesis.speak(utt);
+    }
+  };
+
+  // ── Practice answer handlers ────────────────────────────────────────────────
+  window.checkPracticeAnswer = function(correctAnswer) {
+    const input    = document.getElementById('practice-input');
+    const feedback = document.getElementById('practice-feedback');
+    if (!input || !feedback) return;
+    const correct  = input.value.toLowerCase().trim() === correctAnswer.toLowerCase().trim();
+    input.classList.toggle('text-green-600', correct);
+    feedback.textContent = correct ? 'Correct! Well done!' : 'Not quite — try again!';
+    feedback.className   = `mt-4 font-bold ${correct ? 'text-green-600' : 'text-error'}`;
+  };
+
+  window.revealPracticeAnswer = function(correctAnswer) {
+    const input    = document.getElementById('practice-input');
+    const feedback = document.getElementById('practice-feedback');
+    if (input) { input.value = correctAnswer; input.classList.add('text-green-600'); }
+    if (feedback) { feedback.textContent = `Answer: ${correctAnswer}`; feedback.className = 'mt-4 font-bold text-primary'; }
+  };
+
+  window.checkVocabPractice = function(opt, answer) {
+    const feedback = document.getElementById('practice-feedback');
+    if (!feedback) return;
+    const correct = opt.toLowerCase().trim() === answer.toLowerCase().trim();
+    feedback.textContent = correct ? '✅ Correct! Excellent job!' : '❌ Incorrect. Try another option!';
+    feedback.className   = `mt-4 font-bold ${correct ? 'text-green-600' : 'text-error'}`;
+  };
+
+  // ── Mark Complete ───────────────────────────────────────────────────────────
+  window.markComplete = async function(lessonId) {
+    try {
+      await fetch(`/api/classroom/lessons/${lessonId}/progress?status=COMPLETED`, {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      // Refresh sidebar data and re-render current lesson (to update button)
+      const res = await fetch('/api/classroom/lessons?module=VOCABULARY', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      allSections = await res.json();
+      const flat    = allSections.flatMap(s => s.lessons);
+      const updated = flat.find(l => l.id === lessonId);
+      if (updated) { currentLesson = updated; loadLesson(updated); }
+      else renderSidebar(allSections);
+    } catch(e) { console.error(e); }
+  };
+
+  // ── Navigation ──────────────────────────────────────────────────────────────
+  window.navigateLessons = function(direction) {
+    if (!allSections.length) return;
+    const list = allSections.flatMap(s => s.lessons);
+    const idx  = currentLesson ? list.findIndex(l => l.id === currentLesson.id) : -1;
+    const next = list[idx + direction];
+    if (next) {
+      loadLesson(next);
+      document.getElementById('main-content-container').scrollTop = 0;
+    }
+  };
+
+  // ── AI Teacher Modal ────────────────────────────────────────────────────────
+  document.getElementById('ai-teacher-btn').onclick = () => document.getElementById('ai-modal').classList.remove('hidden');
+  document.getElementById('close-ai-modal').onclick = () => document.getElementById('ai-modal').classList.add('hidden');
+
+  document.getElementById('ai-send-btn').onclick = async () => {
+    const input   = document.getElementById('ai-question');
+    const text    = input.value.trim();
+    if (!text) return;
+    input.value   = '';
+    const history = document.getElementById('ai-chat-history');
+    history.innerHTML += `<div class="self-end bg-primary text-on-primary rounded-xl px-4 py-2 max-w-[80%] text-sm">${text}</div>`;
+    history.scrollTop = history.scrollHeight;
+    try {
+      const res = await fetch('/api/chat/ask-teacher', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+        body: JSON.stringify({ question: text, lessonTitle: currentLesson ? currentLesson.title : '' })
+      });
+      const data = await res.json();
+      history.innerHTML += `<div class="self-start bg-surface-container-high text-on-surface rounded-xl px-4 py-2 max-w-[80%] text-sm">${data.answer || 'Sorry, I could not get a response.'}</div>`;
+      history.scrollTop = history.scrollHeight;
+    } catch(e) {
+      console.error(e);
+      history.innerHTML += `<div class="self-start bg-error-container text-on-error-container rounded-xl px-4 py-2 max-w-[80%] text-sm">Error connecting to AI Teacher.</div>`;
+    }
+  };
+
+  // Allow Enter key to send AI question
+  document.getElementById('ai-question').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('ai-send-btn').click();
+  });
+
+  // ── Reading Progress and TOC Highlight ──────────────────────────────────────
+  const scrollContainer = document.getElementById('main-content-container');
+  if (scrollContainer) {
+    scrollContainer.addEventListener('scroll', () => {
+      const scrollTop = scrollContainer.scrollTop;
+      const docHeight = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+      const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      const progressEl = document.getElementById('reading-progress');
+      if (progressEl) progressEl.style.width = progress + '%';
+
+      // Active TOC link highlighting
+      const anchors = scrollContainer.querySelectorAll('[id]');
+      let current = '';
+      anchors.forEach(el => {
+        if (el.id && el.id !== 'reading-progress' && el.id !== 'main-content-container') {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 160) {
+            current = el.id;
+          }
+        }
+      });
+      document.querySelectorAll('.toc-link').forEach(link => {
+        link.classList.toggle('active', link.dataset.anchor === current);
+      });
+    });
+  }
+
+  // Intercept click on TOC links to smooth-scroll the container
+  document.addEventListener('click', e => {
+    const link = e.target.closest('.toc-link');
+    if (link) {
+      e.preventDefault();
+      const targetId = link.getAttribute('href').slice(1);
+      const targetEl = document.getElementById(targetId);
+      const container = document.getElementById('main-content-container');
+      if (targetEl && container) {
+        const containerRect = container.getBoundingClientRect();
+        const elRect = targetEl.getBoundingClientRect();
+        const offset = elRect.top - containerRect.top + container.scrollTop - 40;
+        container.scrollTo({ top: offset, behavior: 'smooth' });
+      }
+    }
+  });
+
+  // Initialize
+  async function init() {
+    try {
+      const res = await fetch('/api/classroom/lessons?module=VOCABULARY', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      if (res.status === 401 || res.status === 403) {
+        localStorage.removeItem('speakmate_token');
+        window.location.href = '/login.html';
+        return;
+      }
+      if (!res.ok) {
+        throw new Error('HTTP error ' + res.status);
+      }
+      allSections = await res.json();
+      renderSidebar(allSections);
+      if (allSections.length > 0 && allSections[0].lessons.length > 0) {
+        // Load first lesson
+        loadLesson(allSections[0].lessons[0]);
+      }
+    } catch(e) {
+      console.error('init error:', e);
+    }
+  }
+
+  init();
+</script>
+</body>
+</html>
