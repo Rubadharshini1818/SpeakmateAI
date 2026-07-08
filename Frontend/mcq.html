@@ -140,6 +140,7 @@
             display: none !important;
         }
     </style>
+  <script src="config.js"></script>
 </head>
 <body class="min-h-screen pb-24 md:pb-8">
 <!-- Top Navigation Bar -->
@@ -419,7 +420,7 @@ async function loadTodayMcq() {
         if (forceNew) {
             window.history.replaceState({}, document.title, window.location.pathname);
         }
-        const fetchUrl = forceNew ? '/api/mcq/today?forceNew=true' : '/api/mcq/today';
+        const fetchUrl = forceNew ? API_BASE_URL + '/api/mcq/today?forceNew=true' : API_BASE_URL + '/api/mcq/today';
 
         const res = await fetch(fetchUrl, {
             headers: { 'Authorization': 'Bearer ' + token }
@@ -566,7 +567,7 @@ async function finishTest() {
     if (scoreEl) scoreEl.textContent = '...';
 
     try {
-        const res = await fetch('/api/mcq/submit', {
+        const res = await fetch(API_BASE_URL + '/api/mcq/submit', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
             body: JSON.stringify({ sessionId: String(sessionId), answers })

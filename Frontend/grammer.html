@@ -148,6 +148,7 @@
         #toc-panel { display: none; }
       }
     </style>
+  <script src="config.js"></script>
 </head>
 <div id="reading-progress" style="width:0%"></div>
 <body class="antialiased">
@@ -309,7 +310,7 @@
 
   async function fetchLessons(preserveLesson) {
     try {
-      const res = await fetch('/api/classroom/lessons?module=GRAMMAR', {
+      const res = await fetch(API_BASE_URL + '/api/classroom/lessons?module=GRAMMAR', {
         headers: { 'Authorization': 'Bearer ' + token }
       });
       if (res.status === 401 || res.status === 403) {
@@ -846,7 +847,7 @@
 
   async function markComplete(lessonId) {
      try {
-       await fetch(`/api/classroom/lessons/${lessonId}/progress?status=COMPLETED`, {
+       await fetch(API_BASE_URL + `/api/classroom/lessons/${lessonId}/progress?status=COMPLETED`, {
           method: 'POST',
           headers: { 'Authorization': 'Bearer ' + token }
        });
@@ -869,7 +870,7 @@
      history.scrollTop = history.scrollHeight;
      
      try {
-       const res = await fetch('/api/chat/ask-teacher', {
+       const res = await fetch(API_BASE_URL + '/api/chat/ask-teacher', {
          method: 'POST',
          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
          body: JSON.stringify({

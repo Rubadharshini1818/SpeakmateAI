@@ -177,6 +177,7 @@
         #toc-panel { display: none; }
       }
     </style>
+  <script src="config.js"></script>
 </head>
 <body class="text-on-surface">
 <div id="reading-progress" style="position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,#765b00,#edc146);z-index:9999;transition:width 0.1s linear"></div>
@@ -1096,12 +1097,12 @@
   // ── Mark Complete ───────────────────────────────────────────────────────────
   window.markComplete = async function(lessonId) {
     try {
-      await fetch(`/api/classroom/lessons/${lessonId}/progress?status=COMPLETED`, {
+      await fetch(API_BASE_URL + `/api/classroom/lessons/${lessonId}/progress?status=COMPLETED`, {
         method: 'POST',
         headers: { 'Authorization': 'Bearer ' + token }
       });
       // Refresh sidebar data and re-render current lesson (to update button)
-      const res = await fetch('/api/classroom/lessons?module=VOCABULARY', {
+      const res = await fetch(API_BASE_URL + '/api/classroom/lessons?module=VOCABULARY', {
         headers: { 'Authorization': 'Bearer ' + token }
       });
       allSections = await res.json();
@@ -1137,7 +1138,7 @@
     history.innerHTML += `<div class="self-end bg-primary text-on-primary rounded-xl px-4 py-2 max-w-[80%] text-sm">${text}</div>`;
     history.scrollTop = history.scrollHeight;
     try {
-      const res = await fetch('/api/chat/ask-teacher', {
+      const res = await fetch(API_BASE_URL + '/api/chat/ask-teacher', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
         body: JSON.stringify({ question: text, lessonTitle: currentLesson ? currentLesson.title : '' })
@@ -1203,7 +1204,7 @@
   // Initialize
   async function init() {
     try {
-      const res = await fetch('/api/classroom/lessons?module=VOCABULARY', {
+      const res = await fetch(API_BASE_URL + '/api/classroom/lessons?module=VOCABULARY', {
         headers: { 'Authorization': 'Bearer ' + token }
       });
       if (res.status === 401 || res.status === 403) {

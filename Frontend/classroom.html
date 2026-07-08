@@ -133,6 +133,7 @@
             border-right: 8px solid white;
         }
     </style>
+  <script src="config.js"></script>
 </head>
 <body class="font-body-md text-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
 <!-- Side Navigation Shell -->
@@ -307,7 +308,7 @@
             showTyping();
 
             try {
-                const response = await fetch('/api/chat/ask-teacher', {
+                const response = await fetch(API_BASE_URL + '/api/chat/ask-teacher', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

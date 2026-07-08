@@ -79,6 +79,7 @@
     vertical-align: middle;
   }
 </style>
+  <script src="config.js"></script>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
 
@@ -241,7 +242,7 @@
     const username = fullName.toLowerCase().replace(/\s+/g, '');
 
     try {
-      const response = await fetch('/api/auth/signup', {
+      const response = await fetch(API_BASE_URL + '/api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -272,7 +273,7 @@
     const simulatedName = "Alex Johnson";
 
     try {
-      const response = await fetch('/api/auth/google', {
+      const response = await fetch(API_BASE_URL + '/api/auth/google', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

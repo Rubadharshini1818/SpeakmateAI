@@ -109,6 +109,7 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
     </style>
+  <script src="config.js"></script>
 </head>
 <body class="bg-brand-cream text-brand-dark">
 <!-- Top Navigation Bar -->
@@ -491,7 +492,7 @@
         // Dynamic Loading from Dashboard summary API
         document.addEventListener('DOMContentLoaded', async () => {
             try {
-                const response = await fetch('/api/dashboard/summary', {
+                const response = await fetch(API_BASE_URL + '/api/dashboard/summary', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }

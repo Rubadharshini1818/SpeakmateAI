@@ -153,6 +153,7 @@
     font-weight: 700;
   }
 </style>
+  <script src="config.js"></script>
 </head>
 <body class="text-on-surface overflow-hidden">
 
@@ -483,7 +484,7 @@ async function sendMessage(text) {
   setNavStatus('⚡ Thinking...', '#F5C84C');
 
   try {
-    const res = await fetch('/api/chat/send', {
+    const res = await fetch(API_BASE_URL + '/api/chat/send', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
       body: JSON.stringify({ message: text })
@@ -656,7 +657,7 @@ function scrollToBottom() {
 // ═══════════════════════════════════════════════════════════
 async function loadHistory() {
   try {
-    const res = await fetch('/api/chat/history', {
+    const res = await fetch(API_BASE_URL + '/api/chat/history', {
       headers: { 'Authorization': 'Bearer ' + token }
     });
     if (res.status === 401 || res.status === 403) {
@@ -690,7 +691,7 @@ async function loadHistory() {
 document.getElementById('clear-btn').onclick = async () => {
   if (!confirm('Clear this entire conversation?')) return;
   try {
-    const res = await fetch('/api/chat/clear', {
+    const res = await fetch(API_BASE_URL + '/api/chat/clear', {
       method: 'DELETE',
       headers: { 'Authorization': 'Bearer ' + token }
     });

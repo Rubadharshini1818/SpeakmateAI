@@ -146,6 +146,7 @@
           100% { transform: scale(.8); }
         }
     </style>
+  <script src="config.js"></script>
 </head>
 <body class="min-h-screen flex flex-col items-center">
 <!-- Global Persistent Header -->
@@ -562,7 +563,7 @@
         formData.append('resume', resumeInput.files[0]);
       }
 
-      const res = await fetch('/api/interview/start', {
+      const res = await fetch(API_BASE_URL + '/api/interview/start', {
         method: 'POST',
         headers: { 'Authorization': 'Bearer ' + token },
         body: formData
@@ -678,7 +679,7 @@
     document.getElementById('answer-status').textContent = 'Submitting...';
 
     try {
-      const res = await fetch('/api/interview/answer', {
+      const res = await fetch(API_BASE_URL + '/api/interview/answer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
         body: JSON.stringify({ sessionId: String(sessionId), answer })
@@ -718,7 +719,7 @@
     goToStep('loading');
 
     try {
-      const res = await fetch('/api/interview/end', {
+      const res = await fetch(API_BASE_URL + '/api/interview/end', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
         body: JSON.stringify({ sessionId: String(sessionId) })
@@ -784,7 +785,7 @@
   const reportId = urlParams.get('report');
   if (reportId) {
     goToStep('loading');
-    fetch(`/api/interview/report/${reportId}`, {
+    fetch(API_BASE_URL + `/api/interview/report/${reportId}`, {
       headers: { 'Authorization': 'Bearer ' + token }
     })
     .then(res => {

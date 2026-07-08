@@ -115,6 +115,7 @@
             backdrop-filter: blur(12px);
         }
     </style>
+  <script src="config.js"></script>
 </head>
 <body class="min-h-screen pb-32">
 <!-- Top AppBar (from JSON context) -->
@@ -199,7 +200,7 @@
 
     async function loadAssessment() {
         try {
-            const res = await fetch('/api/weekly/current', {
+            const res = await fetch(API_BASE_URL + '/api/weekly/current', {
                 headers: { 'Authorization': 'Bearer ' + token }
             });
             if (!res.ok) throw new Error("Failed to load");
@@ -239,7 +240,7 @@
 
     async function completeAssessment() {
         try {
-            const res = await fetch('/api/weekly/complete', {
+            const res = await fetch(API_BASE_URL + '/api/weekly/complete', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -848,7 +849,7 @@
     // ── SUBMIT GENERAL RESULT ────────────────────────────────────────────────
     async function submitTaskResult(taskKey, submission) {
         try {
-            const res = await fetch('/api/weekly/submit-task', {
+            const res = await fetch(API_BASE_URL + '/api/weekly/submit-task', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

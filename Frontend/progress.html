@@ -138,6 +138,7 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
     </style>
+  <script src="config.js"></script>
 </head>
 <body class="min-h-screen">
 <div class="flex">
@@ -517,7 +518,7 @@
         // Load progress dynamic data
         async function loadProgress() {
             try {
-                const res = await fetch('/api/progress/summary', {
+                const res = await fetch(API_BASE_URL + '/api/progress/summary', {
                     headers: { 'Authorization': 'Bearer ' + token }
                 });
                 if (res.status === 401 || res.status === 403) {
@@ -657,7 +658,7 @@
                 // Badges
                 const badgesContainer = document.querySelector('.grid.grid-cols-3');
                 if (badgesContainer) {
-                    const bRes = await fetch('/api/progress/badges', { headers: { 'Authorization': 'Bearer ' + token } });
+                    const bRes = await fetch(API_BASE_URL + '/api/progress/badges', { headers: { 'Authorization': 'Bearer ' + token } });
                     const bData = await bRes.json();
                     const earnedList = bData.badges || [];
                     

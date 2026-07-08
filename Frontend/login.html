@@ -132,6 +132,7 @@
             border-color: #F5C84C !important;
         }
     </style>
+  <script src="config.js"></script>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4">
 <!-- Atmospheric Background Blobs -->
@@ -222,7 +223,7 @@
     const password = document.getElementById('password').value;
 
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch(API_BASE_URL + '/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -258,7 +259,7 @@
     const simulatedName = "Alex Johnson";
 
     try {
-      const response = await fetch('/api/auth/google', {
+      const response = await fetch(API_BASE_URL + '/api/auth/google', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
