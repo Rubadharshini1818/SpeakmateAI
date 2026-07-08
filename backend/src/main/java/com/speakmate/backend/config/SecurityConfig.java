@@ -40,6 +40,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+            // Enable CORS using WebMvcConfigurer
+            .cors(org.springframework.security.config.Customizer.withDefaults())
             // Disable CSRF — we use stateless JWT, no session cookies
             .csrf(csrf -> csrf.disable())
 
