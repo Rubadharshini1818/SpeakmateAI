@@ -1,0 +1,20 @@
+# Compiled class files
+target/
+*.class
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+
+# IDE files
+.idea/
+*.iml
+*.iws
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# Environment / secrets
+.env
+application-local.properties
