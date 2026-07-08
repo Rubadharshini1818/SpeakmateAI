@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: Speakmate-Backend
+    env: docker
+    rootDir: backend
+    plan: free
+    branch: main
