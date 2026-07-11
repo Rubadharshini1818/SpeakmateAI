@@ -200,9 +200,9 @@ public class InterviewController {
     // ── Helpers ──────────────────────────────────────────────────────────────
 
     private String generateFirstQuestion(String type, String difficulty, String resumeText, String level) {
-        String sys = buildInterviewerSystem(type, difficulty, level, resumeText);
-        String prompt = "Start the interview with your opening question. Do not include any preamble — just ask the first interview question directly.";
-        return ai.generateContent(sys, prompt);
+        // Every interview always starts with "Introduce yourself" — this is non-negotiable.
+        // Follow-up questions are then tailored dynamically from the resume and conversation.
+        return "Please introduce yourself — tell me your name, your background, and what you're looking for in this opportunity.";
     }
 
     private String generateNextQuestion(InterviewSession session, List<Map<String, String>> transcript) {

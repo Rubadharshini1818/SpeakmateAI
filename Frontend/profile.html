@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
@@ -178,8 +178,8 @@
 </button>
 </div>
 <div class="flex-1 md:pb-2">
-<h2 class="font-headline-md text-headline-md" id="profile-display-name">Ruba D.</h2>
-<p class="text-body-md text-on-surface-variant" id="profile-username">@ruba_speaks</p>
+<h2 class="font-headline-md text-headline-md" id="profile-display-name">Loading...</h2>
+<p class="text-body-md text-on-surface-variant" id="profile-username">@...</p>
 </div>
 <div class="md:pb-2">
 <button class="px-6 py-2 border-2 border-primary-container text-primary font-bold rounded-full hover:bg-primary-container/10 transition-colors" onclick="openEditProfile()">Edit Profile</button>
@@ -193,22 +193,22 @@
 </div>
 <div class="bg-secondary-container/20 text-on-secondary-container px-4 py-1 rounded-full font-bold text-label-sm flex items-center gap-1.5" id="profile-level-badge">
 <span class="material-symbols-outlined text-[18px]">military_tech</span>
-<span id="profile-level">Level 8 — Advanced Learner</span>
+<span id="profile-level">— Learner</span>
 </div>
 </div>
 <!-- Quick Stats -->
 <div class="flex flex-wrap gap-stack-sm pt-2">
 <div class="bg-surface-container-low px-4 py-2 rounded-full custom-shadow flex items-center gap-2">
 <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
-<span class="font-bold" id="profile-streak">12 Day Streak</span>
+<span class="font-bold" id="profile-streak">0 Day Streak</span>
 </div>
 <div class="bg-surface-container-low px-4 py-2 rounded-full custom-shadow flex items-center gap-2">
 <span class="material-symbols-outlined text-primary">bolt</span>
-<span class="font-bold" id="profile-xp">2,450 XP</span>
+<span class="font-bold" id="profile-xp">0 XP</span>
 </div>
 <div class="bg-surface-container-low px-4 py-2 rounded-full custom-shadow flex items-center gap-2">
 <span class="material-symbols-outlined text-primary">leaderboard</span>
-<span class="font-bold" id="profile-rank">#42 Global Rank</span>
+<span class="font-bold" id="profile-rank">#— Global Rank</span>
 </div>
 </div>
 </div>
@@ -224,15 +224,15 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 <div class="space-y-1">
 <p class="text-label-sm text-on-surface-variant">Full Name</p>
-<p class="font-body-md" id="info-fullname">Ruba Daniela</p>
+<p class="font-body-md" id="info-fullname">—</p>
 </div>
 <div class="space-y-1">
 <p class="text-label-sm text-on-surface-variant">Email</p>
-<p class="font-body-md" id="info-email">ruba@example.com</p>
+<p class="font-body-md" id="info-email">—</p>
 </div>
 <div class="space-y-1">
 <p class="text-label-sm text-on-surface-variant">Phone</p>
-<p class="font-body-md" id="info-phone">+1 (555) 012-3456</p>
+<p class="font-body-md" id="info-phone">—</p>
 </div>
 <div class="space-y-1">
 <p class="text-label-sm text-on-surface-variant">Date of Birth</p>
@@ -244,7 +244,7 @@
 </div>
 <div class="space-y-1">
 <p class="text-label-sm text-on-surface-variant">Location</p>
-<p class="font-body-md" id="info-location">Valencia, Spain</p>
+<p class="font-body-md" id="info-location">—</p>
 </div>
 <div class="space-y-1">
 <p class="text-label-sm text-on-surface-variant">Native Language</p>
@@ -318,14 +318,14 @@
 <div class="flex items-center justify-between py-2 border-b border-surface-variant">
 <div class="flex flex-col">
 <span class="font-bold">Connected Google account</span>
-<span class="text-label-sm text-on-surface-variant">ruba.daniel@gmail.com</span>
+<span class="text-label-sm text-on-surface-variant" id="connected-google-email">—</span>
 </div>
 <span class="text-label-sm font-bold text-primary">Connected</span>
 </div>
 <div class="flex items-center justify-between py-2 border-b border-surface-variant">
 <div class="flex flex-col">
 <span class="font-bold">Linked Phone</span>
-<span class="text-label-sm text-on-surface-variant">+1 (555) ***-3456</span>
+<span class="text-label-sm text-on-surface-variant" id="linked-phone">—</span>
 </div>
 <button class="text-label-sm font-bold text-primary">Verify</button>
 </div>
@@ -424,6 +424,12 @@
             if (s[1]) s[1].textContent = Math.round((data.studyMinutes || 0) / 60 * 10) / 10;
             if (s[2]) s[2].textContent = data.completedLessons || 0;
             if (s[3]) s[3].textContent = data.completedInterviews || 0;
+
+            // Account & Security section
+            const googleEmailEl = document.getElementById('connected-google-email');
+            if (googleEmailEl) googleEmailEl.textContent = data.email || '—';
+            const linkedPhoneEl = document.getElementById('linked-phone');
+            if (linkedPhoneEl) linkedPhoneEl.textContent = data.phone ? data.phone.slice(0, -4) + '****' : '—';
 
         } catch (e) { console.error('Profile load error:', e); }
     }
