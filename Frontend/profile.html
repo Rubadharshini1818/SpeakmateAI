@@ -260,100 +260,39 @@
 <section class="bg-white rounded-lg p-gutter custom-shadow animate-fade-in stagger-2">
 <div class="flex items-center gap-3 mb-6">
 <span class="material-symbols-outlined text-primary">psychology</span>
-<h3 class="font-headline-md text-headline-md">Learning Preferences</h3>
+<h3 class="font-headline-md text-headline-md">Learning Stats</h3>
 </div>
 <div class="space-y-6">
-<div class="space-y-2">
-<p class="text-label-sm text-on-surface-variant uppercase">Focus Areas</p>
-<div class="flex flex-wrap gap-2">
-<span class="bg-surface-container px-3 py-1 rounded-full text-label-sm">Business English</span>
-<span class="bg-surface-container px-3 py-1 rounded-full text-label-sm">Pronunciation</span>
-<span class="bg-surface-container px-3 py-1 rounded-full text-label-sm">Vocabulary</span>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-4" 
-    $m = $args[0]
-    $m.Value -replace '<span class="text-display-lg text-primary text-\[32px\] leading-tight">142</span>', '<span class="text-display-lg text-primary text-[32px] leading-tight stat-value" id="stat-streak">0</span>'
-</span>
-</div>
-<div class="bg-surface-container-low p-4 rounded-lg flex flex-col gap-1">
-<span class="text-display-lg text-primary text-[32px] leading-tight">86.5</span>
-<span class="text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">Study Hours</span>
-</div>
-<div class="bg-surface-container-low p-4 rounded-lg flex flex-col gap-1">
-<span class="text-display-lg text-primary text-[32px] leading-tight">12.4k</span>
-<span class="text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">Words Learned</span>
-</div>
-<div class="bg-surface-container-low p-4 rounded-lg flex flex-col gap-1">
-<span class="text-display-lg text-primary text-[32px] leading-tight">32</span>
-<span class="text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">Courses Taken</span>
-</div>
-</div>
-</section>
-</div>
-<!-- Account & Security -->
-<section class="bg-white rounded-lg p-gutter custom-shadow animate-fade-in stagger-4">
-<div class="flex items-center gap-3 mb-6">
-<span class="material-symbols-outlined text-primary">security</span>
-<h3 class="font-headline-md text-headline-md">Account &amp; Security</h3>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
-<a class="flex items-center justify-between py-2 border-b border-surface-variant group" href="#">
-<div class="flex flex-col">
-<span class="font-bold group-hover:text-primary transition-colors">Change Password</span>
-<span class="text-label-sm text-on-surface-variant">Update your account password</span>
-</div>
-<span class="material-symbols-outlined text-outline-variant group-hover:text-primary">chevron_right</span>
-</a>
-<div class="flex items-center justify-between py-2 border-b border-surface-variant">
-<div class="flex flex-col">
-<span class="font-bold">Two-Factor Authentication</span>
-<span class="text-label-sm text-on-surface-variant">Add an extra layer of security</span>
-</div>
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only peer" type="checkbox"/>
-<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-</label>
-</div>
-<div class="flex items-center justify-between py-2 border-b border-surface-variant">
-<div class="flex flex-col">
-<span class="font-bold">Connected Google account</span>
-<span class="text-label-sm text-on-surface-variant" id="connected-google-email">—</span>
-</div>
-<span class="text-label-sm font-bold text-primary">Connected</span>
-</div>
-<div class="flex items-center justify-between py-2 border-b border-surface-variant">
-<div class="flex flex-col">
-<span class="font-bold">Linked Phone</span>
-<span class="text-label-sm text-on-surface-variant" id="linked-phone">—</span>
-</div>
-<button class="text-label-sm font-bold text-primary">Verify</button>
-</div>
-</div>
-<div class="mt-8">
-<button class="flex items-center gap-2 text-on-surface-variant hover:text-on-surface transition-colors">
-<span class="material-symbols-outlined">download</span>
-<span class="font-bold text-label-sm">Download My Data</span>
-</button>
+  <div class="space-y-2">
+    <p class="text-label-sm text-on-surface-variant uppercase">Focus Areas</p>
+    <div class="flex flex-wrap gap-2">
+      <span class="bg-surface-container px-3 py-1 rounded-full text-label-sm">Grammar</span>
+      <span class="bg-surface-container px-3 py-1 rounded-full text-label-sm">Pronunciation</span>
+      <span class="bg-surface-container px-3 py-1 rounded-full text-label-sm">Vocabulary</span>
+    </div>
+  </div>
+  <div class="grid grid-cols-2 gap-4">
+    <div class="bg-surface-container-low p-4 rounded-lg flex flex-col gap-1">
+      <span class="text-display-lg text-primary text-[32px] leading-tight" id="pref-study-hours">0</span>
+      <span class="text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">Study Hours</span>
+    </div>
+    <div class="bg-surface-container-low p-4 rounded-lg flex flex-col gap-1">
+      <span class="text-display-lg text-primary text-[32px] leading-tight" id="pref-lessons">0</span>
+      <span class="text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">Lessons Done</span>
+    </div>
+    <div class="bg-surface-container-low p-4 rounded-lg flex flex-col gap-1">
+      <span class="text-display-lg text-primary text-[32px] leading-tight" id="pref-interviews">0</span>
+      <span class="text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">Interviews</span>
+    </div>
+    <div class="bg-surface-container-low p-4 rounded-lg flex flex-col gap-1">
+      <span class="text-display-lg text-primary text-[32px] leading-tight" id="pref-gds">0</span>
+      <span class="text-label-sm text-on-surface-variant uppercase font-bold tracking-wider">GD Sessions</span>
+    </div>
+  </div>
 </div>
 </section>
-<!-- Subscription Card -->
-<section class="bg-gradient-to-br from-primary to-secondary text-white rounded-lg p-gutter shadow-lg animate-fade-in stagger-4">
-<div class="flex flex-col md:flex-row items-center justify-between gap-6">
-<div class="flex items-center gap-4">
-<div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
-<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">star</span>
 </div>
-<div>
-<h3 class="font-headline-md text-headline-md">Premium Plan</h3>
-<p class="text-white/80">Active until Dec 31, 2024</p>
-</div>
-</div>
-<button class="px-8 py-3 bg-white text-primary font-bold rounded-full hover:bg-surface-container transition-colors shadow-md">
-            Manage Subscription
-          </button>
-</div>
-</section>
+
 <!-- Danger Zone -->
 <section class="bg-red-50 rounded-lg p-gutter border border-red-100 animate-fade-in stagger-4">
 <h3 class="font-headline-md text-headline-md text-red-700 mb-6 flex items-center gap-2">
@@ -418,12 +357,22 @@
             document.getElementById('info-native').textContent = 'â€”';
             document.getElementById('info-english-level').textContent = data.learningLevel || 'â€”';
 
-            // Account Activity stats
+            // Account activity grid
             const s = document.querySelectorAll('#account-activity-grid .stat-value');
             if (s[0]) s[0].textContent = data.currentStreak || 0;
             if (s[1]) s[1].textContent = Math.round((data.studyMinutes || 0) / 60 * 10) / 10;
             if (s[2]) s[2].textContent = data.completedLessons || 0;
             if (s[3]) s[3].textContent = data.completedInterviews || 0;
+
+            // Learning Stats boxes
+            const studyHoursEl = document.getElementById('pref-study-hours');
+            if (studyHoursEl) studyHoursEl.textContent = (Math.round((data.studyMinutes || 0) / 60 * 10) / 10) || 0;
+            const lessonsEl = document.getElementById('pref-lessons');
+            if (lessonsEl) lessonsEl.textContent = data.completedLessons || 0;
+            const interviewsEl = document.getElementById('pref-interviews');
+            if (interviewsEl) interviewsEl.textContent = data.completedInterviews || 0;
+            const gdsEl = document.getElementById('pref-gds');
+            if (gdsEl) gdsEl.textContent = data.completedGds || 0;
 
             // Account & Security section
             const googleEmailEl = document.getElementById('connected-google-email');
